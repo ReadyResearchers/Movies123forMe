@@ -1,0 +1,491 @@
+movie_odid,display_name,billing,person_odid,person,role
+139970100,La siciliana ribelle,100,177550401,Simonetta Amenta,Producer
+139970100,La siciliana ribelle,100,177560401,Tilde Corsi,Producer
+139970100,La siciliana ribelle,100,177570401,Gianni Romoli,Producer
+139970100,La siciliana ribelle,100,429390401,Raphael Berdugo,Producer
+139970100,La siciliana ribelle,100,177590401,Marco Amenta,Producer
+139970100,La siciliana ribelle,100,177590401,Marco Amenta,Director
+139970100,La siciliana ribelle,100,177590401,Marco Amenta,Screenwriter
+139970100,La siciliana ribelle,100,177600401,Sergio Donati,Screenwriter
+139970100,La siciliana ribelle,100,177570401,Gianni Romoli,Screenwriter
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",1,30950401,Bill Condon,Director
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",2,182190401,Melissa Rosenberg,Screenwriter
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",3,205100401,Stephenie Meyer,Story Creator
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",4,205090401,Wyck Godfrey,Producer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",5,124020401,Karen Rosenfelt,Producer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",6,205100401,Stephenie Meyer,Producer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",7,17560401,Marty Bowen,Executive Producer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",8,101240401,Greg Mooradian,Executive Producer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",9,101980401,Mark Morgan,Executive Producer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",10,109300401,Guy Oseary,Executive Producer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",11,289350401,Bill Bannerman,Co-Producer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",12,104670401,Guillermo Navarro,Cinematographer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",13,289360401,Richard Sherman,Production Designer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",14,75500401,Virginia Katz,Editor
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",15,289370401,John Bruno,Visual Effects Designer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",16,289370401,John Bruno,Visual Effects Supervisor
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",17,182300401,Carter Burwell,Composer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",18,111670401,Alexandra Patsavas,Music Supervisor
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",19,201530401,Michael Wilkinson,Costume Designer
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",20,258110401,Debra Zane,Casting Director
+139980100,"The Twilight Saga: Breaking Dawn, Part 1",21,809710401,John M. Morse,Assistant Director
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",1,30950401,Bill Condon,Director
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",2,258110401,Debra Zane,Casting Director
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",3,201530401,Michael Wilkinson,Costume Designer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",4,111670401,Alexandra Patsavas,Music Supervisor
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",5,182300401,Carter Burwell,Composer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",6,436290401,Terry Windell,Visual Effects Supervisor
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",7,75500401,Virginia Katz,Editor
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",8,436300401,Ian Slater,Editor
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",9,289360401,Richard Sherman,Production Designer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",10,104670401,Guillermo Navarro,Cinematographer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",11,289350401,Bill Bannerman,Co-Producer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",12,17560401,Marty Bowen,Executive Producer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",13,101240401,Greg Mooradian,Executive Producer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",14,101980401,Mark Morgan,Executive Producer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",15,109300401,Guy Oseary,Executive Producer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",16,205090401,Wyck Godfrey,Producer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",17,124020401,Karen Rosenfelt,Producer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",18,205100401,Stephenie Meyer,Producer
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",19,205100401,Stephenie Meyer,Story Creator
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",20,182190401,Melissa Rosenberg,Screenwriter
+139990100,"The Twilight Saga: Breaking Dawn, Part 2",21,809710401,John M. Morse,Assistant Director
+140020100,Helena From the Wedding,1,194890401,Alexa L. Fogel,Producer
+140020100,Helena From the Wedding,2,194900401,Brendan Mason,Producer
+140020100,Helena From the Wedding,3,194910401,Joseph Infantolino,Director
+140020100,Helena From the Wedding,4,194910401,Joseph Infantolino,Screenwriter
+140030100,Monsters,1,192090401,Gareth Edwards,Director
+140030100,Monsters,2,192040401,Allan Niblo,Producer
+140030100,Monsters,3,192050401,James Richardson,Producer
+140030100,Monsters,4,192060401,Nigel Williams,Executive Producer
+140030100,Monsters,5,192070401,Nick Love,Executive Producer
+140030100,Monsters,6,192080401,Rupert Preston,Executive Producer
+140030100,Monsters,7,192090401,Gareth Edwards,Screenwriter
+140040100,Catfish,100,198720401,Andrew Jarecki,Producer
+140040100,Catfish,100,181060401,Marc Smerling,Producer
+140040100,Catfish,100,173570401,Ariel Schulman,Producer
+140040100,Catfish,100,173580401,Henry Joost,Producer
+140040100,Catfish,100,181070401,Zac Stuart-Pontier,Producer
+140040100,Catfish,100,173570401,Ariel Schulman,Director
+140040100,Catfish,100,173580401,Henry Joost,Director
+140050100,Red,1,188320401,Lorenzo di Bonaventura,Producer
+140050100,Red,2,145280401,Mark Vahradian,Producer
+140050100,Red,3,188330401,Gregory Noveck,Executive Producer
+140050100,Red,4,188340401,Jake Myers,Executive Producer
+140050100,Red,5,188350401,David Ready,Co-Producer
+140050100,Red,6,174920401,Robert Schwentke,Director
+140050100,Red,7,188360401,Jon Hoeber,Screenwriter
+140050100,Red,8,188370401,Erich Hoeber,Screenwriter
+140050100,Red,9,188380401,Warren Ellis,Story Creator
+140050100,Red,10,188390401,Cully Hamner,Story Creator
+140050100,Red,11,247590401,Florian Ballhaus,Cinematographer
+140050100,Red,12,306590401,Thom Noble,Editor
+140050100,Red,13,182320401,Christophe Beck,Composer
+140050100,Red,14,295430401,Julianne Jordan,Music Supervisor
+140050100,Red,15,318180401,Alec Hammond,Production Designer
+140050100,Red,16,314870401,Brandt Gordon,Art Director
+140050100,Red,17,390160401,Carolyn Loucks,Set Decorator
+140050100,Red,18,236100401,Susan Lyall,Costume Designer
+140050100,Red,19,322320401,Glen Gauthier,Sound Mixer
+140050100,Red,20,367460401,Jon Title,Sound Designer
+140050100,Red,21,418660401,Dave McMoyler,Supervising Sound Editor
+140050100,Red,22,99800401,Michael Minkler,Re-recording Mixer
+140050100,Red,23,81440401,Tony Lamberti,Re-recording Mixer
+140050100,Red,24,367480401,Laird McMurray,Special Effects Coordinator
+140050100,Red,25,367490401,James Madigan,Visual Effects Supervisor
+140050100,Red,26,164410401,Paul Jennings,Stunt Coordinator
+140050100,Red,27,367500401,Jamie Jones,Stunt Coordinator
+140050100,Red,28,367510401,Andrew Robinson,Assistant Director
+140050100,Red,29,367520401,Myron Hoffert,Assistant Director
+140050100,Red,30,367530401,Gary Capo,Second Unit Director
+140050100,Red,31,367540401,David Harrington,Second Unit Camera
+140050100,Red,32,5860401,Deborah Aquila,Casting Director
+140050100,Red,33,154560401,Tricia Wood,Casting Director
+140060100,Freakonomics,1,190970401,Chad Troutwine,Producer
+140060100,Freakonomics,2,189130401,Dan O'Meara,Producer
+140060100,Freakonomics,3,189140401,Chris Romano,Producer
+140060100,Freakonomics,4,190980401,Michael Roban,Executive Producer
+140060100,Freakonomics,5,190990401,Paul Fiore,Executive Producer
+140060100,Freakonomics,6,191000401,Jay Rifkin,Executive Producer
+140060100,Freakonomics,7,191010401,Damon Martin,Executive Producer
+140060100,Freakonomics,8,56630401,Seth Gordon,Executive Producer
+140060100,Freakonomics,9,191020401,Rafi Chaudry,Co-Producer
+140060100,Freakonomics,10,191030401,Peter Cerbin,Co-Producer
+140060100,Freakonomics,11,191040401,Hilary Carr,Co-Producer
+140060100,Freakonomics,12,191050401,Stephen J. Dubner,Co-Executive Producer
+140060100,Freakonomics,13,191060401,Steven D. Levitt,Co-Executive Producer
+140060100,Freakonomics,14,191050401,Stephen J. Dubner,Story Creator
+140060100,Freakonomics,15,191060401,Steven D. Levitt,Story Creator
+140070100,The Warrior's Way,1,198550401,Sngmoo Lee,Screenwriter
+140070100,The Warrior's Way,2,198550401,Sngmoo Lee,Director
+140070100,The Warrior's Way,3,198560401,Barrie M. Osborne,Producer
+140070100,The Warrior's Way,4,198570401,Jooick Lee,Producer
+140070100,The Warrior's Way,5,113580401,Michael Peyser,Producer
+140070100,The Warrior's Way,6,151610401,Tim White,Executive Producer
+140080100,Stone,1,188060401,Holly Wiersma,Producer
+140080100,Stone,2,188070401,Jordan Schur,Producer
+140080100,Stone,3,188080401,David Mimran,Producer
+140080100,Stone,4,185880401,Avi Lerner,Executive Producer
+140080100,Stone,5,178770401,Danny Dimbort,Executive Producer
+140080100,Stone,6,178780401,Trevor Short,Executive Producer
+140080100,Stone,7,188090401,Rene Besson,Executive Producer
+140080100,Stone,8,188100401,Ed Cathell III,Co-Producer
+140080100,Stone,9,188110401,Will French,Co-Executive Producer
+140080100,Stone,10,188120401,Stephen Roberts,Co-Executive Producer
+140080100,Stone,11,188130401,John Curran,Director
+140080100,Stone,12,188140401,Angus MacLachlan,Screenwriter
+140090100,Frankenweenie,1,21830401,Tim Burton,Director
+140090100,Frankenweenie,2,21830401,Tim Burton,Producer
+140090100,Frankenweenie,3,332260401,Allison Abbate,Producer
+140090100,Frankenweenie,4,7670401,John August,Screenwriter
+140090100,Frankenweenie,5,415760401,Lenny Ripps,Story Creator
+140090100,Frankenweenie,6,21830401,Tim Burton,Story Creator
+140090100,Frankenweenie,7,204280401,Don Hahn,Executive Producer
+140090100,Frankenweenie,8,415780401,Peter Sorg,Cinematographer
+140090100,Frankenweenie,9,203690401,Rick Heinrichs,Production Designer
+140090100,Frankenweenie,10,204170401,Chris Lebenzon,Editor
+140090100,Frankenweenie,11,415790401,Mark Solomon,Editor
+140090100,Frankenweenie,12,370740401,Trey Thomas,Animation Director
+140090100,Frankenweenie,13,182350401,Danny Elfman,Composer
+140090100,Frankenweenie,14,80010401,Ronna Kress,Casting Director
+140090100,Frankenweenie,15,343530401,Derek Frey,Co-Producer
+140090100,Frankenweenie,16,415800401,Connie Nartonis Thompson,Associate Producer
+140090100,Frankenweenie,17,415810401,Simon Quinn,Line Producer
+140090100,Frankenweenie,18,415820401,Joan Schneider,Unit Production Manager
+140090100,Frankenweenie,19,415830401,Melissa Rogers,Production Manager
+140090100,Frankenweenie,20,415850401,Kev Harwood,Assistant Director
+140090100,Frankenweenie,21,136950401,Rob Stevenhagen,Head of Story
+140090100,Frankenweenie,22,415860401,Mark Waring,Animation Supervisor
+140090100,Frankenweenie,23,415870401,Tim Ledbury,Visual Effects Supervisor
+140090100,Frankenweenie,24,311500401,Christopher Boyes,Re-recording Mixer
+140100100,John Carter,1,136090401,Andrew Stanton,Director
+140100100,John Carter,2,208480401,Jim Morris,Producer
+140100100,John Carter,3,303020401,Lindsey Collins,Producer
+140100100,John Carter,4,206830401,Colin Wilson,Producer
+140100100,John Carter,5,136090401,Andrew Stanton,Screenwriter
+140100100,John Carter,6,289200401,Mark Andrews,Screenwriter
+140100100,John Carter,7,300070401,Michael Chapman,Screenwriter
+140100100,John Carter,8,332030401,Edgar Rice Burroughs,Story Creator
+140100100,John Carter,9,205760401,Dan Mindel,Cinematographer
+140100100,John Carter,10,157570401,Eric Zumbrunnen,Editor
+140100100,John Carter,11,184800401,Michael Giacchino,Composer
+140100100,John Carter,12,203270401,Nathan Crowley,Production Designer
+140100100,John Carter,13,332040401,James Hambidge,Supervising Art Director
+140100100,John Carter,14,92700401,Naaman Marshall,Supervising Art Director
+140100100,John Carter,15,332050401,Mark Harris,Art Director
+140100100,John Carter,16,322450401,Phil Harvey,Art Director
+140100100,John Carter,17,332060401,Joseph Hodges,Art Director
+140100100,John Carter,18,322430401,John King,Art Director
+140100100,John Carter,19,318380401,Dean Wolcott,Art Director
+140100100,John Carter,20,332070401,Robert Woodruff,Art Director
+140100100,John Carter,21,332080401,Scott Zuber,Art Director
+140100100,John Carter,22,316010401,Susan Whitaker,Visual Effects Designer
+140100100,John Carter,23,316040401,Paki Smith,Set Decorator
+140100100,John Carter,24,124830401,Mayes C. Rubeo,Costume Designer
+140100100,John Carter,25,328500401,Chris Munro,Sound Mixer
+140100100,John Carter,26,332090401,Timothy Nielsen,Sound Designer
+140100100,John Carter,27,323920401,Jonathan Null,Supervising Sound Editor
+140100100,John Carter,28,332090401,Timothy Nielsen,Supervising Sound Editor
+140100100,John Carter,29,129740401,Michael Semanick,Re-recording Mixer
+140100100,John Carter,30,311760401,Tom Johnson,Re-recording Mixer
+140100100,John Carter,31,112850401,Juan Peralta,Re-recording Mixer
+140100100,John Carter,32,241480401,Chris Corbould,Special Effects Supervisor
+140100100,John Carter,33,332100401,Scott R. Fisher,Special Effects Coordinator
+140100100,John Carter,34,332110401,Peter Chiang,Visual Effects Supervisor
+140100100,John Carter,35,332120401,Sue Rowe,Visual Effects Supervisor
+140100100,John Carter,36,332130401,Eamonn Butler,Animation Supervisor
+140100100,John Carter,37,332140401,Tom Struthers,Stunt Coordinator
+140100100,John Carter,38,56780401,Tommy Gormley,Assistant Director
+140100100,John Carter,39,289200401,Mark Andrews,Second Unit Director
+140100100,John Carter,40,332150401,Robert Bruce McCleery,Second Unit Camera
+140100100,John Carter,41,233530401,Marcia Ross,Casting Director
+140110100,Dolphin Tale,1,133700401,Charles Martin Smith,Director
+140110100,Dolphin Tale,2,271460401,Karen Janszen,Screenwriter
+140110100,Dolphin Tale,3,271470401,Noam Dromi,Screenwriter
+140110100,Dolphin Tale,5,179440401,Broderick Johnson,Producer
+140110100,Dolphin Tale,6,271480401,Richard Ingber,Producer
+140110100,Dolphin Tale,7,271490401,Robert Engelman,Executive Producer
+140110100,Dolphin Tale,8,179480401,Steven P. Wegner,Executive Producer
+140110100,Dolphin Tale,9,271500401,Carl Walter Lindenlaub,Cinematographer
+140110100,Dolphin Tale,10,205630401,Michael Corenblith,Production Designer
+140110100,Dolphin Tale,11,271510401,Harvey Rosenstock,Editor
+140110100,Dolphin Tale,12,271520401,Hope Hanafin,Costume Designer
+140110100,Dolphin Tale,13,271530401,Robert Munroe,Visual Effects Supervisor
+140110100,Dolphin Tale,14,271540401,Yolanda T. Cochran,Co-Producer
+140110100,Dolphin Tale,15,155750401,David Yates,Co-Producer
+140110100,Dolphin Tale,16,271550401,Deva Anderson,Music Supervisor
+140110100,Dolphin Tale,17,199840401,Mark Isham,Composer
+140110100,Dolphin Tale,18,10120401,Kerry Barden,Casting Director
+140110100,Dolphin Tale,19,228940401,Paul Schnee,Casting Director
+140110100,Dolphin Tale,20,377640401,Jim Bigham,Unit Production Manager
+140110100,Dolphin Tale,21,271490401,Robert Engelman,Unit Production Manager
+140110100,Dolphin Tale,22,410270401,Philip Patterson,Assistant Director
+140110100,Dolphin Tale,23,410280401,Meaghan F. McLaughlin,Assistant Director
+140110100,Dolphin Tale,24,410110401,Brad Arensman,Associate Producer
+140110100,Dolphin Tale,25,410290401,Carl Rogers,Associate Producer
+140120100,Altiplano,100,179640401,Heino Deckert,Producer
+140120100,Altiplano,100,179650401,Peter Brosens,Co-Director
+140120100,Altiplano,100,179650401,Peter Brosens,Screenwriter
+140120100,Altiplano,100,179660401,Jessica Woodworth,Co-Director
+140120100,Altiplano,100,179660401,Jessica Woodworth,Screenwriter
+181330100,Penguins of Madagascar,1,783130401,Simon J. Smith,Director
+181330100,Penguins of Madagascar,2,35940401,Eric Darnell,Director
+181330100,Penguins of Madagascar,3,821730401,Lara Brey,Producer
+181330100,Penguins of Madagascar,4,220110401,Mark Swift,Producer
+181330100,Penguins of Madagascar,5,176830401,Tom McGrath,Executive Producer
+181330100,Penguins of Madagascar,6,368840401,Mireille Soria,Executive Producer
+181330100,Penguins of Madagascar,7,35940401,Eric Darnell,Executive Producer
+181330100,Penguins of Madagascar,8,738460401,Tripp Hudson,Co-Producer
+181330100,Penguins of Madagascar,9,799410401,Michael Colton,Screenwriter
+181330100,Penguins of Madagascar,10,799400401,John Aboud,Screenwriter
+181330100,Penguins of Madagascar,11,944920401,Brandon Sawyer,Screenwriter
+181330100,Penguins of Madagascar,12,194010401,Alan Schoolcraft,Story Creator
+181330100,Penguins of Madagascar,13,194020401,Brent Simons,Story Creator
+181330100,Penguins of Madagascar,14,799410401,Michael Colton,Story Creator
+181330100,Penguins of Madagascar,15,799400401,John Aboud,Story Creator
+181330100,Penguins of Madagascar,16,194040401,Lorne Balfe,Composer
+181330100,Penguins of Madagascar,17,944930401,Nick Kenway,Editor
+181330100,Penguins of Madagascar,18,944940401,Robert Porter,Head of Story
+181330100,Penguins of Madagascar,19,944950401,Derek Drymon,Head of Story
+181330100,Penguins of Madagascar,20,368860401,Shannon Jeffries,Production Designer
+181330100,Penguins of Madagascar,21,370180401,Philippe Gluckman,Visual Effects Supervisor
+181330100,Penguins of Madagascar,22,944960401,Conan Low,Head of Layout
+181330100,Penguins of Madagascar,23,944970401,Olivier Staphylas,Head of Animation
+181330100,Penguins of Madagascar,24,944980401,Ruben Perez,Art Director
+181330100,Penguins of Madagascar,25,502000401,Jennifer Dahlman,Associate Producer
+181330100,Penguins of Madagascar,26,944990401,Damien de Froberville,Associate Producer
+181330100,Penguins of Madagascar,27,945000401,Dinesh Krishnan Nair,Production Manager
+181330100,Penguins of Madagascar,28,945010401,Michelle Jurado Staphylas,Production Manager
+181330100,Penguins of Madagascar,29,945020401,Jamaal Bradley,Animation Supervisor
+181330100,Penguins of Madagascar,30,468590401,Jonathan Harman,Lighting
+181330100,Penguins of Madagascar,31,945030401,Rajarajan Ramakrishnan,Lighting
+181330100,Penguins of Madagascar,32,945040401,Murali Babu Kodiparthi,Lighting
+181330100,Penguins of Madagascar,33,945050401,Gregory Jennings,Lighting
+181330100,Penguins of Madagascar,34,945060401,Raju Vaidya,Lighting
+181330100,Penguins of Madagascar,35,945070401,Vimal Subramaniam,Lighting
+181330100,Penguins of Madagascar,36,945080401,Josh West,Modeling Supervisor
+181330100,Penguins of Madagascar,37,945090401,J.J. Jay,Character TD Supervisor
+181330100,Penguins of Madagascar,38,945100401,Nathaniel Dirksen,Character TD Supervisor
+181330100,Penguins of Madagascar,39,945110401,Somesh Quadros,Character Effects Supervisor
+181330100,Penguins of Madagascar,40,945120401,Erik Mattson,Effects Lead
+181330100,Penguins of Madagascar,41,945130401,Michael Brainerd,Supervising Technical Director
+181330100,Penguins of Madagascar,42,109520401,Paul N. J. Ottosson,Sound Designer
+181330100,Penguins of Madagascar,43,109520401,Paul N. J. Ottosson,Sound Supervisor
+181330100,Penguins of Madagascar,44,109520401,Paul N. J. Ottosson,Re-recording Mixer
+181330100,Penguins of Madagascar,45,313430401,Leslee Feldman,Casting Director
+181330100,Penguins of Madagascar,46,368920401,Christi Soper,Casting Director
+181330100,Penguins of Madagascar,47,945140401,Chris Leahy,Associate Producer
+181330100,Penguins of Madagascar,48,945150401,Virendra Chauhan,Production Manager
+181330100,Penguins of Madagascar,49,764750401,Laura Grieve,Digital Supervisor
+181330100,Penguins of Madagascar,50,945160401,David Torres,Head of Animation
+181330100,Penguins of Madagascar,51,945170401,Oliver Finkelde,Character Effects Supervisor
+181330100,Penguins of Madagascar,52,945180401,Justin Onstine,Simulation & Crowds Supervisor
+181330100,Penguins of Madagascar,53,945200401,Shawn Lewis,Supervising Technical Director
+181330100,Penguins of Madagascar,54,945220401,Josh Lieberman,Story Artist
+181330100,Penguins of Madagascar,55,764840401,David Lux,Story Artist
+181330100,Penguins of Madagascar,56,945230401,Ken Morrissey,Story Artist
+181330100,Penguins of Madagascar,57,945240401,Dave Needham,Story Artist
+181330100,Penguins of Madagascar,58,945250401,Vi-Dieu Nguyen,Story Artist
+181330100,Penguins of Madagascar,59,945260401,Xavier Riffault,Story Artist
+181330100,Penguins of Madagascar,60,945270401,Januel Mercado,Story Artist
+181330100,Penguins of Madagascar,61,764850401,Claire Morrissey,Story Artist
+181330100,Penguins of Madagascar,62,945280401,Eric Ramsey,Story Artist
+181330100,Penguins of Madagascar,63,945290401,Jessica Ambinder-Rojas,Associate Editor
+181330100,Penguins of Madagascar,64,945360401,John Dorst,Assistant Editor
+181330100,Penguins of Madagascar,65,945370401,Will Erokan,Assistant Editor
+181330100,Penguins of Madagascar,66,945380401,Christa Di Falco,Assistant Editor
+181330100,Penguins of Madagascar,67,945390401,Brian A. Perry,Assistant Editor
+181330100,Penguins of Madagascar,68,945400401,Tiffany Hillkurtz,Associate Editor
+181330100,Penguins of Madagascar,69,945410401,Lynn Hobson,Associate Editor
+181330100,Penguins of Madagascar,70,329850401,Steven Liu,Associate Editor
+181330100,Penguins of Madagascar,71,945430401,Chris Ayers,Character Designer
+181330100,Penguins of Madagascar,72,945440401,Joe Moshier,Character Designer
+181330100,Penguins of Madagascar,73,614130401,Craig Kellman,Character Designer
+181330100,Penguins of Madagascar,74,945450401,Oliver Tossan,Character Designer
+181330100,Penguins of Madagascar,75,945460401,Gris Grimly,Character Designer
+181330100,Penguins of Madagascar,76,945470401,Jeremie Moreau,Character Designer
+181330100,Penguins of Madagascar,77,945210401,Hoon H. Kim,Production Supervisor
+181330100,Penguins of Madagascar,78,945420401,Ryan Genji Thomas,Production Supervisor
+181330100,Penguins of Madagascar,79,764940401,Dawn Yamada,Production Supervisor
+181330100,Penguins of Madagascar,80,945480401,David Edmunds,Production Supervisor
+181330100,Penguins of Madagascar,81,502130401,Susan Erokan,Production Supervisor
+181330100,Penguins of Madagascar,82,945500401,Rakesh Patil,Production Supervisor
+181330100,Penguins of Madagascar,83,945510401,Samantha Finkler Brainerd,Production Supervisor
+181330100,Penguins of Madagascar,84,946040401,Manoj Pahariya,Production Supervisor
+181330100,Penguins of Madagascar,85,946060401,Aditya Deosthale,Production Supervisor
+181330100,Penguins of Madagascar,86,946470401,Garrett Prince,Production Supervisor
+181330100,Penguins of Madagascar,87,945520401,Rachel Hanson,Animation
+181330100,Penguins of Madagascar,88,945530401,Shajo John,Animation
+181330100,Penguins of Madagascar,89,945540401,Manish Kumar,Animation
+181330100,Penguins of Madagascar,90,945550401,George M. Kurian,Animation
+181330100,Penguins of Madagascar,91,945560401,Siddhant Mehta,Animation
+181330100,Penguins of Madagascar,92,945570401,Prasanjib Nag,Animation
+181330100,Penguins of Madagascar,93,945620401,Ketan Adhikari,Animation
+181330100,Penguins of Madagascar,94,945630401,Tanseer Ahmed,Animation
+181330100,Penguins of Madagascar,95,945640401,Balaji Anbalagan,Animation
+181330100,Penguins of Madagascar,96,945650401,Kevin Andrus,Animation
+181330100,Penguins of Madagascar,97,945660401,Anand Baid,Animation
+181330100,Penguins of Madagascar,98,945670401,Rajesh P.K.,Animation
+181330100,Penguins of Madagascar,99,945680401,Harinarayan Rajeev,Animation
+181330100,Penguins of Madagascar,100,945690401,S. Karunakar Reddy,Animation
+181330100,Penguins of Madagascar,101,945700401,Divyesh Jagdish Shah,Animation
+181330100,Penguins of Madagascar,102,945710401,Kevan Shorey,Animation
+181330100,Penguins of Madagascar,103,945720401,Gautam Thakur,Animation
+181330100,Penguins of Madagascar,104,945580401,Prashanth Cavale,Animation
+181330100,Penguins of Madagascar,105,945590401,Nideep Varghese,Animation
+181330100,Penguins of Madagascar,106,930010401,Kapil Sharma,Animation
+181330100,Penguins of Madagascar,107,945600401,Ravi Kamble Govind,Animation
+181330100,Penguins of Madagascar,108,945610401,Sujit Chatterjee,Animation
+181330100,Penguins of Madagascar,109,945730401,Nedy Acet,Animation
+181330100,Penguins of Madagascar,110,306160401,James Baxter,Animation
+181330100,Penguins of Madagascar,111,945740401,Julien Bocabeille,Animation
+181330100,Penguins of Madagascar,112,945890401,Irene Parkins,Animation
+181330100,Penguins of Madagascar,113,945750401,David Couchariere,Animation
+181330100,Penguins of Madagascar,114,945760401,Michelle Cowart,Animation
+181330100,Penguins of Madagascar,115,945770401,Donnachada Daly,Animation
+181330100,Penguins of Madagascar,116,945780401,Lou Dellarosa,Animation
+181330100,Penguins of Madagascar,117,945790401,Bill Diaz,Animation
+181330100,Penguins of Madagascar,118,945800401,W. Jacob Gardner,Animation
+181330100,Penguins of Madagascar,119,945810401,Thomas Grummt,Animation
+181330100,Penguins of Madagascar,120,945820401,Andrew Harkins,Animation
+181330100,Penguins of Madagascar,121,945830401,Jennifer E. Harlow,Animation
+181330100,Penguins of Madagascar,122,72020401,Jakob Hjort Jensen,Animation
+181330100,Penguins of Madagascar,123,945840401,Eric Lees,Animation
+181330100,Penguins of Madagascar,124,945850401,Scott Lemmer,Animation
+181330100,Penguins of Madagascar,125,945860401,Sean Mahoney,Animation
+181330100,Penguins of Madagascar,126,945870401,Steven J. Meyer,Animation
+181330100,Penguins of Madagascar,127,945880401,Rani Naamani,Animation
+181330100,Penguins of Madagascar,128,945900401,Ron Pucherelli,Animation
+181330100,Penguins of Madagascar,129,945910401,Luke Randall,Animation
+181330100,Penguins of Madagascar,130,945920401,Carlos Rosas,Animation
+181330100,Penguins of Madagascar,131,529650401,Ben Rush,Animation
+181330100,Penguins of Madagascar,132,945930401,Mike Safianoff,Animation
+181330100,Penguins of Madagascar,133,945940401,Henry G. Sanchez,Animation
+181330100,Penguins of Madagascar,134,945950401,Jason Spencer-Galsworthy,Animation
+181330100,Penguins of Madagascar,135,945960401,David Stodolny,Animation
+181330100,Penguins of Madagascar,136,945970401,Theodore Anthony Ty,Animation
+181330100,Penguins of Madagascar,137,376630401,Tim Watts,Animation
+181330100,Penguins of Madagascar,138,945980401,David Weatherly,Animation
+181330100,Penguins of Madagascar,139,945990401,Greg Whittaker,Animation
+181330100,Penguins of Madagascar,140,946000401,Benjamin Willis,Animation
+181330100,Penguins of Madagascar,141,946010401,Onur Yeldan,Animation
+181330100,Penguins of Madagascar,142,946020401,Heather Lanza,Production Supervisor
+181330100,Penguins of Madagascar,143,946030401,Caroline Robinson,Production Supervisor
+181330100,Penguins of Madagascar,144,946040401,Manoj Pahariya,Production Designer
+181330100,Penguins of Madagascar,145,946050401,Uma Havaligi,Character Effects Supervisor
+181330100,Penguins of Madagascar,146,946070401,Brijesh Johar,Effects Lead
+181330100,Penguins of Madagascar,147,946080401,Mitul Patel,Effects Lead
+181330100,Penguins of Madagascar,148,946090401,Dhruva Pathak,Effects Lead
+181330100,Penguins of Madagascar,149,946100401,Venu Victor,Effects Lead
+181330100,Penguins of Madagascar,150,946110401,Fangwei Lee,Effects Lead
+181330100,Penguins of Madagascar,151,437160401,Yancy Lindquist,Effects Lead
+181330100,Penguins of Madagascar,152,946270401,Arun P.A.,Lighting
+181330100,Penguins of Madagascar,153,946260401,Mayank Namrata Kanyal,Lighting
+181330100,Penguins of Madagascar,154,946250401,Praveen Ushus Dev,Lighting
+181330100,Penguins of Madagascar,155,946240401,Vijay Bundela,Lighting
+181330100,Penguins of Madagascar,156,946120401,Kiran Kumar Goonda,Lighting
+181330100,Penguins of Madagascar,157,946130401,Harshal Raja Kadam,Lighting
+181330100,Penguins of Madagascar,158,946140401,Soumya Khurana,Lighting
+181330100,Penguins of Madagascar,159,946150401,Harshal Nachnolkar,Lighting
+181330100,Penguins of Madagascar,160,946160401,Raghuram Palasamudram,Lighting
+181330100,Penguins of Madagascar,161,946170401,Kaustubh Patil,Lighting
+181330100,Penguins of Madagascar,162,946180401,Jean Joseph Philip,Lighting
+181330100,Penguins of Madagascar,163,946190401,Ram Prasad Devanathan,Lighting
+181330100,Penguins of Madagascar,164,946200401,Sai Raghunandan G,Lighting
+181330100,Penguins of Madagascar,165,946210401,Aditya Sharma,Lighting
+181330100,Penguins of Madagascar,166,946220401,Honey Sharma,Lighting
+181330100,Penguins of Madagascar,167,946230401,Sukhpal Singh Vasdev,Lighting
+181330100,Penguins of Madagascar,168,764770401,Annmarie Koenig,Lighting
+181330100,Penguins of Madagascar,169,726020401,David Lawson,Lighting
+181330100,Penguins of Madagascar,170,946280401,M. Scott McKee,Lighting
+181330100,Penguins of Madagascar,171,946290401,Udai Haraguchi,Lighting
+181330100,Penguins of Madagascar,172,946300401,Amy Jones,Lighting
+181330100,Penguins of Madagascar,173,946310401,Michel Kinfoussia,Lighting
+181330100,Penguins of Madagascar,174,946320401,Lyndon Li,Lighting
+181330100,Penguins of Madagascar,175,946330401,Kieron Cheuk-Chi Lo,Lighting
+181330100,Penguins of Madagascar,176,946340401,Amber Stewart Lunderville,Lighting
+181330100,Penguins of Madagascar,177,946350401,Jennifer Leigh King,Lighting
+181330100,Penguins of Madagascar,178,946360401,Erin Lehmkuhl,Lighting
+181330100,Penguins of Madagascar,179,946370401,Chris Lexington,Lighting
+181330100,Penguins of Madagascar,180,946380401,Linhan Li,Lighting
+181330100,Penguins of Madagascar,181,946390401,Jimmy Maidens,Lighting
+181330100,Penguins of Madagascar,182,946400401,Campbell McGrouther,Lighting
+181330100,Penguins of Madagascar,183,946410401,Yuko Okumura,Lighting
+181330100,Penguins of Madagascar,184,946420401,Rupali Parekh,Lighting
+181330100,Penguins of Madagascar,185,204260401,Eric Roth,Lighting
+181330100,Penguins of Madagascar,186,946430401,Devank Patel,Lighting
+181330100,Penguins of Madagascar,187,946440401,Aditya P. Prabhu,Lighting
+181330100,Penguins of Madagascar,188,946450401,Ashish Dantu,Supervising Technical Director
+181330100,Penguins of Madagascar,189,946460401,Adam Gaige,Supervising Technical Director
+181330100,Penguins of Madagascar,190,946480401,Mollie Garno,Additional Casting
+181330100,Penguins of Madagascar,191,946490401,Liz Molholt,Additional Casting
+181330100,Penguins of Madagascar,192,845130401,James Beshears,Post-Production Executive
+181330100,Penguins of Madagascar,193,777680401,Greg ten Bosch,Sound Effects Editor
+181330100,Penguins of Madagascar,194,689430401,Christian Schaaning,Sound Effects Editor
+181330100,Penguins of Madagascar,195,484290401,Bruce Tanis,Sound Effects Editor
+181330100,Penguins of Madagascar,196,650790401,Jamie Hardt,Sound Effects Editor
+181330100,Penguins of Madagascar,197,1326190401,Randy Singer,Foley Mixer
+181330100,Penguins of Madagascar,198,690760401,Maryjo Lang,Foley Mixer
+181330100,Penguins of Madagascar,199,484300401,Slamm Andrews,Music Editor
+181330100,Penguins of Madagascar,200,276640401,Tom Carlson,Music Editor
+181330100,Penguins of Madagascar,201,724120401,Geoff Foster,Score Recordist
+181330100,Penguins of Madagascar,202,362720401,Dennis Sands,Score Mixer
+180630100,Minions,1,174830401,Pierre Coffin,Director
+180630100,Minions,2,329860401,Kyle Balda,Director
+180630100,Minions,3,225860401,Brian Lynch,Screenwriter
+180630100,Minions,4,206150401,Christopher Meledandri,Producer
+180630100,Minions,5,206140401,Janet Healy,Producer
+180630100,Minions,6,174840401,Chris Renaud,Executive Producer
+180630100,Minions,7,315110401,Eric Guillon,Production Designer
+180630100,Minions,8,329840401,Claire Dodgson,Editor
+180630100,Minions,9,199050401,Heitor Pereira,Composer
+180630100,Minions,10,315110401,Eric Guillon,Character Designer
+180630100,Minions,11,715600401,Robert Taylor,Associate Producer
+180630100,Minions,12,1070000401,Brett Hoffman,Associate Producer
+180630100,Minions,13,329880401,Nathalie Vaincauwenberghe,Production Supervisor
+180630100,Minions,14,738540401,Olivier Adam,Art Director
+180630100,Minions,15,1070010401,Bruno Dequier,Animation Director
+180630100,Minions,16,1070020401,Pierre Leduc,Animation Director
+180630100,Minions,17,518250401,Pierre Avon,Supervising Animator
+180630100,Minions,18,1070030401,Simon Cuisinier,Animation Supervisor
+180630100,Minions,19,1070040401,Luc Degardin,Animation Supervisor
+180630100,Minions,20,1070050401,Christophe Delisle,Animation Supervisor
+180630100,Minions,21,1070060401,Jonathan Del Val,Animation Supervisor
+180630100,Minions,22,1070070401,Audrey Fobis,Animation Supervisor
+180630100,Minions,23,1070080401,Ludovic Savonniere,Animation Supervisor
+180630100,Minions,24,518300401,Emmanuel Vergne,Animation Supervisor
+180630100,Minions,25,1070090401,Elisabeth Patte,Simulation & Crowds Supervisor
+180630100,Minions,26,1070100401,Christele Jolens,Technical Animation Supervisor
+180630100,Minions,27,518240401,Laurent De La Chapelle,Technical Animation Supervisor
+180630100,Minions,28,1070110401,David Rodrigues,Character Effects Supervisor
+180630100,Minions,29,1070120401,Dave Rosenbaum,Story Supervisor
+180630100,Minions,30,945400401,Tiffany Hillkurtz,Associate Editor
+180630100,Minions,31,1070130401,Prakash Patel,Assistant Editor
+180630100,Minions,32,1070140401,Lisa Shaw Phillips,Assistant Editor
+180630100,Minions,33,1070150401,Rachel Brennan,Assistant Editor
+180630100,Minions,34,203780401,Ken Schretzmann,Additional Editor
+180630100,Minions,35,1070160401,Didier Ah-Koon,Story Artist
+180630100,Minions,36,1070170401,Marco Allard,Story Artist
+180630100,Minions,37,1070180401,Eric Delbecq,Story Artist
+180630100,Minions,38,1070190401,Antoine Ettori,Story Artist
+180630100,Minions,39,1070200401,Serguei Kouchnerov,Story Artist
+180630100,Minions,40,1070210401,Habib Louati,Story Artist
+180630100,Minions,41,1070220401,Nolwenn Roberts,Story Artist
+180630100,Minions,42,518330401,Paul Mager,Set Designer
+180630100,Minions,43,1070230401,Vincent Massy De La Chesneraye,Set Designer
+180630100,Minions,44,1070240401,Charlotte Hutchinson,Set Designer
+180630100,Minions,45,1070250401,Brett Nystul,Set Designer
+180630100,Minions,46,518320401,Loic Rastout,Set Designer
+180630100,Minions,47,1070260401,Thomas Reteuna,Set Designer
+180630100,Minions,48,1070270401,Alexandre Saint-Martin,Set Designer
+180630100,Minions,49,1070300401,Jeannine Berger,Post-Production Supervisor
+180630100,Minions,50,344050401,Dennis Leonard,Supervising Sound Editor
+180630100,Minions,51,127800401,Christopher Scarabosio,Sound Designer
+180630100,Minions,52,311930401,Gary A. Rizzo,Re-recording Mixer
+180630100,Minions,53,127800401,Christopher Scarabosio,Re-recording Mixer
+180630100,Minions,54,354930401,Jeremy Bowker,Sound Effects Editor
+180630100,Minions,55,951900401,Luke Dunn Gielmuda,Sound Effects Editor
+180630100,Minions,56,779620401,Josh Gold,Sound Effects Editor
+180630100,Minions,57,484300401,Slamm Andrews,Music Editor
+180630100,Minions,58,322480401,Shawn Murphy,Score Recordist
+180630100,Minions,59,322480401,Shawn Murphy,Score Mixer
