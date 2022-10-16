@@ -177,8 +177,8 @@ movie23 = load_data_full(10000)[22]
 data_load_state.text("Done!")
 
 # basic package display
-def display(choice):
-    menu = ["Home", "Basic", "Full"]
+def display():
+    menu = ["Home", "Basic", "Full", "Movie Analysis Demo"]
     choice = st.sidebar.selectbox("Menu", menu)
     if choice == 'Basic':
         st.subheader(f"Raw data for {list_names_basic[0]}:")
@@ -292,5 +292,44 @@ def display(choice):
         st.subheader(f"Raw data for {list_names_full[22]}:")
         st.write(movie23)
         st.write("\n---\n")
-    else:
-        st.subheader("Home")
+    if choice == 'Movie Analysis Demo':
+        st.subheader("Demo for Movies123ForMe Analysis")
+        # loading the data into a dataset
+        df_basic = pd.DataFrame(inter.values, columns=inter.columns)
+        df_full = pd.DataFrame(movie2.values, columns=movie2.columns)
+        st.write(df_basic)
+        st.write(df_full)
+        # visualizing the dataset
+        chart = st.sidebar.selectbox(
+            label = "Select the type of chart",
+            options = ["Scatterplot", "Lineplots", "Histogram", "Boxplot"]
+        )
+        if chart == 'Scatterplot':
+            # st.sidebar.subheader('Scatterplot Settings')
+            scatter_fig1 = (px.scatter(x = inter['total_box_office'], y = inter['display_name'], title = "Box Office Sales Per Movie"))
+            scatter_fig2 = (px.scatter(x= movie2['revenue'], y = movie2['display_name'], title = 'Total Revenue per Movie'))
+            scatter_fig1.update_layout(xaxis_title = "Total Box Office Earnings", yaxis_title = "Movie Name")
+            scatter_fig2.update_layout(xaxis_title = "Total Revenue", yaxis_title = "Movie Name")
+            st.write(scatter_fig1)
+            st.write(scatter_fig2)
+        if chart == 'Lineplots':
+            line_fig1 = (px.line(x = inter['total_box_office'], y = inter['display_name'], title = "Box Office Sales Per Movie"))
+            line_fig2 = (px.line(x= movie2['revenue'], y = movie2['display_name'], title = 'Total Revenue per Movie'))
+            line_fig1.update_layout(xaxis_title = "Total Box Office Earnings", yaxis_title = "Movie Name")
+            line_fig2.update_layout(xaxis_title = "Total Revenue", yaxis_title = "Movie Name")
+            st.write(line_fig1)
+            st.write(line_fig2)
+        if chart == 'Histogram':
+            hist_fig1 = (px.histogram(x = inter['total_box_office'], y = inter['display_name'], title = "Box Office Sales Per Movie"))
+            hist_fig2 = (px.histogram(x= movie2['revenue'], y = movie2['display_name'], title = 'Total Revenue per Movie'))
+            hist_fig1.update_layout(xaxis_title = "Total Box Office Earnings", yaxis_title = "Movie Name")
+            hist_fig2.update_layout(xaxis_title = "Total Revenue", yaxis_title = "Movie Name")
+            st.write(hist_fig1)
+            st.write(hist_fig2)
+        if chart == 'Boxplot':
+            box_fig1 = (px.box(x = inter['total_box_office'], y = inter['display_name'], title = "Box Office Sales Per Movie"))
+            box_fig2 = (px.box(x= movie2['revenue'], y = movie2['display_name'], title = 'Total Revenue per Movie'))
+            box_fig1.update_layout(xaxis_title = "Total Box Office Earnings", yaxis_title = "Movie Name")
+            box_fig2.update_layout(xaxis_title = "Total Revenue", yaxis_title = "Movie Name")
+            st.write(box_fig1)
+            st.write(box_fig2)
