@@ -1,17 +1,20 @@
 """This will be the initial implementation of the webscraping tool for my prototype."""
 
+from symbol import test_nocond
 import streamlit as st
 import pandas as pd
 import shap
 import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.ensemble import RandomForestRegressor
+from pathlib import Path
 import plotly.express as px
 
 st.title('Movies123forMe - A Personalized Movie Selector')
 
 DATA_FULL_PATH = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\full\\')
 DATA_BASIC_PATH = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\basic\\')
+DATA_IMDB = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\imdb\\')
 
 # BASIC PACKAGE PART OF THE CODE
 
@@ -172,13 +175,39 @@ movie21 = load_data_full(10000)[20]
 movie22 = load_data_full(10000)[21]
 movie23 = load_data_full(10000)[22]
 
+# IMDB PACKAGE PART OF THE CODE
+list_names_imdb = ['title.akas', 'title.basics', 'title.crew', 'title.episode', 'title.principals',
+'title.ratings', 'name.basics']
+
+# creating text element to show the loading of the data in the app
+data_load_state = st.text("Loading the movie data for the IMDB Extract package... ")
+
+@st.cache
+def load_data_imdb(nrows):
+    akas = pd.read_table(DATA_IMDB + list_names_imdb[0] + '.tsv\\data.tsv', nrows=nrows)
+    title_basics = pd.read_table(DATA_IMDB + list_names_imdb[1] + '.tsv\\data.tsv', nrows=nrows)
+    crew = pd.read_table(DATA_IMDB + list_names_imdb[2] + '.tsv\\data.tsv', nrows=nrows)
+    episode = pd.read_table(DATA_IMDB + list_names_imdb[3] + '.tsv\\data.tsv', nrows=nrows)
+    principals = pd.read_table(DATA_IMDB + list_names_imdb[4] + '.tsv\\data.tsv', nrows=nrows)
+    ratings = pd.read_table(DATA_IMDB + list_names_imdb[5] + '.tsv\\data.tsv', nrows=nrows)
+    name_basics = pd.read_table(DATA_IMDB + list_names_imdb[6] + '.tsv\\data.tsv', nrows=nrows)
+    lowercase = lambda x: str(x).lower()
+    # setting up pandas dataframe for all of the files
+    akas.rename(lowercase, axis='columns', inplace=True)
+    title_basics.rename(lowercase, axis='columns', inplace=True)
+    crew.rename(lowercase, axis='columns', inplace=True)
+    episode.rename(lowercase, axis='columns', inplace=True)
+    principals.rename(lowercase, axis='columns', inplace=True)
+    ratings.rename(lowercase, axis='columns', inplace=True)
+    name_basics.rename(lowercase, axis='columns', inplace=True)
+    return akas, title_basics, crew, episode, principals, ratings, name_basics
 
 # notify the reader that the data was successfully loaded
 data_load_state.text("Done!")
 
 # basic package display
 def display():
-    menu = ["Home", "Basic", "Full", "Movie Analysis Demo"]
+    menu = ["Home", "Basic", "Full", "IMDB", "Demo"]
     choice = st.sidebar.selectbox("Menu", menu)
     if choice == 'Basic':
         st.subheader(f"Raw data for {list_names_basic[0]}:")
@@ -292,7 +321,36 @@ def display():
         st.subheader(f"Raw data for {list_names_full[22]}:")
         st.write(movie23)
         st.write("\n---\n")
-    if choice == 'Movie Analysis Demo':
+    # imdb display
+    if choice == 'IMDB':
+        st.subheader(f"Raw data for {list_names_imdb[0]}:")
+        st.write(load_data_imdb(10000)[0])
+        st.write("\n---\n")
+        st.subheader(f"Raw data for {list_names_imdb[1]}:")
+        st.write(load_data_imdb(10000)[1])
+        st.write("\n---\n")
+        st.subheader(f"Raw data for {list_names_imdb[2]}:")
+        st.write(load_data_imdb(10000)[2])
+        st.write("\n---\n")
+        st.subheader(f"Raw data for {list_names_imdb[3]}:")
+        st.write(load_data_imdb(10000)[3])
+        st.write("\n---\n")
+        st.subheader(f"Raw data for {list_names_imdb[4]}:")
+        st.write(load_data_imdb(10000)[4])
+        st.write("\n---\n")
+        st.subheader(f"Raw data for {list_names_imdb[5]}:")
+        st.write(load_data_imdb(10000)[5])
+        st.write("\n---\n")
+        st.subheader(f"Raw data for {list_names_imdb[6]}:")
+        st.write(load_data_imdb(10000)[6])
+        st.write("\n---\n")
+        st.subheader("Explanation of the variables listed in each of the different tables:")
+        path = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\imdb\\imdb_exp.md'
+        def markdown_file(file):
+            return Path(file).read_text()
+        intro_markdown = markdown_file(path)
+        st.markdown(intro_markdown, unsafe_allow_html=True)
+    if choice == 'Demo':
         st.subheader("Demo for Movies123ForMe Analysis")
         # loading the data into a dataset
         df_basic = pd.DataFrame(inter.values, columns=inter.columns)
