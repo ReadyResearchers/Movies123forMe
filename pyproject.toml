@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "Movies123ForMe"
+version = "0.1.0"
+description = "description"
+authors = ["Adriana Solis <solisa@allegheny.edu>"]
+license = "MIT"
+readme = "README.md"
+include = [ "LICENSE", ]
+packages = [ { include = "src" }, ]
+
+[tool.poetry.scripts]
+movies = "src.machine_learning:cli"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.9.7 || >3.9.7,<4.0"
+typer = "^0.6.1"
+rich = "^12.6.0"
+streamlit = "^1.13.0"
+shap = "^0.41.0"
+matplotlib = "^3.6.1"
+plotly = "^5.10.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
