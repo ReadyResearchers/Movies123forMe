@@ -1,35 +1,25 @@
 import pandas as pd
 import streamlit as st
 import numpy as np
-
+from functools import reduce
 import data_loading
 
-acting = data_loading.load_data_basic(10000)[0]
-inter = data_loading.load_data_basic(10000)[1]
-ident = data_loading.load_data_basic(10000)[2]
-key = data_loading.load_data_basic(10000)[3]
-lang = data_loading.load_data_basic(10000)[4]
-rati = data_loading.load_data_basic(10000)[5]
-releas = data_loading.load_data_basic(10000)[6]
-summ = data_loading.load_data_basic(10000)[7]
-vid = data_loading.load_data_basic(10000)[8]
-peop = data_loading.load_data_basic(10000)[9]
-prod = data_loading.load_data_basic(10000)[10]
-countr = data_loading.load_data_basic(10000)[11]
-cred = data_loading.load_data_basic(10000)[12]
+acting = data_loading.load_data_basic(100)[0]
+inter = data_loading.load_data_basic(100)[1]
+ident = data_loading.load_data_basic(100)[2]
+key = data_loading.load_data_basic(100)[3]
+lang = data_loading.load_data_basic(100)[4]
+rati = data_loading.load_data_basic(100)[5]
+releas = data_loading.load_data_basic(100)[6]
+summ = data_loading.load_data_basic(100)[7]
+vid = data_loading.load_data_basic(100)[8]
+peop = data_loading.load_data_basic(100)[9]
+prod = data_loading.load_data_basic(100)[10]
+countr = data_loading.load_data_basic(100)[11]
+cred = data_loading.load_data_basic(100)[12]
 
-type(acting)
+# compile the list of dataframes you want to merge
+data_frames = [acting, inter, ident, key, lang, rati, releas, summ, vid, peop, prod, countr, cred]
+df_merged = reduce(lambda  left,right: pd.merge(left,right,on=['movie_odid'], how='outer'), data_frames)
 
-# show class type
-st.write(type(acting))
-# show first 5 entries
-st.write(acting.head())
-pd.set_option("display.max.columns", None)
-# display all columns and data types
-st.write(acting.info())
-# describe the dataset
-st.write(acting.describe())
-# describe with include parameter
-st.write(acting.describe(include=object))
-# show how often specific values occur in a column
-st.write(rati.query("rating == 'PG'"))
+st.write(df_merged)
