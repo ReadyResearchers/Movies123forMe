@@ -1,0 +1,5 @@
+#!C:\Users\solis\OneDrive\Documents\comp\Movies123forMe\.venv\Scripts\python.exe
+from src.machine_learning import cli
+
+if __name__ == '__main__':
+    cli()

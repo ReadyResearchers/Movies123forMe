@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: shap
+Version: 0.41.0
+Summary: A unified approach to explain the output of any machine learning model.
+Home-page: http://github.com/slundberg/shap
+Author: Scott Lundberg
+Author-email: slund1@cs.washington.edu
+License: MIT
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: scikit-learn
+Requires-Dist: pandas
+Requires-Dist: tqdm (>4.25.0)
+Requires-Dist: packaging (>20.9)
+Requires-Dist: slicer (==0.0.7)
+Requires-Dist: numba
+Requires-Dist: cloudpickle
+Provides-Extra: all
+Requires-Dist: catboost ; extra == 'all'
+Requires-Dist: lime ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Requires-Dist: transformers ; extra == 'all'
+Requires-Dist: numpydoc ; extra == 'all'
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: torch ; extra == 'all'
+Requires-Dist: pyod ; extra == 'all'
+Requires-Dist: opencv-python ; extra == 'all'
+Requires-Dist: lightgbm ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme ; extra == 'all'
+Requires-Dist: matplotlib ; extra == 'all'
+Requires-Dist: xgboost ; extra == 'all'
+Requires-Dist: sentencepiece ; extra == 'all'
+Requires-Dist: ipython ; extra == 'all'
+Requires-Dist: sphinx ; extra == 'all'
+Requires-Dist: nbsphinx ; extra == 'all'
+Requires-Dist: pytest-mpl ; extra == 'all'
+Requires-Dist: pyspark ; extra == 'all'
+Provides-Extra: docs
+Requires-Dist: matplotlib ; extra == 'docs'
+Requires-Dist: ipython ; extra == 'docs'
+Requires-Dist: numpydoc ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: nbsphinx ; extra == 'docs'
+Provides-Extra: others
+Requires-Dist: lime ; extra == 'others'
+Provides-Extra: plots
+Requires-Dist: matplotlib ; extra == 'plots'
+Requires-Dist: ipython ; extra == 'plots'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-mpl ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: xgboost ; extra == 'test'
+Requires-Dist: lightgbm ; extra == 'test'
+Requires-Dist: catboost ; extra == 'test'
+Requires-Dist: pyspark ; extra == 'test'
+Requires-Dist: pyod ; extra == 'test'
+Requires-Dist: transformers ; extra == 'test'
+Requires-Dist: torch ; extra == 'test'
+Requires-Dist: sentencepiece ; extra == 'test'
+Requires-Dist: opencv-python ; extra == 'test'
+
+SHAP (SHapley Additive exPlanations) is a unified approach to explain the output of any machine learning model. SHAP connects game theory with local explanations, uniting several previous methods and representing the only possible consistent and locally accurate additive feature attribution method based on expectations.
