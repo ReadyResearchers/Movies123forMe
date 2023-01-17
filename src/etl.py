@@ -52,7 +52,7 @@ def clean_data():
     opus['international_box_office'] = pd.to_numeric(opus['international_box_office'])
     opus['running_time'] = pd.to_numeric(opus['running_time'])
 
-    # opus['production_year'].dtype
+    #opus['production_year'].dtype
     # opus['production_budget'].dtype
     # opus['domestic_box_office'].dtype
     # opus['international_box_office'].dtype
@@ -96,13 +96,26 @@ def clean_data():
     disney = disney.assign(listed_in=disney['listed_in'].str.split(",")).explode('listed_in')
     return opus, netflix, prime, disney, hulu
 
+def transform_data():
+    opus = clean_data()[0]
+    netflix = clean_data()[1]
+    prime = clean_data()[2]
+    disney = clean_data()[3]
+    hulu = clean_data()[4]
+
+    # calculating the mean
+    opus['mean_budget'] = opus.groupby('genre')['production_budget'].transform('mean')
+    opus['mean_budget']
+    return opus, netflix, prime, disney, hulu
+    
+
 """Opus Data"""
-st.write(clean_data()[0])
+st.write(transform_data()[0])
 """Netflix Data"""
-st.write(clean_data()[1])
+st.write(transform_data()[1])
 """Amazon Prime Data"""
-st.write(clean_data()[2])
+st.write(transform_data()[2])
 """Disney+ Data"""
-st.write(clean_data()[3])
+st.write(transform_data()[3])
 """Hulu Data"""
-st.write(clean_data()[4])
+st.write(transform_data()[4])
