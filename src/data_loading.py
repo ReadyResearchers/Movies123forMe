@@ -10,21 +10,19 @@ from sklearn.ensemble import RandomForestRegressor
 from pathlib import Path
 import plotly.express as px
 
-st.title('Movies123forMe - A Personalized Movie Selector')
+# st.title('Movies123forMe - A Personalized Movie Selector')
 
 DATA_OPUS = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\movie_data\\')
 DATA_NETFLIX = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\netflix\\')
 DATA_HULU = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\hulu\\')
 DATA_PRIME = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\prime\\')
-DATA_DISNEY = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\disney+')
+DATA_DISNEY = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\disney+\\')
 DATA_IMDB = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\imdb\\')
 
 # OPUS PART OF THE CODE
 # creating text element to show the loading of the data in the app
-data_load_state = st.text("Loading the movie data for the IMDB, Netflix, Hulu, Disney+, and Prime Extract package... ")
 
-
-@st.cache
+@st.cache(allow_output_mutation=True)
 def load_data_opus(nrows):
     data = pd.read_csv(DATA_OPUS + 'movie_data.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -33,7 +31,7 @@ def load_data_opus(nrows):
     return data
 
 # NETFLIX PART OF THE CODE
-@st.cache
+@st.cache(allow_output_mutation=True)
 def load_data_netflix(nrows):
     data1 = pd.read_csv(DATA_NETFLIX + 'archive\\netflix_titles.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -41,7 +39,7 @@ def load_data_netflix(nrows):
     data1.rename(lowercase, axis='columns', inplace=True)
     return data1
 # HULU PART OF THE CODE
-@st.cache
+@st.cache(allow_output_mutation=True)
 def load_data_hulu(nrows):
     data2 = pd.read_csv(DATA_HULU + 'archive\\hulu_titles.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -49,7 +47,7 @@ def load_data_hulu(nrows):
     data2.rename(lowercase, axis='columns', inplace=True)
     return data2
 # PRIME PART OF THE CODE
-@st.cache
+@st.cache(allow_output_mutation=True)
 def load_data_prime(nrows):
     data3 = pd.read_csv(DATA_PRIME + 'archive\\amazon_prime_titles.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -57,9 +55,9 @@ def load_data_prime(nrows):
     data3.rename(lowercase, axis='columns', inplace=True)
     return data3
 # DISNEY+ PART OF THE CODE
-@st.cache
+@st.cache(allow_output_mutation=True)
 def load_data_disney(nrows):
-    data4 = pd.read_csv(DATA_OPUS + 'archive\\disney_plus_titles.csv', nrows=nrows)
+    data4 = pd.read_csv(DATA_DISNEY + 'archive\\disney_plus_titles.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
     # setting up pandas dataframe for all of the files
     data4.rename(lowercase, axis='columns', inplace=True)
@@ -69,7 +67,7 @@ list_names_imdb = ['title.akas', 'title.basics', 'title.crew', 'title.episode', 
 'title.ratings', 'name.basics']
 
 # creating text element to show the loading of the data in the app
-@st.cache
+@st.cache(allow_output_mutation=True)
 def load_data_imdb(nrows):
     akas = pd.read_table(DATA_IMDB + list_names_imdb[0] + '.tsv\\data.tsv', nrows=nrows)
     title_basics = pd.read_table(DATA_IMDB + list_names_imdb[1] + '.tsv\\data.tsv', nrows=nrows)
@@ -90,7 +88,6 @@ def load_data_imdb(nrows):
     return akas, title_basics, crew, episode, principals, ratings, name_basics
 
 # notify the reader that the data was successfully loaded
-data_load_state.text("Done!")
 
 # basic package display
 def display():
