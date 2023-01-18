@@ -6,57 +6,53 @@ import etl
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+import plotly.express as px
+import statsmodels.api as sm
+from sklearn.metrics import confusion_matrix
+from sklearn.svm import SVC
 from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error,mean_squared_error
+import plotly.express as px
+
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 def linear_regression():
+    """Run linear regression on opus data."""
     opus = etl.clean_data()[0]
-    opus_binary = opus[['domestic_box_office', 'production_budget']]
-    opus_binary500 = opus_binary[:][:300]
-    # Selecting the 1st 500 rows of the data
-    st.pyplot(sns.lmplot(x ='production_budget', y ='domestic_box_office', data = opus_binary500,
-                        order = 2, ci = None).set(
-                        title='Comparison of 500 Domestic Box Office Sales with Production Budget'))
-    st.pyplot(sns.lmplot(y = 'domestic_box_office', x = 'production_budget', data = opus_binary, 
-                        order = 2, ci = None).set(
-                        title='Comparison of Domestic Box Office Sales with Production Budget'))
+    col = opus.columns
+    columns = {1: opus.columns[0], 2: opus.columns[1], 3: opus.columns[2],
+        4: opus.columns[3], 5: opus.columns[4], 6: opus.columns[5],
+        7: opus.columns[6], 8: opus.columns[7]}
+    category = st.multiselect("Select a category to analyze", list(columns.keys()), format_func=lambda x: columns[x])
+    if len(category) == 0:
+        return opus.columns[0]
+    for i in category:
+        ind = columns[i]
+    x_val = st.selectbox("X-value: ", col[:])
+    y_val = st.selectbox("Y-val: ", col[:])
+    if x_val == y_val:
+        x_val = opus.columns[0]
+        y_val = opus.columns[1]
 
-    # training the model
-    X = np.array(opus_binary['production_budget']).reshape(-1,1)
-    y = np.array(opus_binary['domestic_box_office']).reshape(-1,1)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
-    regr = LinearRegression()
-    regr.fit(X_train, y_train)
-    st.write(regr.score(X_test, y_test))
-    y_pred = regr.predict(X_test)
-    plt.scatter(X_test, y_test, color ='r')
-    plt.plot(X_test, y_pred, color ='k')
-    st.pyplot(plt.show())
-    
-    X = np.array(opus_binary500['production_budget']).reshape(-1, 1)
-    y = np.array(opus_binary500['domestic_box_office']).reshape(-1, 1)
-    opus_binary500.dropna(inplace = True)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
-    regr = LinearRegression()
-    regr.fit(X_train, y_train)
-    st.write(regr.score(X_test, y_test))
-    y_pred = regr.predict(X_test)
-    plt.scatter(X_test, y_test, color ='b')
-    plt.plot(X_test, y_pred, color ='k')
-    st.pyplot(plt.show())
-  
-    mae = mean_absolute_error(y_true=y_test,y_pred=y_pred)
-    #squared True returns MSE value, False returns RMSE value.
-    mse = mean_squared_error(y_true=y_test,y_pred=y_pred) #default=True
-    rmse = mean_squared_error(y_true=y_test,y_pred=y_pred,squared=False)
-    
-    st.write("MAE:",mae)
-    st.write("MSE:",mse)
-    st.write("RMSE:",rmse)
+    fig = px.scatter(opus, x = x_val, y = y_val, color = ind, title = f"Comparison of {y_val} on {x_val}")
+    st.plotly_chart(fig)
+
+    opus_binary = opus[[x_val, y_val]]
+    opus_binary300 = opus_binary[:][:300]
+    # Selecting the 1st 500 rows of the data
+    fig1 = (px.scatter(opus_binary300, x =x_val, y =y_val, color = y_val,
+                    trendline = 'lowess', title=f'Comparison of 300 {y_val} on {x_val}'))
+    fig1.data[1].line.color = 'red'
+    st.plotly_chart(fig1)
+    fig2 = (px.scatter(opus_binary, x =x_val, y =y_val, color = y_val,
+                    trendline = 'lowess', title=f'Comparison of {y_val} on {x_val}'))
+    fig2.data[1].line.color = 'red'
+    st.plotly_chart(fig2)
+
     return opus
 
 linear_regression()
