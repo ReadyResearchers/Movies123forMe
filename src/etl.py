@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import data_loading
+from collections import Counter
 
 
 def clean_data():
@@ -19,12 +20,16 @@ def clean_data():
     hulu_drop = ['type', 'title', 'date_added', 'duration', 'description']
     prime_drop = ['type', 'title', 'date_added', 'duration', 'description']
 
-
-    # opus = opus.drop(opus_drop, inplace=True, axis=1)
-    # netflix = netflix.drop(netflix_drop, inplace=True, axis=1)
-    # disney = disney.drop(disney_drop, inplace=True, axis=1)
-    # hulu = hulu.drop(hulu_drop, inplace=True, axis=1)
-    # prime = prime.drop(prime_drop, inplace=True, axis=1)
+    if opus.columns.any() in opus_drop:
+        opus.drop(opus_drop, inplace=True, axis=1)
+    if netflix.columns.any() in netflix_drop:
+        netflix.drop(netflix_drop, inplace=True, axis=1)
+    if disney.columns.any() in disney_drop:
+        disney.drop(disney_drop, inplace=True, axis=1)
+    if hulu.columns.any() in hulu_drop:
+        hulu.drop(hulu_drop, inplace=True, axis=1)
+    if prime.columns.any() in prime_drop:
+        prime.drop(prime_drop, inplace=True, axis=1)
 
     # set the unique identifier as the index
 
@@ -44,6 +49,14 @@ def clean_data():
     # st.write(opus.loc[8220100])
     # st.write(opus.iloc[0])
 
+    # drop nan values
+
+    opus = opus.dropna()
+    prime = prime.dropna()
+    netflix = netflix.dropna()
+    disney = disney.dropna()
+    hulu = hulu.dropna()
+
     # changing dtype of columns
 
     opus['production_year'] = pd.to_numeric(opus['production_year'])
@@ -51,6 +64,7 @@ def clean_data():
     opus['domestic_box_office'] = pd.to_numeric(opus['domestic_box_office'])
     opus['international_box_office'] = pd.to_numeric(opus['international_box_office'])
     opus['running_time'] = pd.to_numeric(opus['running_time'])
+    opus['sequel'] = (opus['sequel']).astype(int)
 
     #opus['production_year'].dtype
     # opus['production_budget'].dtype
@@ -63,13 +77,6 @@ def clean_data():
     prime['release_year'] = pd.to_numeric(prime['release_year'])
     hulu['release_year'] = pd.to_numeric(hulu['release_year'])
 
-    # drop nan values
-
-    opus = opus.dropna()
-    prime = prime.dropna()
-    netflix = netflix.dropna()
-    disney = disney.dropna()
-    hulu = hulu.dropna()
     # opus
     # prime
     # netflix
@@ -95,27 +102,3 @@ def clean_data():
     disney = disney.assign(country=disney['country'].str.split(",")).explode('country')
     disney = disney.assign(listed_in=disney['listed_in'].str.split(",")).explode('listed_in')
     return opus, netflix, prime, disney, hulu
-
-def transform_data():
-    opus = clean_data()[0]
-    netflix = clean_data()[1]
-    prime = clean_data()[2]
-    disney = clean_data()[3]
-    hulu = clean_data()[4]
-
-    # calculating the mean
-    opus['mean_budget'] = opus.groupby('genre')['production_budget'].transform('mean')
-    opus['mean_budget']
-    return opus, netflix, prime, disney, hulu
-    
-
-"""Opus Data"""
-st.write(transform_data()[0])
-"""Netflix Data"""
-st.write(transform_data()[1])
-"""Amazon Prime Data"""
-st.write(transform_data()[2])
-"""Disney+ Data"""
-st.write(transform_data()[3])
-"""Hulu Data"""
-st.write(transform_data()[4])

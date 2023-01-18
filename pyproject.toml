@@ -20,6 +20,8 @@ shap = "^0.41.0"
 matplotlib = "^3.6.1"
 plotly = "^5.10.0"
 sklearn = "^0.0.post1"
+llvmlite = "^0.39.1"
+seaborn = "^0.12.2"
 
 [tool.poetry.dev-dependencies]
 
