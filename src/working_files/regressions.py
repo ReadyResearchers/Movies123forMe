@@ -4,25 +4,33 @@ import numpy as np
 import data_loading
 import etl
 
-import seaborn as sns
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.express as px
 import statsmodels.api as sm
-from sklearn.metrics import confusion_matrix
-from sklearn.svm import SVC
-from sklearn import preprocessing, svm
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error,mean_squared_error
-import plotly.express as px
+import matplotlib.pyplot as plt
+import os
+
+def combine_plotly_figs_to_html(plotly_figs, html_fname, include_plotlyjs='cdn', 
+                                separator=None, auto_open=False):
+    with open(html_fname, 'w') as f:
+        f.write(plotly_figs[0].to_html(include_plotlyjs=include_plotlyjs))
+        for fig in plotly_figs[1:]:
+            if separator:
+                f.write(separator)
+            f.write(fig.to_html(full_html=False, include_plotlyjs=False))
+
+    if auto_open:
+        import pathlib, webbrowser
+        uri = pathlib.Path(html_fname).absolute().as_uri()
+        webbrowser.open(uri)
 
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
+html_fname = 'plots.html'
 
 def linear_regression():
     """Run linear regression on opus data."""
     opus = etl.clean_data()[0]
+    figs = []
     col = opus.columns
     columns = {1: opus.columns[0], 2: opus.columns[1], 3: opus.columns[2],
         4: opus.columns[3], 5: opus.columns[4], 6: opus.columns[5],
@@ -53,6 +61,16 @@ def linear_regression():
     fig2.data[1].line.color = 'red'
     st.plotly_chart(fig2)
 
+    figs.append(fig)
+    figs.append(fig1)
+    figs.append(fig2)
+
+    export_as_pdf = st.button("Export Plots")
+    if export_as_pdf:
+        combine_plotly_figs_to_html(figs, html_fname, include_plotlyjs='cdn', 
+                                separator=None, auto_open=True)
     return opus
 
+
 linear_regression()
+#os.remove(html_fname)
