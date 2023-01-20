@@ -77,7 +77,6 @@ def clean_data():
     prime['release_year'] = pd.to_numeric(prime['release_year'])
     hulu['release_year'] = pd.to_numeric(hulu['release_year'])
 
-    # opus
     # prime
     # netflix
     # disney
@@ -101,4 +100,19 @@ def clean_data():
     disney = disney.assign(cast=disney['cast'].str.split(",")).explode('cast')
     disney = disney.assign(country=disney['country'].str.split(",")).explode('country')
     disney = disney.assign(listed_in=disney['listed_in'].str.split(",")).explode('listed_in')
+    
+    
+    # creating dummy variables for str columns
+    # st.write(opus['rating'].drop_duplicates())
+    opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
+    netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
+                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
+                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
+    prime['rating'] = prime['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
+                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
+                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
+    disney['rating'] = disney['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
+                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
+                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
+    
     return opus, netflix, prime, disney, hulu
