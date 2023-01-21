@@ -91,7 +91,7 @@ def load_data_imdb(nrows):
 # basic package display
 def display():
     menu = ["Home", "Opus", "Netflix", "Hulu", "Disney+", "Prime", "IMDB", "Demo"]
-    choice = st.sidebar.selectbox("Menu", menu)
+    choice = st.selectbox("Menu", menu, key="155")
     # imdb display
     if choice == 'Opus':
         st.subheader("Raw data for Opus Data package:")
@@ -154,18 +154,18 @@ def display():
         )
         if chart == 'Scatterplot':
             # st.sidebar.subheader('Scatterplot Settings')
-            scatter_fig1 = (px.scatter(x = data['total_revenue'], y = data['rating'], title = "Movie Revenue by Rating"))
-            scatter_fig1.update_layout(xaxis_title = "Movie Revenue", yaxis_title = "Movie Rating")
+            scatter_fig1 = (px.scatter(x = data['production_budget'], y = data['rating'], title = "Movie Revenue by Rating"))
+            scatter_fig1.update_layout(xaxis_title = "Movie Budget", yaxis_title = "Movie Rating")
             st.write(scatter_fig1)
         if chart == 'Lineplots':
-            line_fig1 = (px.line(x = data['total_revenue'], y = data['rating'], title = "Movie Revenue by Rating"))
-            line_fig1.update_layout(xaxis_title = "Movie Revenue", yaxis_title = "Movie Rating")
+            line_fig1 = (px.line(x = data['production_budget'], y = data['rating'], title = "Movie Revenue by Rating"))
+            line_fig1.update_layout(xaxis_title = "Movie Budget", yaxis_title = "Movie Rating")
             st.write(line_fig1)
         if chart == 'Histogram':
-            hist_fig1 = (px.histogram(x = data['total_revenue'], y = data['rating'], title = "Movie Revenue by Rating"))
-            hist_fig1.update_layout(xaxis_title = "Movie Revenue", yaxis_title = "Movie Rating")
+            hist_fig1 = (px.histogram(x = data['production_budget'], y = data['rating'], title = "Movie Revenue by Rating"))
+            hist_fig1.update_layout(xaxis_title = "Movie Budget", yaxis_title = "Movie Rating")
             st.write(hist_fig1)
         if chart == 'Boxplot':
-            box_fig1 = (px.box(x = data['total_revenue'], y = data['rating'], title = "Movie Revenue by Rating"))
-            box_fig1.update_layout(xaxis_title = "Movie Revenue", yaxis_title = "Movie Rating")
+            box_fig1 = (px.box(x = data['production_budget'], y = data['rating'], title = "Movie Revenue by Rating"))
+            box_fig1.update_layout(xaxis_title = "Movie Budget", yaxis_title = "Movie Rating")
             st.write(box_fig1)
