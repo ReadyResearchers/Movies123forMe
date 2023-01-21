@@ -103,7 +103,7 @@ def clean_data():
     
     
     # creating dummy variables for str columns
-    # st.write(opus['rating'].drop_duplicates())
+    st.write(pd.get_dummies(opus, columns = 'genre'))
     opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
     netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
@@ -114,23 +114,4 @@ def clean_data():
     disney['rating'] = disney['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
                         'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
-    st.write("------------------------")
-    st.subheader("Summary of process:")
-    st.write("- Dropped non-essential columns") 
-    st.write("- Set the unique identifier as the index")
-    st.write("- Drop nan values")
-    st.write("- Change dtype of columns")
-    st.write("- split up rows with more than one essential element")
-    st.write("- create dummy variables for essential string columns")
-    st.write("-------------------------")
-    st.write("Cleaned Opus Data:", opus)
-    st.write("-------------------------")
-    st.write("Cleaned Netflix Data:",netflix)
-    st.write("-------------------------")
-    st.write("Cleaned Prime Data:",prime)
-    st.write("-------------------------")
-    st.write("Cleaned Disney+ Data:",disney)
-    st.write("-------------------------")
-    st.write("Cleaned Hulu Data:",hulu)
-    st.write("-------------------------")
     return opus, netflix, prime, disney, hulu
