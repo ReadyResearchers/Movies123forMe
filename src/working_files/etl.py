@@ -13,10 +13,10 @@ def clean_data():
     # compile the list of columns to be dropped for analysis
 
     opus_drop = ['movie_name', 'creative_type', 'source', 'production_method']
-    netflix_drop = ['type', 'title', 'date_added', 'duration', 'description']
-    disney_drop = ['type', 'title', 'date_added', 'duration', 'description']
-    hulu_drop = ['type', 'title', 'date_added', 'duration', 'description']
-    prime_drop = ['type', 'title', 'date_added', 'duration', 'description']
+    netflix_drop = ['title', 'date_added', 'duration', 'description']
+    disney_drop = ['title', 'date_added', 'duration', 'description']
+    hulu_drop = ['title', 'date_added', 'duration', 'description']
+    prime_drop = ['title', 'date_added', 'duration', 'description']
 
     if opus.columns.any() in opus_drop:
         opus.drop(opus_drop, inplace=True, axis=1)
@@ -31,11 +31,11 @@ def clean_data():
 
     # set the unique identifier as the index
 
-    opus = opus.set_index('movie_odid')
-    netflix = netflix.set_index('show_id')
-    disney = disney.set_index('show_id')
-    hulu = hulu.set_index('show_id')
-    prime = prime.set_index('show_id')
+    # opus = opus.set_index('movie_odid')
+    # netflix = netflix.set_index('show_id')
+    # disney = disney.set_index('show_id')
+    # hulu = hulu.set_index('show_id')
+    # prime = prime.set_index('show_id')
     # st.write(opus.head())
     # st.write(netflix.head())
     # st.write(disney.head())
@@ -106,47 +106,20 @@ def clean_data():
     
     
     # creating dummy variables for str columns
-    # st.write(prime['rating'].unique())
     opus = pd.get_dummies(opus, columns=['genre'])
-    netflix = pd.get_dummies(netflix, columns = ['type', 'listed_in'])
-    prime = pd.get_dummies(prime, columns = ['type', 'listed_in'])
-    disney = pd.get_dummies(disney, columns = ['type', 'listed_in'])
-    opus['ages'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
-    netflix['ages'] = netflix['rating'].map({
-        'TV-PG': 'Older Kids',
-        'TV-MA': 'Adults',
-        'TV-Y7-FV': 'Older Kids',
-        'TV-Y7': 'Older Kids',
-        'TV-14': 'Teens',
-        'R': 'Adults',
-        'TV-Y': 'Kids',
-        'NR': 'Adults',
-        'PG-13': 'Teens',
-        'TV-G': 'Kids',
-        'PG': 'Older Kids',
-        'G': 'Kids',
-        'UR': 'Adults',
-        'NC-17': 'Adults'
-    })
-    prime['ages'] = prime['rating'].map({
-        '13+': 'Teens'
-    })
-    disney['ages'] = disney['rating'].map({
-        'TV-PG': 'Older Kids',
-        'TV-MA': 'Adults',
-        'TV-Y7-FV': 'Older Kids',
-        'TV-Y7': 'Older Kids',
-        'TV-14': 'Teens',
-        'R': 'Adults',
-        'TV-Y': 'Kids',
-        'NR': 'Adults',
-        'PG-13': 'Teens',
-        'TV-G': 'Kids',
-        'PG': 'Older Kids',
-        'G': 'Kids',
-        'UR': 'Adults',
-        'NC-17': 'Adults'
-    })
+    netflix = pd.get_dummies(netflix, columns = ['listed_in'])
+    prime = pd.get_dummies(prime, columns = ['listed_in'])
+    disney = pd.get_dummies(disney, columns = ['listed_in'])
+    opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
+    netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
+                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
+                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
+    prime['rating'] = prime['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
+                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
+                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
+    disney['rating'] = disney['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
+                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
+                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
     
     # text analysis cleaning
     

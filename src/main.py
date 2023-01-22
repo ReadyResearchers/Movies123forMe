@@ -37,8 +37,8 @@ def main():
         st.write("Cleaned Hulu Data:", etl.clean_data()[4])
     # if choice == 'ML Model':
     #    ml_model.machine_model()
-    if choice == 'Machine Learning':
-        machine_learning.m_learning()
+    # if choice == 'Machine Learning':
+    #    machine_learning.m_learning()
     if choice == 'Linear Regressions':
         regressions.linear_regression()
 
