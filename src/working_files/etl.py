@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 import numpy as np
-from working_files import data_loading
+from src.working_files import data_loading
 from collections import Counter
 
 
@@ -76,6 +76,7 @@ def clean_data():
     disney['release_year'] = pd.to_numeric(disney['release_year'])
     prime['release_year'] = pd.to_numeric(prime['release_year'])
     hulu['release_year'] = pd.to_numeric(hulu['release_year'])
+    netflix['date_added'] = pd.to_datetime(netflix['date_added'])
 
     # prime
     # netflix
@@ -103,7 +104,10 @@ def clean_data():
     
     
     # creating dummy variables for str columns
-    st.write(pd.get_dummies(opus, columns = 'genre'))
+    opus = pd.get_dummies(opus, columns=['genre'])
+    netflix = pd.get_dummies(netflix, columns = ['type', 'listed_in'])
+    prime = pd.get_dummies(prime, columns = ['type', 'listed_in'])
+    disney = pd.get_dummies(disney, columns = ['type', 'listed_in'])
     opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
     netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
@@ -114,4 +118,21 @@ def clean_data():
     disney['rating'] = disney['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
                         'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
+    
+    # text analysis cleaning
+    
+    netflix['director_freq'] = netflix.groupby('director')['director'].transform('count')
+    netflix['cast_freq'] = netflix.groupby('cast')['cast'].transform('count')
+    netflix['country_freq'] = netflix.groupby('country')['country'].transform('count')
+
+    disney['director_freq'] = disney.groupby('director')['director'].transform('count')
+    disney['cast_freq'] = disney.groupby('cast')['cast'].transform('count')
+    disney['country_freq'] = disney.groupby('country')['country'].transform('count')
+
+    prime['director_freq'] = prime.groupby('director')['director'].transform('count')
+    prime['cast_freq'] = prime.groupby('cast')['cast'].transform('count')
+    prime['country_freq'] = prime.groupby('country')['country'].transform('count')
+
     return opus, netflix, prime, disney, hulu
+
+clean_data()

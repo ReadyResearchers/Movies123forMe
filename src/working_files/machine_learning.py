@@ -9,16 +9,18 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
+from working_files import etl
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 def m_learning():
-    data = pd.read_csv('src\\movie_data\\movie_data\\movie_data.csv')
+    opus = etl.clean_data()[0]
 
     # data processing
-    data1 = data.drop(['movie_name', 'rating', 'genre', 'creative_type', 'source', 'production_method', 'domestic_box_office', 'international_box_office'], axis=1)
-    data2 = data1.dropna()
-    x = data2.drop(['production_budget'], axis=1)
-    y = data2['production_budget']
+    opus = opus.drop(['movie_name', 'rating', 'genre', 'creative_type', 'source', 'production_method', 'domestic_box_office', 'international_box_office'], axis=1)
+    opus = opus.dropna()
+    x = opus.drop(['production_budget'], axis=1)
+    y = opus['production_budget']
 
     # data splitting
     X_train, X_test, y_train, y_test = train_test_split(
