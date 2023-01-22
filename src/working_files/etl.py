@@ -1,8 +1,6 @@
 import pandas as pd
 import streamlit as st
-import numpy as np
 from src.working_files import data_loading
-from collections import Counter
 
 
 def clean_data():
@@ -76,7 +74,11 @@ def clean_data():
     disney['release_year'] = pd.to_numeric(disney['release_year'])
     prime['release_year'] = pd.to_numeric(prime['release_year'])
     hulu['release_year'] = pd.to_numeric(hulu['release_year'])
-    netflix['date_added'] = pd.to_datetime(netflix['date_added'])
+
+    netflix["date_added"] = pd.to_datetime(netflix['date_added'])
+    disney["date_added"] = pd.to_datetime(disney['date_added'])
+    prime["date_added"] = pd.to_datetime(prime['date_added'])
+    hulu["date_added"] = pd.to_datetime(hulu['date_added'])
 
     # prime
     # netflix
@@ -104,20 +106,47 @@ def clean_data():
     
     
     # creating dummy variables for str columns
+    # st.write(prime['rating'].unique())
     opus = pd.get_dummies(opus, columns=['genre'])
     netflix = pd.get_dummies(netflix, columns = ['type', 'listed_in'])
     prime = pd.get_dummies(prime, columns = ['type', 'listed_in'])
     disney = pd.get_dummies(disney, columns = ['type', 'listed_in'])
-    opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
-    netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
-                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
-                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
-    prime['rating'] = prime['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
-                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
-                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
-    disney['rating'] = disney['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
-                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
-                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
+    opus['ages'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
+    netflix['ages'] = netflix['rating'].map({
+        'TV-PG': 'Older Kids',
+        'TV-MA': 'Adults',
+        'TV-Y7-FV': 'Older Kids',
+        'TV-Y7': 'Older Kids',
+        'TV-14': 'Teens',
+        'R': 'Adults',
+        'TV-Y': 'Kids',
+        'NR': 'Adults',
+        'PG-13': 'Teens',
+        'TV-G': 'Kids',
+        'PG': 'Older Kids',
+        'G': 'Kids',
+        'UR': 'Adults',
+        'NC-17': 'Adults'
+    })
+    prime['ages'] = prime['rating'].map({
+        '13+': 'Teens'
+    })
+    disney['ages'] = disney['rating'].map({
+        'TV-PG': 'Older Kids',
+        'TV-MA': 'Adults',
+        'TV-Y7-FV': 'Older Kids',
+        'TV-Y7': 'Older Kids',
+        'TV-14': 'Teens',
+        'R': 'Adults',
+        'TV-Y': 'Kids',
+        'NR': 'Adults',
+        'PG-13': 'Teens',
+        'TV-G': 'Kids',
+        'PG': 'Older Kids',
+        'G': 'Kids',
+        'UR': 'Adults',
+        'NC-17': 'Adults'
+    })
     
     # text analysis cleaning
     

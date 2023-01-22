@@ -1,10 +1,5 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 import plotly.express as px
-import seaborn as sns
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix
@@ -22,7 +17,7 @@ def machine_model():
     col1 = st.selectbox('Which option on x?', opus.columns[0:6])
     col2 = st.selectbox('Which option on y?', opus.columns[0:6])
 
-    new_opus = opus[(edopus['genre'].isin(genres))]
+    new_opus = opus[(opus['genre'].isin(genres))]
     st.write(new_opus)
     fig = px.scatter(new_opus, x = col1, y = col2, color = 'genre')
     st.plotly_chart(fig)

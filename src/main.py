@@ -1,7 +1,7 @@
 import streamlit as st
 from working_files import data_loading
 from working_files import etl
-from working_files import ml_model
+# from working_files import ml_model
 from working_files import machine_learning
 from working_files import regressions
 
@@ -35,8 +35,8 @@ def main():
         st.write("Cleaned Disney+ Data:", etl.clean_data()[3])
         st.write("-------------------------")
         st.write("Cleaned Hulu Data:", etl.clean_data()[4])
-    if choice == 'ML Model':
-        ml_model.machine_model()
+    # if choice == 'ML Model':
+    #    ml_model.machine_model()
     if choice == 'Machine Learning':
         machine_learning.m_learning()
     if choice == 'Linear Regressions':

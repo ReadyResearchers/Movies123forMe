@@ -3,7 +3,6 @@
 from symbol import test_nocond
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.ensemble import RandomForestRegressor
 from pathlib import Path

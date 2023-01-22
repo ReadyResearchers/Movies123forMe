@@ -1,14 +1,8 @@
-import pandas as pd
 import streamlit as st
-import numpy as np
-from src.working_files import data_loading
 from src.working_files import etl
 
-import plotly.graph_objects as go
 import plotly.express as px
-import statsmodels.api as sm
-import matplotlib.pyplot as plt
-import os
+
 
 def combine_plotly_figs_to_html(plotly_figs, html_fname, include_plotlyjs='cdn', 
                                 separator=None, auto_open=False):
