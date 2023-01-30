@@ -1,2 +1,0 @@
-This will be where I will be keeping track of all the progress/errors that I experienced during my work on the project.
-I will also be adding links to articles and papers that I referenced for my tools and comp work.

@@ -28,6 +28,7 @@ fpdf = "^1.7.2"
 statsmodels = "^0.13.5"
 functions = "^0.7.0"
 dash = "^2.7.1"
+nltk = "^3.8.1"
 
 [tool.poetry.dev-dependencies]
 
