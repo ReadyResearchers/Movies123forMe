@@ -4,6 +4,8 @@ from src.working_files import data_loading
 
 
 def clean_data():
+    # st.subheader("Performing ETL functions for the imported movie data")
+
     opus = data_loading.load_data_opus(10000)
     netflix = data_loading.load_data_netflix(10000)
     disney = data_loading.load_data_disney(10000)
