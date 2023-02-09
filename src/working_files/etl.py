@@ -137,6 +137,13 @@ def clean_data():
     prime['cast_freq'] = prime.groupby('cast')['cast'].transform('count')
     prime['country_freq'] = prime.groupby('country')['country'].transform('count')
 
+    # st.download_button(
+    #    label="Download",
+     #   data=opus.to_csv().encode("utf-8"),
+      #  file_name='opus-genre.csv',
+       # mime='text/csv',
+        #)
+
     return opus, netflix, prime, disney, hulu
 
 clean_data()

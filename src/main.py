@@ -3,8 +3,8 @@ from working_files import data_loading
 from working_files import etl
 from working_files import regressions
 from working_files import machine_learning
+from working_files import movie_enthusiasts_form
 
-st.set_page_config(page_title = 'Movies123ForMe')
 st.title("Welcome to the Movie Analysis Experience :)")
 
 def main():
@@ -45,6 +45,6 @@ def main():
             machine_learning.ml()
     if mode == 'Professional Movie Enthusiast':
         st.write("Coming soon...")
-        choices = ['Find a Movie', 'List of Movies']
+        movie_enthusiasts_form.form()
 
 main()
