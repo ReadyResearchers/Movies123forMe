@@ -13,13 +13,18 @@ import streamlit as st
 
 from src.working_files import etl
 import streamlit as st
-import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix
-from sklearn import metrics
-import statsmodels.api as sm
+import joblib
+import streamlit as st
+from PIL import Image
+import matplotlib.pyplot as plt
+import tensorflow as tf
+import tensorflow_hub as hub
+import numpy as np
+from tensorflow.keras import preprocessing
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -28,40 +33,32 @@ def machine_learning():
     opus = etl.clean_data()[0]
 
     algorithms = ['Linear Regression', 'Random Forest Regressor', 'Extra Tree Regressor', 
-    'Decision Tree', 'Support Vector Machine', 'Logistic Regression']
+    'Decision Tree', 'Support Vector Machine', 'Logistic Regression', 'All']
     choice = st.selectbox("Choose an algorithm to train the model on: ", algorithms)
     
     
     opus_cols = ['production_budget', 'rating', 'sequel', 'genre_Action', 'genre_Comedy', 'genre_Drama', 
     'genre_Adventure', 'genre_Black Comedy', 'genre_Concert/Performance', 'genre_Documentary', 'genre_Horror',
     'genre_Musical', 'genre_Romantic Comedy', 'genre_Thriller/Suspense', 'genre_Western']
-    netflix_cols = ['show_id', 'type', 'director', 'cast', 'country', 'release_year', 
-        'description', 'listed_in_ Anime Features', 'listed_in_ Children & Family Movies',
-        'listed_in_ Classic & Cult TV',	'listed_in_ Classic Movies', 'listed_in_ Comedies',
-        'listed_in_ Crime TV Shows', 'listed_in_ Cult Movies', 'listed_in_ Documentaries', 
-        'listed_in_ Docuseries', 'listed_in_ Dramas', 'listed_in_ Faith & Spirituality', 'listed_in_ Horror Movies', 
-        'listed_in_ Independent Movies', 'listed_in_ International Movies', 'listed_in_ International TV Shows', "listed_in_ Kids' TV",
-        'listed_in_ Korean TV Shows', 'listed_in_ LGBTQ Movies', 'listed_in_ Music & Musicals', 'listed_in_ Reality TV', 
-        'listed_in_ Romantic Movies', 'listed_in_ Romantic TV Shows', 'listed_in_ Sci-Fi & Fantasy', 'listed_in_ Science & Nature TV',
-        'listed_in_ Spanish-Language TV Shows', 'listed_in_ Sports Movies', 'listed_in_ Stand-Up Comedy', 'listed_in_ Stand-Up Comedy & Talk Shows',
-        'listed_in_ TV Action & Adventure', 'listed_in_ TV Comedies', 'listed_in_ TV Dramas', 'listed_in_ TV Horror', 'listed_in_ TV Mysteries', 
-        'listed_in_ TV Sci-Fi & Fantasy', 'listed_in_ TV Thrillers', 'listed_in_ Teen TV Shows', 'listed_in_ Thrillers', 'listed_in_Action & Adventure', 
-        'listed_in_Anime Features', 'listed_in_Anime Series', 'listed_in_British TV Shows', 'listed_in_Children & Family Movies', 
-        'listed_in_Classic & Cult TV', 'listed_in_Classic Movies', 'listed_in_Comedies', 'listed_in_Crime TV Shows', 'listed_in_Cult Movies', 
-        'listed_in_Documentaries', 'listed_in_Docuseries', 'listed_in_Dramas', 'listed_in_Horror Movies', 'listed_in_Independent Movies', 
-        'listed_in_International Movies', 'listed_in_International TV Shows', "listed_in_Kids' TV", 'listed_in_LGBTQ Movies', 
-        'listed_in_Movies', 'listed_in_Music & Musicals', 'listed_in_Reality TV', 'listed_in_Romantic Movies', 'listed_in_Romantic TV Shows', 
-        'listed_in_Sci-Fi & Fantasy', 'listed_in_Stand-Up Comedy', 'listed_in_Stand-Up Comedy & Talk Shows', 'listed_in_TV Action & Adventure',
-        'listed_in_TV Comedies', 'listed_in_TV Dramas', 'listed_in_TV Horror', 'listed_in_TV Shows', 'listed_in_Thrillers', 'director_freq',
-        'cast_freq', 'country_freq']
     
     ox, oy = opus[opus_cols], opus['movie_success']
 
     ox_train, ox_test, oy_train, oy_test = train_test_split(ox, oy, test_size=.7, random_state=42)
+    
+    lr = LinearRegression()
+    rf = RandomForestRegressor(max_depth=2, random_state=42)
+    et = ExtraTreeRegressor(random_state=42)
+    dtc = DecisionTreeClassifier()
+    svm = SVC()
+    logreg = LogisticRegression()
+
+    logreg.fit(ox_train, oy_train)
+    # saving the model to disk
+    filename = 'finalized_movie_model.sav'
+    joblib.dump(logreg, filename)
 
     if choice == 'Linear Regression':
         # model building
-        lr = LinearRegression()
         lr.fit(ox_train, oy_train)
 
         otrain_pred = lr.predict(ox_train)
@@ -86,7 +83,6 @@ def machine_learning():
         st.pyplot(plt.plot())
 
     if choice == 'Random Forest Regressor':
-        rf = RandomForestRegressor(max_depth=2, random_state=42)
         rf.fit(ox_train, oy_train)
 
         otrain_pred = rf.predict(ox_train)
@@ -110,7 +106,6 @@ def machine_learning():
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
     if choice == 'Extra Tree Regressor':
-        et = ExtraTreeRegressor(random_state=42)
         et.fit(ox_train, oy_train)
 
         otrain_pred = et.predict(ox_train)
@@ -134,7 +129,6 @@ def machine_learning():
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
     if choice == 'Decision Tree':
-        dtc = DecisionTreeClassifier()
         dtc.fit(ox_train, oy_train)
 
         o_acc = dtc.score(ox_test, oy_test)
@@ -159,7 +153,6 @@ def machine_learning():
         sns.heatmap(o_cm, annot=labels, fmt='', cmap='Blues', ax=ax)
         st.write(fig)
     if choice == 'Support Vectore Machine':
-        svm = SVC()
         svm.fit(ox_train, oy_train)
 
         o_acc = svm.score(ox_test, oy_test)
@@ -184,7 +177,6 @@ def machine_learning():
         sns.heatmap(o_cm, annot=labels, fmt='', cmap='Blues', ax=ax)
         st.write(fig)
     if choice == 'Logistic Regression':
-        logreg = LogisticRegression()
         logreg.fit(ox_train, oy_train)
 
 
@@ -209,7 +201,5 @@ def machine_learning():
         labels = np.asarray(labels).reshape(2,2)
         sns.heatmap(o_cm, annot=labels, fmt='', cmap='Blues', ax=ax)
         st.write(fig)
-
-
 
 machine_learning()

@@ -41,10 +41,9 @@ def main():
         if choice == 'Linear Regressions':
             regressions.regression()
         if choice == 'Machine Learning':
-            machine_learning.machine_model()
-            machine_learning.ml()
+            machine_learning.machine_learning()
     if mode == 'Professional Movie Enthusiast':
         st.write("Coming soon...")
-        movie_enthusiasts_form.form()
+        movie_enthusiasts_form.submit_form()
 
 main()
