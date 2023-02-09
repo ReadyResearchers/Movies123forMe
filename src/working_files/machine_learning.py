@@ -18,13 +18,6 @@ import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix
 import joblib
-import streamlit as st
-from PIL import Image
-import matplotlib.pyplot as plt
-import tensorflow as tf
-import tensorflow_hub as hub
-import numpy as np
-from tensorflow.keras import preprocessing
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
