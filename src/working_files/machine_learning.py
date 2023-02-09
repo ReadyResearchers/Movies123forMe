@@ -52,8 +52,8 @@ def machine_learning():
     svm = SVC()
     logreg = LogisticRegression()
 
+    ## training the model and saving it for predictions!
     logreg.fit(ox_train, oy_train)
-    # saving the model to disk
     filename = 'finalized_movie_model.sav'
     joblib.dump(logreg, filename)
 
