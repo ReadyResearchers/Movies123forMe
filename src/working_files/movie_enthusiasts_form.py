@@ -1,15 +1,29 @@
 import streamlit as st
 import pandas as pd
 from src.working_files import etl
+from sklearn.model_selection import train_test_split
 from src.working_files import machine_learning
+
+import tensorflow as tf
 
 import numpy as np
 import joblib
 
+
 def predict(data):
-    filename = "Movies123forMe/finalized_movie_model.sav"
-    logreg = joblib.load(filename)
-    return logreg.predict(data)
+    logreg_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/logreg_model.sav"
+    lr_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/lr_model.sav"
+    rf_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/rf_model.sav"
+    et_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/et_model.sav"
+    dtc_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/dtc_model.sav"
+    svm_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/svm_model.sav"
+    logreg = joblib.load(logreg_filename)
+    lr = joblib.load(lr_filename)
+    rf = joblib.load(rf_filename)
+    et = joblib.load(et_filename)
+    dtc = joblib.load(dtc_filename)
+    svm = joblib.load(svm_filename)
+    return logreg.predict(data), lr.predict(data), rf.predict(data), et.predict(data), dtc.predict(data), svm.predict(data)
 
 def submit_form():
     # first section
@@ -42,15 +56,82 @@ def submit_form():
     if clickSubmit:
         df = np.array([[prod_budget, rating, sequel, genre_Action, genre_Comedy, genre_Drama, genre_Adventure, genre_BlackComedy, genre_Concert, genre_Documentary,
         genre_Horror, genre_Musical, genre_RomanticComedy, genre_Thriller, genre_Western]], dtype=int)
-        result = predict(df)
-        result = result.reshape(1, -1)
+
+        result_logreg = predict(df)[0]
+        result_lr = predict(df)[1]
+        result_rf = predict(df)[2]
+        result_et = predict(df)[3]
+        result_dtc = predict(df)[4]
+        result_svm = predict(df)[5]
+
+        result_logreg = result_logreg.reshape(1, -1)
+        result_lr = result_lr.reshape(1, -1)
+        result_rf = result_rf.reshape(1, -1)
+        result_et = result_et.reshape(1, -1)
+        result_dtc = result_dtc.reshape(1, -1)
+        result_svm = result_svm.reshape(1, -1)
+
+        score_logreg = machine_learning.logreg()[1]
+        score_lr = machine_learning.lr()[1]
+        score_rf = machine_learning.rf()[1]
+        score_et = machine_learning.et()[1]
+        score_dtc = machine_learning.dtc()[1]
+        score_svm = machine_learning.svm()[1]
+
         st.subheader("Movie Success Results:")
-        for i in result:
-            if i[0] == 0:
-                st.write("The Logistic Regression Machine Learning model predicted your movie would NOT BE A SUCCESS! :(")
-            elif i[0] == 1:
-                st.write("The Logistic Regression Machine Learning model predicted your movie would BE A SUCCESS! :)")
+        for i in result_logreg:
+            if i[0].round() == 0:
+                st.write(f"The Logistic Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_logreg) }% confidence! :(")
+            elif i[0].round() == 1:
+                st.write(f"The Logistic Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_logreg) }% confidence! :)")
+            else:
+                st.write("Please try again later.")
+        for i in result_lr:
+            if i[0].round() == 0:
+                st.write(f"The Linear Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_lr) }% confidence! :(")
+            elif i[0].round() == 1:
+                st.write(f"The Linear Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_lr) }% confidence! :)")
+            else:
+                st.write("Please try again later.")
+        for i in result_rf:
+            if i[0].round() == 0:
+                st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_rf) }% confidence! :(")
+            elif i[0].round() == 1:
+                st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_rf) }% confidence! :)")
+            else:
+                st.write("Please try again later.")
+        for i in result_et:
+            if i[0].round() == 0:
+                st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_et) }% confidence! :(")
+            elif i[0].round() == 1:
+                st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_et) }% confidence! :)")
+            else:
+                st.write("Please try again later.")
+        for i in result_dtc:
+            if i[0].round() == 0:
+                st.write(f"The Decision Tree Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_dtc) }% confidence! :(")
+            elif i[0].round() == 1:
+                st.write(f"The Decision Tree Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_dtc) }% confidence! :)")
+            else:
+                st.write("Please try again later.")
+        for i in result_svm:
+            if i[0].round() == 0:
+                st.write(f"The Support Vector Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_svm) }% confidence! :(")
+            elif i[0].round() == 1:
+                st.write(f"The Support Vector Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_svm) }% confidence! :)")
             else:
                 st.write("Please try again later.")
 
-submit_form()
+def interface():
+    choices = ['Home', 'Predict Success of a Movie!', 'List of Movies', 'What Movie Should You Watch?']
+    success = st.sidebar.selectbox("Select a Movie Experience :)", choices)
+    if success == 'Home':
+        st.subheader("Please choose one of the options on the sidebar to get started!")
+    if success == 'Predict Success of a Movie!':
+        submit_form()
+    elif success == 'List of Movies':
+        st.write("Coming soon...")
+    elif success == 'What Movie Should You Watch?':
+        st.write("Coming soon...")
+
+interface()
