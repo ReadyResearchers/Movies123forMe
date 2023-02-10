@@ -43,5 +43,10 @@ def regression():
     title = f'Bar chart of {x_val} on {y_val}')
     st.plotly_chart(fig2)
 
+    #might need to work on this to get the func to work
+    fig3 = px.bar(opus, x = x_val, color = columns[category],
+    title = f'Bar chart of the count of {x_val}')
+    st.plotly_chart(fig3)
+
 regression()
 #os.remove(html_fname)

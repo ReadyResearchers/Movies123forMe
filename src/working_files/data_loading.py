@@ -20,7 +20,6 @@ DATA_IMDB = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\
 # OPUS PART OF THE CODE
 # creating text element to show the loading of the data in the app
 
-@st.cache(allow_output_mutation=True)
 def load_data_opus(nrows):
     data = pd.read_csv(DATA_OPUS + 'movie_data.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -29,7 +28,6 @@ def load_data_opus(nrows):
     return data
 
 # NETFLIX PART OF THE CODE
-@st.cache(allow_output_mutation=True)
 def load_data_netflix(nrows):
     data1 = pd.read_csv(DATA_NETFLIX + 'archive\\netflix_titles.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -37,7 +35,6 @@ def load_data_netflix(nrows):
     data1.rename(lowercase, axis='columns', inplace=True)
     return data1
 # HULU PART OF THE CODE
-@st.cache(allow_output_mutation=True)
 def load_data_hulu(nrows):
     data2 = pd.read_csv(DATA_HULU + 'archive\\hulu_titles.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -45,7 +42,6 @@ def load_data_hulu(nrows):
     data2.rename(lowercase, axis='columns', inplace=True)
     return data2
 # PRIME PART OF THE CODE
-@st.cache(allow_output_mutation=True)
 def load_data_prime(nrows):
     data3 = pd.read_csv(DATA_PRIME + 'archive\\amazon_prime_titles.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -53,7 +49,6 @@ def load_data_prime(nrows):
     data3.rename(lowercase, axis='columns', inplace=True)
     return data3
 # DISNEY+ PART OF THE CODE
-@st.cache(allow_output_mutation=True)
 def load_data_disney(nrows):
     data4 = pd.read_csv(DATA_DISNEY + 'archive\\disney_plus_titles.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
@@ -65,7 +60,6 @@ list_names_imdb = ['title.akas', 'title.basics', 'title.crew', 'title.episode', 
 'title.ratings', 'name.basics']
 
 # creating text element to show the loading of the data in the app
-@st.cache(allow_output_mutation=True)
 def load_data_imdb(nrows):
     akas = pd.read_table(DATA_IMDB + list_names_imdb[0] + '.tsv\\data.tsv', nrows=nrows)
     title_basics = pd.read_table(DATA_IMDB + list_names_imdb[1] + '.tsv\\data.tsv', nrows=nrows)

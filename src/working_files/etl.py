@@ -2,7 +2,6 @@ import pandas as pd
 import streamlit as st
 from src.working_files import data_loading
 
-
 def clean_data():
     # st.subheader("Performing ETL functions for the imported movie data")
 
@@ -58,7 +57,6 @@ def clean_data():
     hulu = hulu.dropna()
 
     # changing dtype of columns
-
     opus['production_year'] = pd.to_numeric(opus['production_year'])
     opus['production_budget'] = pd.to_numeric(opus['production_budget'])
     opus['domestic_box_office'] = pd.to_numeric(opus['domestic_box_office'])
@@ -126,8 +124,7 @@ def clean_data():
       #  file_name='opus-genre.csv',
        # mime='text/csv',
         #)
-
-    st.write(netflix.head())
+    
     return opus, netflix, prime, disney, hulu
 
 clean_data()

@@ -3,9 +3,6 @@ import pandas as pd
 import plotly.express as px
 
 import functions
-#import data_loading
-#import etl
-# import regressions
 
 st.title('Movies123forMe - A Personalized Movie Selector')
 

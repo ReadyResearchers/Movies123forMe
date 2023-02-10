@@ -29,6 +29,7 @@ statsmodels = "^0.13.5"
 functions = "^0.7.0"
 dash = "^2.7.1"
 nltk = "^3.8.1"
+wordcloud = "^1.8.2.2"
 
 [tool.poetry.dev-dependencies]
 
