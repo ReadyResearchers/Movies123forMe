@@ -15,10 +15,10 @@ def clean_data():
     # compile the list of columns to be dropped for analysis
 
     opus_drop = ['movie_name', 'creative_type', 'source', 'production_method']
-    netflix_drop = ['title', 'date_added', 'duration', 'description']
-    disney_drop = ['title', 'date_added', 'duration', 'description']
-    hulu_drop = ['title', 'date_added', 'duration', 'description']
-    prime_drop = ['title', 'date_added', 'duration', 'description']
+    netflix_drop = ['title', 'date_added', 'duration']
+    disney_drop = ['title', 'date_added', 'duration']
+    hulu_drop = ['title', 'date_added', 'duration']
+    prime_drop = ['title', 'date_added', 'duration']
 
     if opus.columns.any() in opus_drop:
         opus.drop(opus_drop, inplace=True, axis=1)
@@ -109,9 +109,6 @@ def clean_data():
     
     # creating dummy variables for str columns
     opus = pd.get_dummies(opus, columns=['genre'])
-    netflix = pd.get_dummies(netflix, columns = ['listed_in'])
-    prime = pd.get_dummies(prime, columns = ['listed_in'])
-    disney = pd.get_dummies(disney, columns = ['listed_in'])
     opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
     netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
@@ -122,20 +119,6 @@ def clean_data():
     disney['rating'] = disney['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
                         'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
-    
-    # text analysis cleaning
-    
-    netflix['director_freq'] = netflix.groupby('director')['director'].transform('count')
-    netflix['cast_freq'] = netflix.groupby('cast')['cast'].transform('count')
-    netflix['country_freq'] = netflix.groupby('country')['country'].transform('count')
-
-    disney['director_freq'] = disney.groupby('director')['director'].transform('count')
-    disney['cast_freq'] = disney.groupby('cast')['cast'].transform('count')
-    disney['country_freq'] = disney.groupby('country')['country'].transform('count')
-
-    prime['director_freq'] = prime.groupby('director')['director'].transform('count')
-    prime['cast_freq'] = prime.groupby('cast')['cast'].transform('count')
-    prime['country_freq'] = prime.groupby('country')['country'].transform('count')
 
     # st.download_button(
     #    label="Download",
@@ -144,6 +127,7 @@ def clean_data():
        # mime='text/csv',
         #)
 
+    st.write(netflix.head())
     return opus, netflix, prime, disney, hulu
 
 clean_data()
