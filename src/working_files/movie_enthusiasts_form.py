@@ -21,6 +21,10 @@ from nltk.corpus import stopwords
 import pickle
 from streamlit import session_state as session
 from functools import reduce
+import json
+import csv
+import pathlib
+
 
 
 def predict(data):
@@ -137,11 +141,35 @@ def submit_form():
 
 def search_movies():
     title = st.text_input("Type the title of the desired Movie/TV Show:")
+    def running():
+        #creating a baseline list of movies in csv file for analysis
+        netflix = data_loading.load_data_netflix(10)
+        for _, row in netflix.iterrows():
+            if row[1] == 'Movie':
+                i = str(row[2])
+                web = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
+                res = requests.get(web)
+                res = res.json()
+                if res['Response'] == 'False':
+                    continue
+                try:
+                    with open('response.json', 'w') as json_file:
+                        json.dump(res, json_file)
+                    with open('response.json', 'r') as file:
+                        json.loads(file.read())
+                    with open('response.json', encoding='utf-8') as inputfile:
+                        df = pd.read_json(inputfile)
+                    open('movie_search.csv', 'a').write(df.to_csv(header = False))
+                except:
+                    st.write("Try again tomorrow!")
+            else:
+                continue
+    running()
     if title:
+        url = f'http://www.omdbapi.com/?t={title}&apikey=4482116e'
+        re = requests.get(url)
+        re = re.json()
         try:
-            url = f'http://www.omdbapi.com/?t={title}&apikey=4482116e'
-            re = requests.get(url)
-            re = re.json()
             col1, col2 = st.columns([1, 2])
             with col1:
                 st.image(re['Poster'])
@@ -152,7 +180,17 @@ def search_movies():
                 st.text(f"Rating: {re['imdbRating']}")
                 st.progress(float(re['imdbRating']) / 10)
         except:
-            st.error("No movie with that title found in the API Database")
+            st.error("No movie with that title found in the API Database OR try again tomorrow!")
+        
+        with open('response.json', 'w') as json_file:
+            json.dump(re, json_file)
+        with open('response.json') as file:
+            json.load(file)
+        with open('response.json', encoding='utf-8') as inputfile:
+            df = pd.read_json(inputfile)
+        open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
+
+
     if len(title) == 0:
         url = f'http://www.omdbapi.com/?t=clueless&apikey=4482116e'
         re = requests.get(url)

@@ -8,6 +8,10 @@ def regression():
     """Run linear regression on opus data."""
     opus = etl.clean_data()[0]
     st.write(opus.head())
+    # finding the mean production budget of a successful movie
+    #for i in opus['movie_success']:
+        #if i == 1:
+            #print(opus['production_budget'].mean())
     col = opus.columns
     columns = {1: opus.columns[0], 2: opus.columns[1], 3: opus.columns[2],
         4: opus.columns[3], 5: opus.columns[4], 6: opus.columns[5],
