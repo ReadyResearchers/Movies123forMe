@@ -1,18 +1,18 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer
-import nltk
-from nltk.stem.porter import PorterStemmer
-from sklearn.metrics.pairwise import cosine_similarity
 import requests
 import re
-from src.working_files import data_loading
+from src.working_files import etl
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+
 
 ## importing necessary files
 duplicates = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv'
 inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv', 'r')
 outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv', 'w')
+netflix = etl.clean_data()[0]
 
 # remove any \n characters in file
 dups = []
@@ -27,22 +27,12 @@ outFile.close()
 inFile.close()
 
 data = pd.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv')
-print(data.head())
 
 # dropping an nan values
-for i in data['BoxOffice']:
-    if i is not None:
-        data['BoxOffice'] = data['BoxOffice'].apply(str).str.replace("$", "")
-        data['BoxOffice'] = data['BoxOffice'].apply(str).str.replace(',', '')
-
-for i in data['DVD']:
-    if i is not None:
-        data['DVD'] = data['DVD'].str.replace("$", "")
-        data['DVD'] = data['DVD'].str.replace(',', '')
+data['BoxOffice'] = data['BoxOffice'].apply(str).str.replace("$", "")
+data['BoxOffice'] = data['BoxOffice'].apply(str).str.replace(',', '')
 
 print(data['BoxOffice'])
-print(data['DVD'])
-
 
 # creating movie success column based on mean production budget of opus data
 if data['BoxOffice'].astype(float).any() >= 55507312.604108825:
@@ -58,53 +48,53 @@ data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
 data = data.drop_duplicates(subset = ['Title'], keep='first')
 
 # keeping the same columns as netflix model
-movies = data[['Type', 'Director', 'Actors', 'Year', 'Rated', 'Country', 'Plot', 'Genre', 'movie_success']]
-st.write(movies.head())
+movies = ['Title', 'Plot', 'Poster']
 
 # checking for duplicate data
-movies.duplicated().sum()
 
-# changing all strings in columns to lowercase
-movies = movies.apply(lambda x: x.str.lower() if x.dtype == "object" else x)
-#print(movies.head())
+movie_data = data[movies].copy()
 
-# removing stop words
-cv = CountVectorizer(max_features=5000, stop_words='english')
-y = movies.drop('movie_success', axis=1, inplace=True)
-vectors = cv.fit_transform(movies['Plot']).toarray()
-#print(vectors)
+tfidf = TfidfVectorizer(stop_words='english')
 
-cv.get_feature_names_out()
+movie_data['Plot'] = movie_data['Plot'].fillna('')
+tfidf_matrix = tfidf.fit_transform(movie_data['Plot'])
 
-## get rid of similar words
-ps = PorterStemmer()
+cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 
-def stem(text):
-    y = []
-    for i in text.split():
-        y.append(ps.stem(i))
-    return " ".join(y)
+indices = pd.Series(movie_data.index, index=movie_data['Title']).drop_duplicates()
 
-movies['Plot'] = movies['Plot'].apply(stem)
-
-#print(movies['Plot'])
-
-## finding the 'distance' between every movie for movie
-cosine_similarity(vectors)
-similarity = cosine_similarity(vectors).shape
-#print(similarity)
-def recommend(movie):
-    movie_index = movies[movies['Type'] == 'movie'].index[0]
-
-    distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)),reverse=True,key=lambda x:x[1])[1:6]
-
-    # fetching movies from indeces
-    for i in movies_list:
-        print(movies.iloc[i[0]].Title)
-
-title = st.text_input("Type the title of a Movie for recommendations:")
+def get_recommendations(title, cosine_sim=cosine_sim):
+    idx = indices[title]
+    sim_scores = list(enumerate(cosine_sim[idx]))
+    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+    sim_scores = sim_scores[1:11]
+    movie_indices = [i[0] for i in sim_scores]
+    return movie_data[['Title', 'Plot']].iloc[movie_indices]
 
 
-#recommend(title)
-recommend('Avatar')
+st.header("Movie Recommendation System")
+
+movie_list = movie_data['Title'].values
+
+selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list )
+
+if st.button('Show Recommendation'):
+    recommended_movie_names = get_recommendations(selected_movie)
+    for i in movie_list:
+        if i == recommended_movie_names.values.any():
+            url = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+            

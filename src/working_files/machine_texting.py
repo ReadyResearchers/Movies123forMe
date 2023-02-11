@@ -38,18 +38,19 @@ def text_classification():
     category_id_df = x[['rating', 'rating_id']].drop_duplicates().sort_values('rating_id')
     category_to_id = dict(category_id_df.values)
     id_to_category = dict(category_id_df[['rating_id', 'rating']].values)
-    # print(x.head())
+    st.subheader("Head of Netflix movie data:")
+    st.write(x.head())
 
     # checking to see the balance of classes
     fig = plt.figure(figsize=(8,6))
-    x.groupby('rating').description.count().plot.bar(ylim=0)
-    #plt.show()
+    x.groupby('rating').cast.count().plot.bar(ylim=0)
+    st.subheader("Count of Cast members associated with a certain rating:")
+    st.pyplot(fig)
 
     # extracting features from text using the measure term frequency inverse document frequency (tfidf)
     tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2), stop_words='english')
-    features = tfidf.fit_transform(x.description).toarray()
+    features = tfidf.fit_transform(x.cast).toarray()
     labels = x.rating_id
-    # print(features.shape)
 
     N = 2
     for Product, category_id in sorted(category_to_id.items()):
@@ -58,20 +59,20 @@ def text_classification():
         feature_names = np.array(tfidf.get_feature_names_out())[indices]
         unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
         bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
-        # print("# '{}':".format(Product))
-        # print("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
-        # print("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
+        st.write("# '{}':".format(Product))
+        st.write("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
+        st.write("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
     
-    X_train, X_test, y_train, y_test = train_test_split(netflix['description'], netflix['rating'], random_state = 0)
+    X_train, X_test, y_train, y_test = train_test_split(netflix['cast'], netflix['movie_success'], random_state = 42)
     count_vect = CountVectorizer()
     X_train_counts = count_vect.fit_transform(X_train)
     tfidf_transformer = TfidfTransformer()
     X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
     clf = MultinomialNB().fit(X_train_tfidf, y_train)
 
-    test_desc = "The series follows fifteen men and fifteen women, all from the same metropolitan area, hoping to find love. For 10 days, the men and women date each other in purpose-built 'pods' where they can talk to each other through a speaker but not see each other."
-    print(f"Predicting the rating of a movie/TV show with the description '{test_desc}'")
-    print(clf.predict(count_vect.transform([test_desc])))
+    test_cast = "Adriana Solis"
+    st.write(f"Predicting the success of a movie/TV show with the actor/actress '{test_cast}'")
+    st.write(clf.predict(count_vect.transform([test_cast])))
 
 
 def wordcloud():
@@ -85,6 +86,7 @@ def wordcloud():
             
     stop_words = stop_words  
 
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     def preprocess(raw_text):
         
         #regular expression keeping only letters 
@@ -142,6 +144,7 @@ def wordcloud():
 
     for i in n_gram_dic:
         if n_gram_dic[i] >= 2:
-            st.write(i, n_gram_dic[i])
+            pairs = i, n_gram_dic[i]
 
 text_classification()
+wordcloud()

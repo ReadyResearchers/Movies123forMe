@@ -14,10 +14,10 @@ def clean_data():
     # compile the list of columns to be dropped for analysis
 
     opus_drop = ['movie_name', 'creative_type', 'source', 'production_method']
-    netflix_drop = ['title', 'date_added', 'duration']
-    disney_drop = ['title', 'date_added', 'duration']
-    hulu_drop = ['title', 'date_added', 'duration']
-    prime_drop = ['title', 'date_added', 'duration']
+    netflix_drop = ['date_added', 'duration']
+    disney_drop = ['date_added', 'duration']
+    hulu_drop = ['date_added', 'duration']
+    prime_drop = ['date_added', 'duration']
 
     if opus.columns.any() in opus_drop:
         opus.drop(opus_drop, inplace=True, axis=1)
@@ -87,10 +87,10 @@ def clean_data():
 
     # splitting up rows that have more than one element
 
-    netflix = netflix.assign(director=netflix['director'].str.split(",")).explode('director')
-    netflix = netflix.assign(cast=netflix['cast'].str.split(",")).explode('cast')
-    netflix = netflix.assign(country=netflix['country'].str.split(",")).explode('country')
-    netflix = netflix.assign(listed_in=netflix['listed_in'].str.split(",")).explode('listed_in')
+    #netflix = netflix.assign(director=netflix['director'].str.split(",")).explode('director')
+    #netflix = netflix.assign(cast=netflix['cast'].str.split(",")).explode('cast')
+    #netflix = netflix.assign(country=netflix['country'].str.split(",")).explode('country')
+    #netflix = netflix.assign(listed_in=netflix['listed_in'].str.split(",")).explode('listed_in')
 
 
     prime = prime.assign(director=prime['director'].str.split(",")).explode('director')
