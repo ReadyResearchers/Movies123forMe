@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from src.working_files import etl
 from src.working_files import data_loading
+from src.working_files import text_classification
 from sklearn.model_selection import train_test_split
 from src.working_files import machine_learning
 
@@ -143,7 +144,7 @@ def search_movies():
     title = st.text_input("Type the title of the desired Movie/TV Show:")
     def running():
         #creating a baseline list of movies in csv file for analysis
-        netflix = data_loading.load_data_netflix(10)
+        netflix = data_loading.load_data_netflix(100)
         for _, row in netflix.iterrows():
             if row[1] == 'Movie':
                 i = str(row[2])
@@ -159,7 +160,7 @@ def search_movies():
                         json.loads(file.read())
                     with open('response.json', encoding='utf-8') as inputfile:
                         df = pd.read_json(inputfile)
-                    open('movie_search.csv', 'a').write(df.to_csv(header = False))
+                    open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
                 except:
                     st.write("Try again tomorrow!")
             else:
@@ -233,6 +234,6 @@ def interface():
     if success == 'Predict Success of a Movie!':
         submit_form()
     elif success == 'What Movie Should You Watch?':
-        what_movie()
+        text_classification.category()
 
 interface()
