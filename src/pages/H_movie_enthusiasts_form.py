@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
-from src.pages import etl
-from src.pages import data_loading
-from src.pages.functions import text_classification
+from pages import B_etl
+from pages import A_data_loading
+from pages.functions import text_classification
 from sklearn.model_selection import train_test_split
-from src.pages import machine_learning
+from pages import G_machine_learning
 
 import numpy as np
 import joblib
@@ -26,6 +26,29 @@ import pathlib
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Subpage 5 🎈")
+
+data = A_data_loading.load_data_netflix(1000)
+datap = A_data_loading.load_data_prime(1000)
+datad = A_data_loading.load_data_disney(1000)
+
+netflix = data.merge(datap, how='left').merge(datad, how='left')
+netflix = netflix[netflix['type'].str.contains("TV Show") == False]
+
+# making movie success where the 4 top produced movies are categorized as a success
+netflix['movie_success'] = np.where(
+    netflix['rating'] == 'TV-MA', 1, np.where(
+    netflix['rating'] == 'PG-13', 1, np.where(netflix['rating'] == 'TV-14', 1, np.where(
+    netflix['rating'] == 'R', 1, 0))))
+
+#dropping columns
+netflix_drop = ['date_added', 'duration']
+if netflix.columns.any() in netflix_drop:
+    netflix.drop(netflix_drop, inplace=True, axis=1)
+
+#dropping nan values
+netflix = netflix.dropna()
+netflix['release_year'] = pd.to_datetime(netflix['release_year'])
+netflix["date_added"] = pd.to_datetime(netflix['date_added'])
 
 
 def predict(data):
@@ -89,12 +112,12 @@ def submit_form():
         result_dtc = result_dtc.reshape(1, -1)
         result_svm = result_svm.reshape(1, -1)
 
-        score_logreg = machine_learning.logreg()[1]
-        score_lr = machine_learning.lr()[1]
-        score_rf = machine_learning.rf()[1]
-        score_et = machine_learning.et()[1]
-        score_dtc = machine_learning.dtc()[1]
-        score_svm = machine_learning.svm()[1]
+        score_logreg = G_machine_learning.logreg()[1]
+        score_lr = G_machine_learning.lr()[1]
+        score_rf = G_machine_learning.rf()[1]
+        score_et = G_machine_learning.et()[1]
+        score_dtc = G_machine_learning.dtc()[1]
+        score_svm = G_machine_learning.svm()[1]
 
         st.subheader("Movie Success Results:")
         for i in result_logreg:
@@ -142,30 +165,29 @@ def submit_form():
 
 def search_movies():
     title = st.text_input("Type the title of the desired Movie/TV Show:")
-    def running():
+    #def running():
         #creating a baseline list of movies in csv file for analysis
-        opus = data_loading.load_data_opus(1000)
-        for _, row in opus.iterrows():
-            if row[1] == 'Movie':
-                i = str(row[0])
-                web = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
-                res = requests.get(web)
-                res = res.json()
-                if res['Response'] == 'False':
-                    continue
-                try:
-                    with open('response.json', 'w') as json_file:
-                        json.dump(res, json_file)
-                    with open('response.json', 'r') as file:
-                        json.loads(file.read())
-                    with open('response.json', encoding='utf-8') as inputfile:
-                        df = pd.read_json(inputfile)
-                    open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
-                except:
-                    st.write("Try again tomorrow!")
-            else:
-                continue
-    running()
+        #for _, row in netflix.iterrows():
+            #if row[1] == 'Movie':
+                #i = str(row[2])
+                #web = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
+                #res = requests.get(web)
+                #res = res.json()
+                #if res['Response'] == 'False':
+                    #continue
+                #try:
+                    #with open('response.json', 'w') as json_file:
+                        #json.dump(res, json_file)
+                    #with open('response.json', 'r') as file:
+                        #json.loads(file.read())
+                    #with open('response.json', encoding='utf-8') as inputfile:
+                        #df = pd.read_json(inputfile)
+                    #open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
+                #except:
+                    #st.write("Try again tomorrow!")
+            #else:
+                #continue
+    #running()
     if title:
         url = f'http://www.omdbapi.com/?t={title}&apikey=4482116e'
         re = requests.get(url)

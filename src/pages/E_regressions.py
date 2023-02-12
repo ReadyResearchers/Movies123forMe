@@ -1,5 +1,5 @@
 import streamlit as st
-from src.pages import etl
+from pages import B_etl
 
 import plotly.express as px
 
@@ -9,7 +9,7 @@ st.sidebar.markdown("# Subpage 6 🎈")
 
 def regression():
     """Run linear regression on opus data."""
-    opus = etl.clean_data()[0]
+    opus = B_etl.clean_data()[0]
     st.write(opus.head())
     # finding the mean production budget of a successful movie
     #for i in opus['movie_success']:

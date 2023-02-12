@@ -2,14 +2,13 @@ import streamlit as st
 import plotly.express as px
 import warnings
 
-from src.pages import etl
-
+from pages import B_etl
 warnings.filterwarnings('ignore')
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Subpage 1 🎈")
 
-opus = etl.clean_data()[0]
+opus = B_etl.clean_data()[0]
 
 # finding the mean of a column
 

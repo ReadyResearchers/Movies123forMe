@@ -1,15 +1,15 @@
 import pandas as pd
 import streamlit as st
-from src.pages import data_loading
+import sys
+from pages import A_data_loading
 
 def clean_data():
-    # st.subheader("Performing ETL functions for the imported movie data")
 
-    opus = data_loading.load_data_opus(10000)
-    netflix = data_loading.load_data_netflix(3000)
-    disney = data_loading.load_data_disney(3000)
-    hulu = data_loading.load_data_hulu(3000)
-    prime = data_loading.load_data_prime(3000)
+    opus = A_data_loading.load_data_opus(10000)
+    netflix = A_data_loading.load_data_netflix(3000)
+    disney = A_data_loading.load_data_disney(3000)
+    hulu = A_data_loading.load_data_hulu(3000)
+    prime = A_data_loading.load_data_prime(3000)
 
     # compile the list of columns to be dropped for analysis
 
@@ -30,6 +30,11 @@ def clean_data():
     if prime.columns.any() in prime_drop:
         prime.drop(prime_drop, inplace=True, axis=1)
 
+    # dropping tv show rows
+    netflix = netflix[netflix['type'].str.contains("TV Show") == False]
+    prime = prime[prime['type'].str.contains("TV Show") == False]
+    disney = disney[disney['type'].str.contains("TV Show") == False]
+    hulu = hulu[hulu['type'].str.contains("TV Show") == False]
     # set the unique identifier as the index
 
     # opus = opus.set_index('movie_odid')
@@ -108,9 +113,9 @@ def clean_data():
     # creating dummy variables for str columns
     opus = pd.get_dummies(opus, columns=['genre'])
     opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
-    #netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
-                        #'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
-                        #'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
+    netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
+                        'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
+                        'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
     prime['rating'] = prime['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
                         'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
@@ -124,22 +129,5 @@ def clean_data():
       #  file_name='opus-genre.csv',
        # mime='text/csv',
         #)
-    
-    st.subheader("Cleaned Opus Movie Data")
-    st.write(opus)
-
-    st.subheader("Cleaned Netflix Movie Data")
-    st.write(netflix)
-
-    st.subheader("Cleaned Prime Movie Data")
-    st.write(prime)
-
-    st.subheader("Cleaned Disney Movie Data")
-    st.write(disney)
-
-    st.subheader("Cleaned Hulu Movie Data")
-    st.write(hulu)
 
     return opus, netflix, prime, disney, hulu
-
-clean_data()

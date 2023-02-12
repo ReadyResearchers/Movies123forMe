@@ -2,13 +2,11 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-from functions import functions
+from pages.functions import functions
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Subpage 8 🎈")
 
-
-st.title('Movies123forMe - A Personalized Movie Selector')
 
 functions.space()
 st.write('<p style="font-size:130%">Import Dataset</p>', unsafe_allow_html=True)

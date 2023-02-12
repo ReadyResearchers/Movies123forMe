@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-from src.pages import etl
+from pages import B_etl
 import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -25,7 +25,7 @@ st.sidebar.markdown("# Subpage 2 🎈")
 ## setting up environment
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-opus = etl.clean_data()[0]
+opus = B_etl.clean_data()[0]
     
 opus_cols = ['production_budget', 'rating', 'sequel', 'genre_Action', 'genre_Comedy', 'genre_Drama', 
 'genre_Adventure', 'genre_Black Comedy', 'genre_Concert/Performance', 'genre_Documentary', 'genre_Horror',

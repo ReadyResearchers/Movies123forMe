@@ -3,16 +3,16 @@ import pandas as pd
 import numpy as np
 import requests
 import re
-from src.pages import etl
+from pages import B_etl
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
 
 ## importing necessary files
-duplicates = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv'
-inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv', 'r')
-outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv', 'w')
-netflix = etl.clean_data()[0]
+duplicates = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv'
+inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv', 'r')
+outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv', 'w')
+netflix = B_etl.clean_data()[0]
 
 # remove any \n characters in file
 dups = []
@@ -26,14 +26,12 @@ for line in inFile:
 outFile.close()
 inFile.close()
 
-data = pd.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv',encoding='ISO-8859-1')
+data = pd.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv',encoding='ISO-8859-1')
 
 # dropping an nan values
-data['BoxOffice'] = data['BoxOffice'].apply(str).str.replace("$", "")
-data['BoxOffice'] = data['BoxOffice'].apply(str).str.replace(',', '')
 
 # creating movie success column based on mean production budget of opus data
-if data['BoxOffice'].astype(float).any() >= 55507312.604108825:
+if data['earnings'].astype(float).any() >= 55507312.604108825:
     data['movie_success'] = 1
 else:
     data['movie_success'] = 0
@@ -41,7 +39,7 @@ else:
 data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
 'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
 'Metascore','imdbRating','imdbVotes','imdbID','Type','DVD','BoxOffice',
-'Production','Website','Response', 'movie_success']
+'Production','Website','Response', 'movie_success','earnings']
 
 data = data.drop_duplicates(subset = ['Title'], keep='first')
 
@@ -63,7 +61,7 @@ def by_plot():
     def get_recommendations(title, cosine_sim=cosine_sim):
         idx = indices[title]
         sim_scores = list(enumerate(cosine_sim[idx]))
-        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)[1:6]
         sim_scores = sim_scores[1:11]
         movie_indices = [i[0] for i in sim_scores]
         return movie_data[['Title', 'Plot']].iloc[movie_indices]
@@ -71,7 +69,7 @@ def by_plot():
 
     movie_list = movie_data['Title'].values
 
-    selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list )
+    selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list[:-1])
 
     if st.button('Show Recommendation'):
         recommended_movie_names = get_recommendations(selected_movie)
