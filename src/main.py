@@ -1,6 +1,4 @@
 import streamlit as st
-from working_files import data_loading
-from working_files import etl
 from working_files import regressions
 from working_files import machine_learning
 from working_files import movie_enthusiasts_form
@@ -21,7 +19,6 @@ def main():
         if choice == 'Machine Learning':
             machine_learning.main_dashboard()
     if mode == 'Professional Movie Enthusiast':
-        st.write("Coming soon...")
-        movie_enthusiasts_form.submit_form()
+        movie_enthusiasts_form.interface()
 
 main()

@@ -144,10 +144,10 @@ def search_movies():
     title = st.text_input("Type the title of the desired Movie/TV Show:")
     def running():
         #creating a baseline list of movies in csv file for analysis
-        netflix = data_loading.load_data_netflix(100)
-        for _, row in netflix.iterrows():
+        opus = data_loading.load_data_opus(1000)
+        for _, row in opus.iterrows():
             if row[1] == 'Movie':
-                i = str(row[2])
+                i = str(row[0])
                 web = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
                 res = requests.get(web)
                 res = res.json()
@@ -205,24 +205,6 @@ def search_movies():
             st.write(re['Plot'])
             st.text(f"Rating: {re['imdbRating']}")
             st.progress(float(re['imdbRating']) / 10)
-
-
-def what_movie():
-    netflix = etl.clean_data()[1]
-    prime = etl.clean_data()[2]
-    disney = etl.clean_data()[3]
-
-    df = [netflix, prime, disney]
-    df_merged = pd.concat(df)
-
-    # tokenize the words for lemmatization and removing stopwords
-    df_merged['description'] = df_merged['description'].apply(word_tokenize)
-    df_merged['description'] = df_merged['description'].apply(
-    lambda x:[word for word in x if word not in set(stopwords.words('english'))]
-    )
-
-    # joining the words after lemmatization and stopword removal
-    df_merged['description'] = df_merged['description'].apply(lambda x: ' '.join(x))
 
 
 def interface():

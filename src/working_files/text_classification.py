@@ -164,7 +164,7 @@ def by_director():
         return movie_data[['Title', 'Director']].iloc[movie_indices]
 
 
-    movie_list = movie_data['Title'].values
+    movie_list = data['Title'].values
 
     selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list )
 
