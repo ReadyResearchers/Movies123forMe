@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from pages import B_etl
+from pages.functions import B_etl
 from pages import A_data_loading
 from pages.functions import text_classification
 from sklearn.model_selection import train_test_split
@@ -204,6 +204,7 @@ def search_movies():
                 st.progress(float(re['imdbRating']) / 10)
         except:
             st.error("No movie with that title found in the API Database OR try again tomorrow!")
+            st.stop()
         
         with open('response.json', 'w') as json_file:
             json.dump(re, json_file)

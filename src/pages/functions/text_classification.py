@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import requests
 import re
-from pages import B_etl
+from pages.functions import B_etl
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
@@ -64,32 +64,84 @@ def by_plot():
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)[1:6]
         sim_scores = sim_scores[1:11]
         movie_indices = [i[0] for i in sim_scores]
-        return movie_data[['Title', 'Plot']].iloc[movie_indices]
+        return pd.DataFrame(movie_data[['Title', 'Plot']].iloc[movie_indices])
 
 
     movie_list = movie_data['Title'].values
 
-    selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list[:-1])
+    selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list[:-1], key=32)
 
     if st.button('Show Recommendation'):
         recommended_movie_names = get_recommendations(selected_movie)
-        for i in movie_list:
-            if i == recommended_movie_names.values.any():
-                url = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
-                re = requests.get(url)
-                re = re.json()
-                try:
-                    col1, col2 = st.columns([1, 2])
-                    with col1:
-                        st.image(re['Poster'])
-                    with col2:
-                        st.subheader(re['Title'])
-                        st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
-                        st.write(re['Plot'])
-                        st.text(f"Rating: {re['imdbRating']}")
-                        st.progress(float(re['imdbRating']) / 10)
-                except:
-                    st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        a = recommended_movie_names.values[0][0]
+        b = recommended_movie_names.values[1][0]
+        c = recommended_movie_names.values[2][0]
+        d = recommended_movie_names.values[3][0]
+        if a:
+            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if b:
+            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if c:
+            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if d:
+            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+
 
 
 def by_actor():
@@ -121,23 +173,74 @@ def by_actor():
 
     if st.button('Show Recommendation'):
         recommended_movie_names = get_recommendations(selected_movie)
-        for i in movie_list:
-            if i == recommended_movie_names.values.any():
-                url = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
-                re = requests.get(url)
-                re = re.json()
-                try:
-                    col1, col2 = st.columns([1, 2])
-                    with col1:
-                        st.image(re['Poster'])
-                    with col2:
-                        st.subheader(re['Title'])
-                        st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
-                        st.write(re['Plot'])
-                        st.text(f"Rating: {re['imdbRating']}")
-                        st.progress(float(re['imdbRating']) / 10)
-                except:
-                    st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        a = recommended_movie_names.values[0][0]
+        b = recommended_movie_names.values[1][0]
+        c = recommended_movie_names.values[2][0]
+        d = recommended_movie_names.values[3][0]
+        if a:
+            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if b:
+            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if c:
+            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if d:
+            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
 
 
 def by_director():
@@ -168,30 +271,178 @@ def by_director():
 
     if st.button('Show Recommendation'):
         recommended_movie_names = get_recommendations(selected_movie)
-        for i in movie_list:
-            if i == recommended_movie_names.values.any():
-                url = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
-                re = requests.get(url)
-                re = re.json()
-                try:
-                    col1, col2 = st.columns([1, 2])
-                    with col1:
-                        st.image(re['Poster'])
-                    with col2:
-                        st.subheader(re['Title'])
-                        st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
-                        st.write(re['Plot'])
-                        st.text(f"Rating: {re['imdbRating']}")
-                        st.progress(float(re['imdbRating']) / 10)
-                except:
-                    st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        a = recommended_movie_names.values[0][0]
+        b = recommended_movie_names.values[1][0]
+        c = recommended_movie_names.values[2][0]
+        d = recommended_movie_names.values[3][0]
+        if a:
+            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if b:
+            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if c:
+            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if d:
+            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
 
 
-choices = ['Plot', 'Director', 'Actors', 'Genre', 'Movie Success']
-choices = st.selectbox("Choose which type of movie grouping for recommendation: ", choices)
+def by_genre():
+    movies = ['Title', 'Genre']
+    movie_data = data[movies].copy()
+
+    tfidf = TfidfVectorizer(stop_words='english')
+
+    movie_data['Genre'] = movie_data['Genre'].fillna('')
+    tfidf_matrix = tfidf.fit_transform(movie_data['Genre'])
+
+    cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+
+    indices = pd.Series(movie_data.index, index=movie_data['Title']).drop_duplicates()
+
+    def get_recommendations(title, cosine_sim=cosine_sim):
+        idx = indices[title]
+        sim_scores = list(enumerate(cosine_sim[idx]))
+        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+        sim_scores = sim_scores[1:11]
+        movie_indices = [i[0] for i in sim_scores]
+        return movie_data[['Title', 'Genre']].iloc[movie_indices]
+
+
+    movie_list = data['Title'].values
+
+    selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list )
+
+    if st.button('Show Recommendation'):
+        recommended_movie_names = get_recommendations(selected_movie)
+        a = recommended_movie_names.values[0][0]
+        b = recommended_movie_names.values[1][0]
+        c = recommended_movie_names.values[2][0]
+        d = recommended_movie_names.values[3][0]
+        if a:
+            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if b:
+            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if c:
+            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+        if d:
+            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            re = requests.get(url)
+            re = re.json()
+            try:
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.image(re['Poster'])
+                with col2:
+                    st.subheader(re['Title'])
+                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                    st.write(re['Plot'])
+                    st.text(f"Rating: {re['imdbRating']}")
+                    st.progress(float(re['imdbRating']) / 10)
+            except:
+                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+
 
 def category():
     st.header("Movie Recommendation System")
+    choose = ['Plot', 'Director', 'Actors', 'Genre']
+    choices = st.selectbox("Choose which type of movie grouping for recommendation: ", choose)
 
     if choices == 'Plot':
         by_plot()
@@ -200,8 +451,6 @@ def category():
     if choices == 'Actors':
         by_actor()
     if choices == 'Genre':
-        st.write("Coming soon")
-    if choices == 'Movie Success':
-        st.write("Coming soon")
+        by_genre()
 
 category()
