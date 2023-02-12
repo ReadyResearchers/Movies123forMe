@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.express as px
 import warnings
 
-from pages import B_etl
+from pages.functions import B_etl
 warnings.filterwarnings('ignore')
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")

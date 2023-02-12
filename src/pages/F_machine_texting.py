@@ -4,7 +4,7 @@ import numpy as np
 import joblib
 import re
 import string
-from pages import A_data_loading
+from pages.functions import A_data_loading
 import re
 from nltk.stem import WordNetLemmatizer, PorterStemmer, SnowballStemmer
 from nltk.corpus import stopwords

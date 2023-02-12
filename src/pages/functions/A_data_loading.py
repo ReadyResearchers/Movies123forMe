@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-from sklearn import datasets
-from sklearn.ensemble import RandomForestRegressor
+
 from pathlib import Path
 import plotly.express as px
 
@@ -76,7 +75,6 @@ def load_data_imdb(nrows):
     name_basics.rename(lowercase, axis='columns', inplace=True)
     return akas, title_basics, crew, episode, principals, ratings, name_basics
 
-# notify the reader that the data was successfully loaded
 
 # basic package display
 def display():

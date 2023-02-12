@@ -1,5 +1,5 @@
 import streamlit as st
-from pages import B_etl
+from pages.functions import B_etl
 
 import plotly.express as px
 
