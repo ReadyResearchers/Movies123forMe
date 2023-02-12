@@ -30,6 +30,9 @@ functions = "^0.7.0"
 dash = "^2.7.1"
 nltk = "^3.8.1"
 wordcloud = "^1.8.2.2"
+pathlib = "^1.0.1"
+numpy = "^1.24.2"
+joblib = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 

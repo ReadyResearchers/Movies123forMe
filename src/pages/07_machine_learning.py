@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-from src.working_files import etl
+from src.pages import etl
 import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -19,6 +19,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix
 import joblib
 
+st.markdown("# Welcome to the Movie Analysis Experience 🎈")
+st.sidebar.markdown("# Subpage 2 🎈")
 
 ## setting up environment
 st.set_option('deprecation.showPyplotGlobalUse', False)

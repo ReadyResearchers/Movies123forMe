@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from src.working_files import data_loading
+from src.pages import data_loading
 
 def clean_data():
     # st.subheader("Performing ETL functions for the imported movie data")
@@ -125,6 +125,21 @@ def clean_data():
        # mime='text/csv',
         #)
     
+    st.subheader("Cleaned Opus Movie Data")
+    st.write(opus)
+
+    st.subheader("Cleaned Netflix Movie Data")
+    st.write(netflix)
+
+    st.subheader("Cleaned Prime Movie Data")
+    st.write(prime)
+
+    st.subheader("Cleaned Disney Movie Data")
+    st.write(disney)
+
+    st.subheader("Cleaned Hulu Movie Data")
+    st.write(hulu)
+
     return opus, netflix, prime, disney, hulu
 
 clean_data()

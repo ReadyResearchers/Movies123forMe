@@ -4,7 +4,7 @@ import numpy as np
 import joblib
 import re
 import string
-from src.working_files import etl
+from src.pages import etl
 import re
 from nltk.stem import WordNetLemmatizer, PorterStemmer, SnowballStemmer
 from nltk.corpus import stopwords
@@ -23,7 +23,10 @@ from nltk.util import ngrams
 from io import StringIO
 from sklearn.feature_selection import chi2
 
+st.markdown("# Welcome to the Movie Analysis Experience 🎈")
+st.sidebar.markdown("# Subpage 4 🎈")
 
+st.write("---")
 netflix = etl.clean_data()[1]
 # setting up the variables and dataframes to be used
 netflix_cols = ['type', 'director', 'cast', 'release_year', 'rating', 'country','description', 'listed_in', 'movie_success']
@@ -38,8 +41,6 @@ def text_classification():
     category_id_df = x[['rating', 'rating_id']].drop_duplicates().sort_values('rating_id')
     category_to_id = dict(category_id_df.values)
     id_to_category = dict(category_id_df[['rating_id', 'rating']].values)
-    st.subheader("Head of Netflix movie data:")
-    st.write(x.head())
 
     # checking to see the balance of classes
     fig = plt.figure(figsize=(8,6))
@@ -52,6 +53,7 @@ def text_classification():
     features = tfidf.fit_transform(x.cast).toarray()
     labels = x.rating_id
 
+    st.subheader("Correlated words grouped by MPAA Rating")
     N = 2
     for Product, category_id in sorted(category_to_id.items()):
         features_chi2 = chi2(features, labels == category_id)
@@ -62,6 +64,7 @@ def text_classification():
         st.write("# '{}':".format(Product))
         st.write("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
         st.write("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
+        st.write("---")
     
     X_train, X_test, y_train, y_test = train_test_split(netflix['cast'], netflix['movie_success'], random_state = 42)
     count_vect = CountVectorizer()
@@ -70,13 +73,22 @@ def text_classification():
     X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
     clf = MultinomialNB().fit(X_train_tfidf, y_train)
 
-    test_cast = "Adriana Solis"
-    st.write(f"Predicting the success of a movie/TV show with the actor/actress '{test_cast}'")
-    st.write(clf.predict(count_vect.transform([test_cast])))
+    st.subheader("Please input an actor/actress to see if they would make a successful movie:")
+    test_cast = st.text_input(" ")
+    if len(test_cast) != 0:
+        st.write(f"Predicting the success of a movie/TV show with the actor/actress '{test_cast}'")
+        prediction = clf.predict(count_vect.transform([test_cast]))[0]
+        if prediction == 0:
+            st.write(f"{test_cast.upper()} is predicted to be in a Successful Movie!")
+        else:
+            st.write(f"{test_cast.upper()} is predicted to NOT be in a Successful Movie!")
 
 
 def wordcloud():
-    stop_words_file = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\working_files\\SmartStoplist.txt'
+    columns = ['title', 'director', 'cast', 'country', 'rating', 'listed_in', 'description']
+    st.subheader("Choose which feature to generate a word cloud for!")
+    choice = st.selectbox("", columns)
+    stop_words_file = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\pages\\SmartStoplist.txt'
 
     stop_words = []
 
@@ -112,8 +124,7 @@ def wordcloud():
         # converting list back to string
         return " ".join(stemmed_words)
 
-    netflix['prep'] = netflix['description'].apply(preprocess)
-    st.write(netflix.head())
+    netflix['prep'] = netflix[f'{choice}'].apply(preprocess)
 
     most_common = Counter(" ".join(netflix["prep"]).split()).most_common(10)
 

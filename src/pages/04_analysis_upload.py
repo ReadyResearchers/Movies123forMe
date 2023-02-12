@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-import functions
+from functions import functions
+
+st.markdown("# Welcome to the Movie Analysis Experience 🎈")
+st.sidebar.markdown("# Subpage 8 🎈")
+
 
 st.title('Movies123forMe - A Personalized Movie Selector')
 

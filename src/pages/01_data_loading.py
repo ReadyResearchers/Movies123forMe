@@ -1,6 +1,3 @@
-"""This will be the initial implementation of the webscraping tool for my prototype."""
-
-from symbol import test_nocond
 import streamlit as st
 import pandas as pd
 from sklearn import datasets
@@ -83,7 +80,7 @@ def load_data_imdb(nrows):
 
 # basic package display
 def display():
-    menu = ["Home", "Opus", "Netflix", "Hulu", "Disney+", "Prime", "IMDB", "Demo"]
+    menu = ["Home", "Opus", "Netflix", "Hulu", "Disney+", "Prime", "IMDB", "Plots"]
     choice = st.selectbox("Menu", menu, key="155")
     # imdb display
     if choice == 'Opus':
@@ -134,7 +131,7 @@ def display():
             return Path(file).read_text()
         intro_markdown = markdown_file(path)
         st.markdown(intro_markdown, unsafe_allow_html=True)
-    if choice == 'Demo':
+    if choice == 'Plots':
         st.subheader("Demo for Movies123ForMe Analysis")
         # loading the data into a dataset
         data = load_data_opus(10000)
@@ -162,3 +159,5 @@ def display():
             box_fig1 = (px.box(x = data['production_budget'], y = data['rating'], title = "Movie Revenue by Rating"))
             box_fig1.update_layout(xaxis_title = "Movie Budget", yaxis_title = "Movie Rating")
             st.write(box_fig1)
+
+display()

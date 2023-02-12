@@ -1,7 +1,10 @@
 import streamlit as st
-from src.working_files import etl
+from src.pages import etl
 
 import plotly.express as px
+
+st.markdown("# Welcome to the Movie Analysis Experience 🎈")
+st.sidebar.markdown("# Subpage 6 🎈")
 
 
 def regression():

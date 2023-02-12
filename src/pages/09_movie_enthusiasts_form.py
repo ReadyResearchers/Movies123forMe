@@ -1,12 +1,10 @@
 import streamlit as st
 import pandas as pd
-from src.working_files import etl
-from src.working_files import data_loading
-from src.working_files import text_classification
+from src.pages import etl
+from src.pages import data_loading
+from src.pages.functions import text_classification
 from sklearn.model_selection import train_test_split
-from src.working_files import machine_learning
-
-import tensorflow as tf
+from src.pages import machine_learning
 
 import numpy as np
 import joblib
@@ -26,6 +24,8 @@ import json
 import csv
 import pathlib
 
+st.markdown("# Welcome to the Movie Analysis Experience 🎈")
+st.sidebar.markdown("# Subpage 5 🎈")
 
 
 def predict(data):

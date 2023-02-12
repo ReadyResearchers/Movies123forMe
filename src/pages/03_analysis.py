@@ -1,27 +1,19 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 import plotly.express as px
-import plotly.graph_objects as go
 import warnings
 
-from src.working_files import etl
+from src.pages import etl
 
 warnings.filterwarnings('ignore')
 
-st.title("Welcome to Data Analysis of Movies!")
+st.markdown("# Welcome to the Movie Analysis Experience 🎈")
+st.sidebar.markdown("# Subpage 1 🎈")
 
 opus = etl.clean_data()[0]
-netflix = etl.clean_data()[1]
-prime = etl.clean_data()[2]
-disney = etl.clean_data()[3]
-hulu = etl.clean_data()[4]
 
 # finding the mean of a column
 
-choices = ['Opus', 'Netflix', 'Prime', 'Disney', 'Hulu']
+choices = ['Opus', 'Choose My Own Data']
 dataset = st.selectbox("Pick a dataset: ", choices)
 
 if dataset == 'Opus':
@@ -39,13 +31,13 @@ if dataset == 'Opus':
     if type == column:
         type = 5
         column = 3
-    st.write(opus.groupby(columns[type])[columns[column]].transform('mean'))
+    opus.groupby(columns[type])[columns[column]].transform('mean')
 
     # find out how many columns/rows are in the data
-    st.write(opus.shape)
+    #st.write(opus.shape)
 
     # find out information about the data
-    st.write(opus.info())
+    #st.write(opus.info())
 
     # dropping identifier column
     opus = opus.drop(columns = ['movie_odid'], axis=1)
@@ -61,7 +53,5 @@ if dataset == 'Opus':
     st.plotly_chart(px.funnel_area(names=opus[columns[type]].value_counts().index[0:12], 
     values=opus[columns[type]].value_counts().values[0:12], opacity = 0.7))
 
-if dataset == 'Netflix':
-    # dropping identifier column
-    netflix = netflix.drop(columns = ['show_id'], axis=1)
-    netflix
+if dataset == 'Choose My Own Data':
+    st.write("Coming soon...")
