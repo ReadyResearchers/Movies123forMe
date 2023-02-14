@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 import sys
-from pages import A_data_loading
+from pages.functions import A_data_loading
 
 def clean_data():
 

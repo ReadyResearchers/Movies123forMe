@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pages.functions import B_etl
-from pages import A_data_loading
+from pages.functions import A_data_loading
 from pages.functions import text_classification
 from sklearn.model_selection import train_test_split
 from pages import G_machine_learning
@@ -27,6 +27,8 @@ import pathlib
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
 
+imdb = A_data_loading.load_data_imdb(10000)[1]
+opus = A_data_loading.load_data_opus(1000)
 data = A_data_loading.load_data_netflix(1000)
 datap = A_data_loading.load_data_prime(1000)
 datad = A_data_loading.load_data_disney(1000)
@@ -165,29 +167,43 @@ def submit_form():
 
 def search_movies():
     title = st.text_input("Type the title of the desired Movie/TV Show:")
-    #def running():
+    def running():
         #creating a baseline list of movies in csv file for analysis
-        #for _, row in netflix.iterrows():
-            #if row[1] == 'Movie':
-                #i = str(row[2])
-                #web = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
-                #res = requests.get(web)
-                #res = res.json()
-                #if res['Response'] == 'False':
-                    #continue
-                #try:
-                    #with open('response.json', 'w') as json_file:
-                        #json.dump(res, json_file)
-                    #with open('response.json', 'r') as file:
-                        #json.loads(file.read())
-                    #with open('response.json', encoding='utf-8') as inputfile:
-                        #df = pd.read_json(inputfile)
-                    #open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
-                #except:
-                    #st.write("Try again tomorrow!")
-            #else:
-                #continue
-    #running()
+        for _, row in imdb.iterrows():
+            if row[1] == 'Movie':
+                i = str(row[2])
+                web = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
+                res = requests.get(web)
+                res = res.json()
+                if res['Response'] == 'False':
+                    continue
+                try:
+                    with open('response.json', 'w') as json_file:
+                        json.dump(res, json_file)
+                    with open('response.json', 'r') as file:
+                        json.loads(file.read())
+                    with open('response.json', encoding='utf-8') as inputfile:
+                        df = pd.read_json(inputfile)
+                    open('src/movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
+                except:
+                    st.write("Try again tomorrow!")
+            else:
+                continue
+    running()
+    ## importing necessary files
+    inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv', 'r')
+    outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv', 'w')
+    netflix = B_etl.clean_data()[0]
+
+    # remove any \n characters in file
+    dups = []
+    for line in inFile:
+        if line in dups:
+            continue
+        else:
+            outFile.write(line)
+            dups.append(line)
+
     if title:
         url = f'http://www.omdbapi.com/?t={title}&apikey=4482116e'
         re = requests.get(url)
@@ -202,18 +218,16 @@ def search_movies():
                 st.write(re['Plot'])
                 st.text(f"Rating: {re['imdbRating']}")
                 st.progress(float(re['imdbRating']) / 10)
+                with open('response.json', 'w') as json_file:
+                    json.dump(re, json_file)
+                with open('response.json') as file:
+                    json.load(file)
+                with open('response.json', encoding='utf-8') as inputfile:
+                    df = pd.read_json(inputfile)
+                open('src/movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
         except:
             st.error("No movie with that title found in the API Database OR try again tomorrow!")
             st.stop()
-        
-        with open('response.json', 'w') as json_file:
-            json.dump(re, json_file)
-        with open('response.json') as file:
-            json.load(file)
-        with open('response.json', encoding='utf-8') as inputfile:
-            df = pd.read_json(inputfile)
-        open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
-
 
     if len(title) == 0:
         url = f'http://www.omdbapi.com/?t=clueless&apikey=4482116e'

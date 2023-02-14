@@ -271,6 +271,14 @@ python-versions = ">=3.7"
 gitdb = ">=4.0.1,<5"
 
 [[package]]
+name = "go"
+version = "1.2.1"
+description = "Quick directory changing (super-cd)"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "idna"
 version = "3.4"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -1075,7 +1083,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.9.7 || >3.9.7,<4.0"
-content-hash = "ce2c2de416ae27d24f6ec2c4e48353c546f961e56fe6d7e9daf9d4f63adbf3c4"
+content-hash = "0a2b0d9fe7a6f111b39302ac6733506ab1bba5becce7366f1743ee5ba00cd2df"
 
 [metadata.files]
 altair = [
@@ -1310,6 +1318,9 @@ gitdb = [
 gitpython = [
     {file = "GitPython-3.1.30-py3-none-any.whl", hash = "sha256:cd455b0000615c60e286208ba540271af9fe531fa6a87cc590a7298785ab2882"},
     {file = "GitPython-3.1.30.tar.gz", hash = "sha256:769c2d83e13f5d938b7688479da374c4e3d49f71549aaf462b646db9602ea6f8"},
+]
+go = [
+    {file = "go-1.2.1.zip", hash = "sha256:e1aa499882110a1b31c4f8187b3f13625a3456d4332eaaaa48a5a745be51f2fa"},
 ]
 idna = [
     {file = "idna-3.4-py3-none-any.whl", hash = "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"},

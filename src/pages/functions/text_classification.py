@@ -6,25 +6,10 @@ import re
 from pages.functions import B_etl
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
-
+from sklearn.metrics import accuracy_score
 
 ## importing necessary files
 duplicates = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv'
-inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv', 'r')
-outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv', 'w')
-netflix = B_etl.clean_data()[0]
-
-# remove any \n characters in file
-dups = []
-for line in inFile:
-    if line in dups:
-        continue
-    else:
-        outFile.write(line)
-        dups.append(line)
-
-outFile.close()
-inFile.close()
 
 data = pd.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv',encoding='ISO-8859-1')
 
@@ -41,7 +26,7 @@ data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
 'Metascore','imdbRating','imdbVotes','imdbID','Type','DVD','BoxOffice',
 'Production','Website','Response', 'movie_success','earnings']
 
-data = data.drop_duplicates(subset = ['Title'], keep='first')
+data = data.drop_duplicates(subset = ['Title'], keep='first').reset_index()
 
 def by_plot():
     # checking for duplicate data
@@ -61,15 +46,15 @@ def by_plot():
     def get_recommendations(title, cosine_sim=cosine_sim):
         idx = indices[title]
         sim_scores = list(enumerate(cosine_sim[idx]))
-        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)[1:6]
+        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         sim_scores = sim_scores[1:11]
         movie_indices = [i[0] for i in sim_scores]
         return pd.DataFrame(movie_data[['Title', 'Plot']].iloc[movie_indices])
 
-
+    movie_data = movie_data.drop_duplicates(subset = ['Title'], keep='first')
     movie_list = movie_data['Title'].values
 
-    selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list[:-1], key=32)
+    selected_movie = st.selectbox( "Type or select a movie from the dropdown", movie_list, key=movie_list)
 
     if st.button('Show Recommendation'):
         recommended_movie_names = get_recommendations(selected_movie)
