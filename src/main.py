@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 from pages.functions import B_etl
-from pages.functions import A_data_loading
+from pages import merge
+from pages import merge
 from pages.functions import text_classification
 from sklearn.model_selection import train_test_split
 from pages import G_machine_learning
@@ -27,31 +28,7 @@ import pathlib
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
 
-imdb = A_data_loading.load_data_imdb(10000)[1]
-opus = A_data_loading.load_data_opus(1000)
-data = A_data_loading.load_data_netflix(1000)
-datap = A_data_loading.load_data_prime(1000)
-datad = A_data_loading.load_data_disney(1000)
-
-netflix = data.merge(datap, how='left').merge(datad, how='left')
-netflix = netflix[netflix['type'].str.contains("TV Show") == False]
-
-# making movie success where the 4 top produced movies are categorized as a success
-netflix['movie_success'] = np.where(
-    netflix['rating'] == 'TV-MA', 1, np.where(
-    netflix['rating'] == 'PG-13', 1, np.where(netflix['rating'] == 'TV-14', 1, np.where(
-    netflix['rating'] == 'R', 1, 0))))
-
-#dropping columns
-netflix_drop = ['date_added', 'duration']
-if netflix.columns.any() in netflix_drop:
-    netflix.drop(netflix_drop, inplace=True, axis=1)
-
-#dropping nan values
-netflix = netflix.dropna()
-netflix['release_year'] = pd.to_datetime(netflix['release_year'])
-netflix["date_added"] = pd.to_datetime(netflix['date_added'])
-
+data = merge.merge_data()
 
 def predict(data):
     logreg_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/logreg_model.sav"
@@ -167,34 +144,31 @@ def submit_form():
 
 def search_movies():
     title = st.text_input("Type the title of the desired Movie/TV Show:")
-    def running():
+    #def running():
         #creating a baseline list of movies in csv file for analysis
-        for _, row in imdb.iterrows():
-            if row[1] == 'Movie':
-                i = str(row[2])
-                web = f'http://www.omdbapi.com/?t={i}&apikey=4482116e'
-                res = requests.get(web)
-                res = res.json()
-                if res['Response'] == 'False':
-                    continue
-                try:
-                    with open('response.json', 'w') as json_file:
-                        json.dump(res, json_file)
-                    with open('response.json', 'r') as file:
-                        json.loads(file.read())
-                    with open('response.json', encoding='utf-8') as inputfile:
-                        df = pd.read_json(inputfile)
-                    open('src/movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
-                except:
-                    st.write("Try again tomorrow!")
-            else:
-                continue
-    running()
+        #for _, row in data.iterrows():
+            #i = str(row[0])
+            #web = f'http://www.omdbapi.com/?t={i}&apikey=a98f1e4b&type=movie'
+            #res = requests.get(web)
+            #res = res.json()
+            #if res['Response'] == 'False':
+                #continue
+            #try:
+                #with open('response.json', 'w') as json_file:
+                    #json.dump(res, json_file)
+                #with open('response.json', 'r') as file:
+                    #json.loads(file.read())
+                #with open('response.json', encoding='utf-8') as inputfile:
+                    #df = pd.read_json(inputfile)
+                #open('src/movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
+            #except:
+                    #st.write("Try again tomorrow!")
+            #else:
+                #continue
+    #running()
     ## importing necessary files
     inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv', 'r')
     outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv', 'w')
-    netflix = B_etl.clean_data()[0]
-
     # remove any \n characters in file
     dups = []
     for line in inFile:
@@ -205,32 +179,28 @@ def search_movies():
             dups.append(line)
 
     if title:
-        url = f'http://www.omdbapi.com/?t={title}&apikey=4482116e'
+        url = f'http://www.omdbapi.com/?t={title}&apikey=a98f1e4b'
         re = requests.get(url)
         re = re.json()
-        try:
-            col1, col2 = st.columns([1, 2])
-            with col1:
-                st.image(re['Poster'])
-            with col2:
-                st.subheader(re['Title'])
-                st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
-                st.write(re['Plot'])
-                st.text(f"Rating: {re['imdbRating']}")
-                st.progress(float(re['imdbRating']) / 10)
-                with open('response.json', 'w') as json_file:
-                    json.dump(re, json_file)
-                with open('response.json') as file:
-                    json.load(file)
-                with open('response.json', encoding='utf-8') as inputfile:
-                    df = pd.read_json(inputfile)
-                open('src/movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
-        except:
-            st.error("No movie with that title found in the API Database OR try again tomorrow!")
-            st.stop()
+        col1, col2 = st.columns([1, 2])
+        with col1:
+            st.image(re['Poster'])
+        with col2:
+            st.subheader(re['Title'])
+            st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+            st.write(re['Plot'])
+            st.text(f"Rating: {re['imdbRating']}")
+            st.progress(float(re['imdbRating']) / 10)
+            with open('response.json', 'w') as json_file:
+                json.dump(re, json_file)
+            with open('response.json') as file:
+                json.load(file)
+            with open('response.json', encoding='utf-8') as inputfile:
+                df = pd.read_json(inputfile)
+            open('src/movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
 
     if len(title) == 0:
-        url = f'http://www.omdbapi.com/?t=clueless&apikey=4482116e'
+        url = f'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
         re = requests.get(url)
         re = re.json()
         col1, col2 = st.columns([1, 2])

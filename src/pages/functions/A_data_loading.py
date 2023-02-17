@@ -57,29 +57,17 @@ list_names_imdb = ['title.akas', 'title.basics', 'title.crew', 'title.episode', 
 
 # creating text element to show the loading of the data in the app
 def load_data_imdb(nrows):
-    akas = pd.read_table(DATA_IMDB + list_names_imdb[0] + '.tsv\\data.tsv', nrows=nrows)
     title_basics = pd.read_table(DATA_IMDB + list_names_imdb[1] + '.tsv\\data.tsv', nrows=nrows)
-    crew = pd.read_table(DATA_IMDB + list_names_imdb[2] + '.tsv\\data.tsv', nrows=nrows)
-    episode = pd.read_table(DATA_IMDB + list_names_imdb[3] + '.tsv\\data.tsv', nrows=nrows)
-    principals = pd.read_table(DATA_IMDB + list_names_imdb[4] + '.tsv\\data.tsv', nrows=nrows)
-    ratings = pd.read_table(DATA_IMDB + list_names_imdb[5] + '.tsv\\data.tsv', nrows=nrows)
-    name_basics = pd.read_table(DATA_IMDB + list_names_imdb[6] + '.tsv\\data.tsv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
     # setting up pandas dataframe for all of the files
-    akas.rename(lowercase, axis='columns', inplace=True)
     title_basics.rename(lowercase, axis='columns', inplace=True)
-    crew.rename(lowercase, axis='columns', inplace=True)
-    episode.rename(lowercase, axis='columns', inplace=True)
-    principals.rename(lowercase, axis='columns', inplace=True)
-    ratings.rename(lowercase, axis='columns', inplace=True)
-    name_basics.rename(lowercase, axis='columns', inplace=True)
-    return akas, title_basics, crew, episode, principals, ratings, name_basics
+    return title_basics
 
 
 # basic package display
 def display():
     menu = ["Home", "Opus", "Netflix", "Hulu", "Disney+", "Prime", "IMDB", "Plots"]
-    choice = st.selectbox("Menu", menu, key="155")
+    choice = st.selectbox("Menu", menu, key=menu)
     # imdb display
     if choice == 'Opus':
         st.subheader("Raw data for Opus Data package:")
@@ -102,33 +90,9 @@ def display():
         st.write(load_data_prime(10000))
         st.write("\n---\n")
     if choice == 'IMDB':
-        st.subheader(f"Raw data for {list_names_imdb[0]}:")
-        st.write(load_data_imdb(10000)[0])
+        st.subheader(f"Raw data for IMDB Data Package:")
+        st.write(load_data_imdb(10000))
         st.write("\n---\n")
-        st.subheader(f"Raw data for {list_names_imdb[1]}:")
-        st.write(load_data_imdb(10000)[1])
-        st.write("\n---\n")
-        st.subheader(f"Raw data for {list_names_imdb[2]}:")
-        st.write(load_data_imdb(10000)[2])
-        st.write("\n---\n")
-        st.subheader(f"Raw data for {list_names_imdb[3]}:")
-        st.write(load_data_imdb(10000)[3])
-        st.write("\n---\n")
-        st.subheader(f"Raw data for {list_names_imdb[4]}:")
-        st.write(load_data_imdb(10000)[4])
-        st.write("\n---\n")
-        st.subheader(f"Raw data for {list_names_imdb[5]}:")
-        st.write(load_data_imdb(10000)[5])
-        st.write("\n---\n")
-        st.subheader(f"Raw data for {list_names_imdb[6]}:")
-        st.write(load_data_imdb(10000)[6])
-        st.write("\n---\n")
-        st.subheader("Explanation of the variables listed in each of the different tables:")
-        path = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\imdb\\imdb_exp.md'
-        def markdown_file(file):
-            return Path(file).read_text()
-        intro_markdown = markdown_file(path)
-        st.markdown(intro_markdown, unsafe_allow_html=True)
     if choice == 'Plots':
         st.subheader("Demo for Movies123ForMe Analysis")
         # loading the data into a dataset

@@ -5,7 +5,6 @@ import requests
 import re
 from pages.functions import B_etl
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import linear_kernel
 from sklearn.feature_extraction.text import CountVectorizer
 import nltk
 from nltk.stem.porter import PorterStemmer
@@ -80,23 +79,20 @@ def by_all():
         c = recommended_movie_names.values[2][0]
         d = recommended_movie_names.values[3][0]
         if a:
-            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={a}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
-            try:
-                col1, col2 = st.columns([1, 2])
-                with col1:
-                    st.image(re['Poster'])
-                with col2:
-                    st.subheader(re['Title'])
-                    st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
-                    st.write(re['Plot'])
-                    st.text(f"Rating: {re['imdbRating']}")
-                    st.progress(float(re['imdbRating']) / 10)
-            except:
-                st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
+            col1, col2 = st.columns([1, 2])
+            with col1:
+                st.image(re['Poster'])
+            with col2:
+                st.subheader(re['Title'])
+                st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+                st.write(re['Plot'])
+                st.text(f"Rating: {re['imdbRating']}")
+                st.progress(float(re['imdbRating']) / 10)
         if b:
-            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={b}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -112,7 +108,7 @@ def by_all():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if c:
-            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={c}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -128,7 +124,7 @@ def by_all():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if d:
-            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={d}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -180,7 +176,7 @@ def by_plot():
         c = recommended_movie_names.values[2][0]
         d = recommended_movie_names.values[3][0]
         if a:
-            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={a}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -196,7 +192,7 @@ def by_plot():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if b:
-            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={b}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -212,7 +208,7 @@ def by_plot():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if c:
-            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={c}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -228,7 +224,7 @@ def by_plot():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if d:
-            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={d}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -280,7 +276,7 @@ def by_actor():
         c = recommended_movie_names.values[2][0]
         d = recommended_movie_names.values[3][0]
         if a:
-            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={a}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -296,7 +292,7 @@ def by_actor():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if b:
-            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={b}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -312,7 +308,7 @@ def by_actor():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if c:
-            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={c}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -328,7 +324,7 @@ def by_actor():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if d:
-            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={d}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -378,7 +374,7 @@ def by_director():
         c = recommended_movie_names.values[2][0]
         d = recommended_movie_names.values[3][0]
         if a:
-            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={a}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -394,7 +390,7 @@ def by_director():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if b:
-            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={b}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -410,7 +406,7 @@ def by_director():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if c:
-            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={c}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -426,7 +422,7 @@ def by_director():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if d:
-            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={d}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -476,7 +472,7 @@ def by_genre():
         c = recommended_movie_names.values[2][0]
         d = recommended_movie_names.values[3][0]
         if a:
-            url = f'http://www.omdbapi.com/?t={a}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={a}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -492,7 +488,7 @@ def by_genre():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if b:
-            url = f'http://www.omdbapi.com/?t={b}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={b}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -508,7 +504,7 @@ def by_genre():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if c:
-            url = f'http://www.omdbapi.com/?t={c}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={c}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
@@ -524,7 +520,7 @@ def by_genre():
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
         if d:
-            url = f'http://www.omdbapi.com/?t={d}&apikey=4482116e'
+            url = f'http://www.omdbapi.com/?t={d}&apikey=a98f1e4b'
             re = requests.get(url)
             re = re.json()
             try:
