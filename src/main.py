@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
-from pages.functions import B_etl
+from pages import B_etl
 from pages import merge
-from pages import merge
-from pages.functions import text_classification
+from pages.function_folder import text_classification
 from sklearn.model_selection import train_test_split
 from pages import G_machine_learning
 

@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-from pages.functions import functions
+from pages.function_folder import functions
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Subpage 8 🎈")
@@ -16,7 +16,7 @@ dataset = st.file_uploader(label = '')
 
 use_defo = st.checkbox('Use example Dataset')
 if use_defo:
-    dataset = 'movie_data\\movie_data\\movie_data.csv'
+    dataset = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_data\\movie_data\\movie_data.csv'
 
 #st.sidebar.header('Import Dataset to Use Available Features: 👉')
 

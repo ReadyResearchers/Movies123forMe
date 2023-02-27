@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.express as px
 import warnings
 
-from pages.functions import B_etl
+from pages import B_etl
 warnings.filterwarnings('ignore')
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
@@ -29,7 +29,7 @@ if dataset == 'Opus':
     c = columns[column]
     if type == column:
         type = 5
-        column = 3
+        column = 4
     opus.groupby(columns[type])[columns[column]].transform('mean')
 
     # find out how many columns/rows are in the data

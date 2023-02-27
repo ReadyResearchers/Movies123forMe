@@ -1,5 +1,5 @@
 import streamlit as st
-from pages.functions import B_etl
+from pages import B_etl
 
 import plotly.express as px
 
@@ -27,8 +27,8 @@ def regression():
     x_val = st.selectbox("X-value: ", col[:])
     y_val = st.selectbox("Y-val: ", col[:8])
     if x_val == y_val:
-        x_val = opus.columns[0]
-        y_val = opus.columns[1]
+        x_val = opus.columns[1]
+        y_val = opus.columns[3]
 
     # scatterplot chart
     fig = px.scatter(opus, x = x_val, y = y_val, color = columns[category], 

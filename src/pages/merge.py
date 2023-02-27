@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import vaex
-from src.pages.functions import A_data_loading
+from src.pages.function_folder import A_data_loading
 
 def merge_data():
     opus = A_data_loading.load_data_opus(10000)
