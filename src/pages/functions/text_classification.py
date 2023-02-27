@@ -58,6 +58,7 @@ def by_all():
 
     new_df['tags'] = new_df['tags'].apply(stem)
     similarity = cosine_similarity(vectors)
+    st.write(similarity)
     indices = pd.Series(new_df.index, index=new_df['Title']).drop_duplicates()
 
     def get_recommendations(title, cosine_sim=similarity):
