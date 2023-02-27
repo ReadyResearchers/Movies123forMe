@@ -41,6 +41,16 @@ This should direct you to the homepage of the application.
 
 ![Homepage](img/dashboard.png)
 
+In the homepage, there are 2 different types of predictive dashboards that you can use:
+
+- Movie Recommender
+- ![Movie Recommender]()
+---
+
+- Predict Success of Your Own Movie
+- ![Predict Success]()
+---
+
 There are multiple subpages included in the application, as well as different features that can be explored on each subpage. These are the different subpages offered:
 
 - Analysis subpage:
@@ -48,6 +58,16 @@ There are multiple subpages included in the application, as well as different fe
 ---
 
 - Analysis upload subpage:
-- ![Analysis upload subpage](img/analysis_upload.png)
+- ![Analysis Upload subpage](img/analysis_upload.png)
 ---
 
+- Regressions subpage:
+- ![Regressions subpage](img/regression.png)
+---
+
+- Machine Texting subpage:
+- ![Machine Texting subpage](img/machine_texting.png)
+---
+
+- Machine Learning subpage:
+- ![Machine Learning subpage](img/machine_learning.png)
