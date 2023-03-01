@@ -1,0 +1,2 @@
+movie success formula: =IF(AA3>55507312.6, 1, 0)
+earnings formula = =IF(ISNUMBER(SEARCH("N/A",V3)), 0, SUBSTITUTE(V3, "$", ""))
