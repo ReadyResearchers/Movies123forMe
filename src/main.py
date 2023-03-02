@@ -167,7 +167,7 @@ def search_movies():
     #running()
     ## importing necessary files
     inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv', 'r')
-    outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv', 'a')
+    outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv', 'w')
     # remove any \n characters in file
     dups = []
     for line in inFile:

@@ -44,11 +44,11 @@ This should direct you to the homepage of the application.
 In the homepage, there are 2 different types of predictive dashboards that you can use:
 
 - Movie Recommender
-- ![Movie Recommender]()
+- ![Movie Recommender](img/movie.png)
 ---
 
 - Predict Success of Your Own Movie
-- ![Predict Success]()
+- ![Predict Success](img/predict.png)
 ---
 
 There are multiple subpages included in the application, as well as different features that can be explored on each subpage. These are the different subpages offered:
