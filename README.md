@@ -34,7 +34,7 @@ Installing the current project: Movies123ForMe (0.1.0)
 From there, you can run the streamlit application using the command below:
 
 ```
-streamlit run src/main.py
+streamlit run src/main.py  --server.maxMessageSize=300
 ```
 
 This should direct you to the homepage of the application. 
