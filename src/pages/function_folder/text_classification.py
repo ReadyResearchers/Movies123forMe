@@ -27,7 +27,6 @@ data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
 data = data.drop_duplicates(subset = ['Title'], keep='first').reset_index()
 
 
-@st.cache(suppress_st_warning=True)
 def by_all():
     # doing data preprocessing
     movies = data[['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']]
@@ -55,7 +54,6 @@ def by_all():
 
     new_df['tags'] = new_df['tags'].apply(stem)
     similarity = cosine_similarity(vectors)
-    st.write(similarity)
     indices = pd.Series(new_df.index, index=new_df['Title']).drop_duplicates()
 
     def get_recommendations(title, cosine_sim=similarity):
