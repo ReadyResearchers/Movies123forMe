@@ -1,0 +1,5 @@
+movie_data/movie_data.csv filter=lfs diff=lfs merge=lfs -text
+netflix/archive/netlix_titles.csv filter=lfs diff=lfs merge=lfs -text
+hulu/archive/hulu_titles.csv filter=lfs diff=lfs merge=lfs -text
+prime/archive/amazon_prime_titles.csv filter=lfs diff=lfs merge=lfs -text
+disney+/archive/disney_plus_titles.csv filter=lfs diff=lfs merge=lfs -text
