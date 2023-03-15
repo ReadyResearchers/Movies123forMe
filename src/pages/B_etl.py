@@ -3,6 +3,8 @@ import streamlit as st
 import sys
 from pages.function_folder import A_data_loading
 
+
+@st.cache_data
 def clean_data():
 
     opus = A_data_loading.load_data_opus(10000)

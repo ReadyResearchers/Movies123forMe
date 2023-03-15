@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pages import B_etl
-from pages import merge
+from src.pages.function_folder import merge
 from pages.function_folder import text_classification
 from sklearn.model_selection import train_test_split
 from pages import G_machine_learning
@@ -23,12 +23,14 @@ from functools import reduce
 import json
 import csv
 import pathlib
+import vaex
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
 
 data = merge.merge_data()
 
+@st.cache_data
 def predict(data):
     logreg_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/logreg_model.sav"
     lr_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/lr_model.sav"
@@ -166,16 +168,6 @@ def search_movies():
                 #continue
     #running()
     ## importing necessary files
-    inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv', 'r')
-    outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv', 'w')
-    # remove any \n characters in file
-    dups = []
-    for line in inFile:
-        if line in dups:
-            continue
-        else:
-            outFile.write(line)
-            dups.append(line)
 
     if title:
         url = f'http://www.omdbapi.com/?t={title}&apikey=a98f1e4b'
@@ -190,13 +182,6 @@ def search_movies():
             st.write(re['Plot'])
             st.text(f"Rating: {re['imdbRating']}")
             st.progress(float(re['imdbRating']) / 10)
-            with open('response.json', 'w') as json_file:
-                json.dump(re, json_file)
-            with open('response.json') as file:
-                json.load(file)
-            with open('response.json', encoding='utf-8') as inputfile:
-                df = pd.read_json(inputfile)
-            open('src/movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
 
     if len(title) == 0:
         url = f'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -223,4 +208,31 @@ def interface():
     elif success == 'What Movie Should You Watch?':
         text_classification.category()
 
+
+@st.cache_resource
+def load():
+
+    inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv', 'r')
+    outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv', 'w')
+    # remove any \n characters in file
+    dups = []
+    for line in inFile:
+        if line in dups:
+            continue
+        else:
+            outFile.write(line)
+            dups.append(line)
+    url = f'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
+    re = requests.get(url)
+    re = re.json()
+    with open('response.json', 'w') as json_file:
+        json.dump(re, json_file)
+    with open('response.json') as file:
+        json.load(file)
+    with open('response.json', encoding='utf-8') as inputfile:
+        df = pd.read_json(inputfile)
+    open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
+
+
 interface()
+load()

@@ -42,14 +42,12 @@ def lr():
     scores_lr = lr.score(ox_test, oy_test)
     return lr_fit, scores_lr
 
-
 def rf():
     rf = RandomForestRegressor(max_depth=2, random_state=42)
 
     rf_fit = rf.fit(ox_train, oy_train)
     scores_rf = rf.score(ox_test, oy_test)
     return rf_fit, scores_rf
-
 
 def et():
     et = ExtraTreeRegressor(random_state=42)
@@ -72,7 +70,6 @@ def svm():
     scores_svm = svm.score(ox_test, oy_test)
     return svm_fit, scores_svm
 
-
 def logreg():
     logreg = LogisticRegression()
 
@@ -80,6 +77,7 @@ def logreg():
     scores_logreg = logreg.score(ox_test, oy_test)
     return logreg_fit, scores_logreg
 
+@st.cache_resource
 def load_models():
     st.write("Loading models...")
     # saving the different results of the model to the disk
@@ -101,6 +99,7 @@ def load_models():
     logreg_filename = 'logreg_model.sav'
     joblib.dump(logreg()[0], logreg_filename)
     st.write("Done! Saved to disk.")
+
 
 def main_dashboard():
     st.subheader("Running a machine learning model on movie success:")

@@ -9,21 +9,25 @@ from sklearn.feature_extraction.text import CountVectorizer
 import nltk
 from nltk.stem.porter import PorterStemmer
 from sklearn.metrics.pairwise import cosine_similarity
+import vaex
 
 ## importing necessary files
-duplicates = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_search.csv'
-
-data = pd.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv',encoding='ISO-8859-1')
-
+chunks = vaex.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\src\\movie_clean.csv')
+data1 = chunks.to_pandas_df(column_names=['Title','Year','Rated','Released','Runtime','Genre','Director',
+                    'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
+                    'Metascore','imdbRating','imdbVotes','imdbID','Type','DVD','BoxOffice',
+                    'Production','Website','Response', 'movie_success','earnings'])
+data = pd.DataFrame(data1)
 # creating column names
 data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
-'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
-'Metascore','imdbRating','imdbVotes','imdbID','Type','DVD','BoxOffice',
-'Production','Website','Response', 'movie_success','earnings']
+                    'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
+                    'Metascore','imdbRating','imdbVotes','imdbID','Type','DVD','BoxOffice',
+                    'Production','Website','Response', 'movie_success','earnings']
 
 data = data.drop_duplicates(subset = ['Title'], keep='first').reset_index()
 
 
+@st.cache(suppress_st_warning=True)
 def by_all():
     # doing data preprocessing
     movies = data[['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']]

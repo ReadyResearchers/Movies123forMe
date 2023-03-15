@@ -55,7 +55,6 @@ st.write(data)
 #netflix['release_year'] = pd.to_datetime(netflix['release_year'])
 #netflix["date_added"] = pd.to_datetime(netflix['date_added'])
 
-
 def by_all():
     # doing data preprocessing
     movies = data[['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']]
@@ -267,7 +266,6 @@ def by_plot():
                     st.progress(float(re['imdbRating']) / 10)
             except:
                 st.error("No movie with that title found in the API Database YET -- add it to our database using the Movie Search feature!")
-
 
 
 def by_actor():

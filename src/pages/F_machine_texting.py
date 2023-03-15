@@ -563,7 +563,6 @@ def classification():
         st.write("---")
 
 
-
 def wordcloud():
     columns = ['Title', 'Director', 'Actors', 'Rated', 'Genre', 'Plot']
     st.subheader("Choose which feature to generate a word cloud for!")
