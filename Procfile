@@ -1,1 +1,1 @@
-web: npm run start && streamlit run main.py --server.maxMessageSize 300
+web: sh setup.sh && streamlit run main.py --server.maxMessageSize 300
