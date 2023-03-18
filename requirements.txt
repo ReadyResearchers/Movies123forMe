@@ -124,7 +124,7 @@ mkl-random @ file:///C:/ci/mkl_random_1626186184308/work
 mkl-service==2.4.0
 mock @ file:///home/conda/feedstock_root/build_artifacts/mock_1673310648385/work
 more-itertools==9.1.0
--e git+ssh://git@github.com/ReadyResearchers/Movies123forMe.git@f63c71b8c8feb3aee846d44f30495698c7dc7aaa#egg=movies123forme
+-e git+ssh://git@github.com/ReadyResearchers/Movies123forMe.git@ca9091f45d867d8bfe0c8253fd7fd5997effe392#egg=movies123forme
 msgpack==1.0.2
 multidict @ file:///C:/b/abs_6cx_8w3cv2/croot/multidict_1665674238352/work
 nbclassic @ file:///C:/b/abs_d0_ze5q0j2/croot/nbclassic_1676902914817/work
