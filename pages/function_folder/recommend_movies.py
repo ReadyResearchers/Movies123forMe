@@ -12,14 +12,14 @@ from nltk.stem.porter import PorterStemmer
 from sklearn.metrics.pairwise import cosine_similarity
 
 ## importing necessary files
-duplicates = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv'
+duplicates = 'movie_search.csv'
 
 cols = ['title','Year','Rated','Released','Runtime','Genre','Director',
 'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
 'Metascore','imdbRating','imdbVotes','imdbID','Type','DVD','BoxOffice',
 'Production','Website','Response', 'movie_success','earnings']
 
-data = pd.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv',encoding='ISO-8859-1', names=cols)
+data = pd.read_csv('movie_clean.csv',encoding='ISO-8859-1', names=cols)
 # dropping an nan values
 
 # creating movie success column based on mean production budget of opus data

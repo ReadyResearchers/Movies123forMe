@@ -9,7 +9,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from pages.function_folder import A_data_loading
 
-movies = pd.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv')
+movies = pd.read_csv('movie_clean.csv')
 
 
 # doing data preprocessing

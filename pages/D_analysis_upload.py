@@ -16,7 +16,7 @@ dataset = st.file_uploader(label = '')
 
 use_defo = st.checkbox('Use example Dataset')
 if use_defo:
-    dataset = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_data\\movie_data\\movie_data.csv'
+    dataset = 'movie_data\\movie_data\\movie_data.csv'
 
 #st.sidebar.header('Import Dataset to Use Available Features: 👉')
 

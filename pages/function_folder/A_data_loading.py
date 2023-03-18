@@ -6,12 +6,12 @@ import plotly.express as px
 
 # st.title('Movies123forMe - A Personalized Movie Selector')
 
-DATA_OPUS = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_data\\movie_data\\')
-DATA_NETFLIX = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_data\\netflix\\')
-DATA_HULU = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_data\\hulu\\')
-DATA_PRIME = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_data\\prime\\')
-DATA_DISNEY = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_data\\disney+\\')
-DATA_IMDB = ('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_data\\imdb\\')
+DATA_OPUS = ('movie_data\\movie_data\\')
+DATA_NETFLIX = ('movie_data\\netflix\\')
+DATA_HULU = ('movie_data\\hulu\\')
+DATA_PRIME = ('movie_data\\prime\\')
+DATA_DISNEY = ('movie_data\\disney+\\')
+DATA_IMDB = ('movie_data\\imdb\\')
 
 # OPUS PART OF THE CODE
 # creating text element to show the loading of the data in the app

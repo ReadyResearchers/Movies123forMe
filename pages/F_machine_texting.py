@@ -28,9 +28,9 @@ st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Subpage 4 🎈")
 
 st.write("---")
-duplicates = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv'
+duplicates = 'movie_search.csv'
 
-train_data = pd.read_csv('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv',encoding='ISO-8859-1')
+train_data = pd.read_csv('movie_clean.csv',encoding='ISO-8859-1')
 
 train_data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
 'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
@@ -567,7 +567,7 @@ def wordcloud():
     columns = ['Title', 'Director', 'Actors', 'Rated', 'Genre', 'Plot']
     st.subheader("Choose which feature to generate a word cloud for!")
     choice = st.selectbox("", columns, key=columns)
-    stop_words_file = 'C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\pages\\SmartStoplist.txt'
+    stop_words_file = 'pages\\SmartStoplist.txt'
 
     stop_words = []
 
