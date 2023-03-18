@@ -145,28 +145,28 @@ def submit_form():
 
 def search_movies():
     title = st.text_input("Type the title of the desired Movie/TV Show:")
-    #def running():
-        #creating a baseline list of movies in csv file for analysis
-        #for _, row in data.iterrows():
-            #i = str(row[0])
-            #web = f'http://www.omdbapi.com/?t={i}&apikey=a98f1e4b&type=movie'
-            #res = requests.get(web)
-            #res = res.json()
-            #if res['Response'] == 'False':
-                #continue
-            #try:
-                #with open('response.json', 'w') as json_file:
-                    #json.dump(res, json_file)
-                #with open('response.json', 'r') as file:
-                    #json.loads(file.read())
-                #with open('response.json', encoding='utf-8') as inputfile:
-                    #df = pd.read_json(inputfile)
-                #open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
-            #except:
-                    #st.write("Try again tomorrow!")
-            #else:
-                #continue
-    #running()
+    # def running():
+    #     creating a baseline list of movies in csv file for analysis
+    #     for _, row in data.iterrows():
+    #         i = str(row[0])
+    #         web = f'http://www.omdbapi.com/?t={i}&apikey=a98f1e4b&type=movie'
+    #         res = requests.get(web)
+    #         res = res.json()
+    #         if res['Response'] == 'False':
+    #             continue
+    #         try:
+    #             with open('response.json', 'w') as json_file:
+    #                 json.dump(res, json_file)
+    #             with open('response.json', 'r') as file:
+    #                 json.loads(file.read())
+    #             with open('response.json', encoding='utf-8') as inputfile:
+    #                 df = pd.read_json(inputfile)
+    #             open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
+    #         except:
+    #                 st.write("Try again tomorrow!")
+    #         else:
+    #             continue
+    # running()
     ## importing necessary files
 
     if title:
@@ -182,6 +182,15 @@ def search_movies():
             st.write(re['Plot'])
             st.text(f"Rating: {re['imdbRating']}")
             st.progress(float(re['imdbRating']) / 10)
+        with open('response.json', 'w') as json_file:
+            json.dump(re, json_file)
+        with open('response.json', 'r') as file:
+            json.loads(file.read())
+        with open('response.json', encoding='utf-8') as inputfile:
+            df = pd.read_json(inputfile)
+        open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
+        duplicates = pd.read_csv('movie_search.csv', on_bad_lines='skip')
+        open('movie_clean.csv', 'a', encoding='utf-8').write(duplicates.to_csv(header = False, index=False))
 
     if len(title) == 0:
         url = f'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -209,30 +218,4 @@ def interface():
         text_classification.category()
 
 
-@st.cache_resource
-def load():
-
-    inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv', 'r')
-    outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv', 'w')
-    # remove any \n characters in file
-    dups = []
-    for line in inFile:
-        if line in dups:
-            continue
-        else:
-            outFile.write(line)
-            dups.append(line)
-    url = f'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
-    re = requests.get(url)
-    re = re.json()
-    with open('response.json', 'w') as json_file:
-        json.dump(re, json_file)
-    with open('response.json') as file:
-        json.load(file)
-    with open('response.json', encoding='utf-8') as inputfile:
-        df = pd.read_json(inputfile)
-    open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
-
-
 interface()
-load()

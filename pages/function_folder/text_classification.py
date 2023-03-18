@@ -13,6 +13,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 ## importing necessary files
 chunks = pd.read_csv('movie_clean.csv', chunksize=100)
 data = pd.concat(chunks)
+
 # creating column names
 data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
                     'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
