@@ -858,8 +858,6 @@ shap==0.41.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and py
 six==1.16.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
-scikit-learn==0.0.post1 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
-    --hash=sha256:76b9ed1623775168657b86b5fe966d45752e5c87f528de6240c38923b94147c5
 slicer==0.0.7 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:0b94faa5251c0f23782c03f7b7eedda91d80144059645f452c4bc80fab875976 \
     --hash=sha256:f5d5f7b45f98d155b9c0ba6554fa9770c6b26d5793a3e77a1030fb56910ebeec
