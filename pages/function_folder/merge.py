@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import vaex
 from pages.function_folder import A_data_loading
 
 def merge_data():

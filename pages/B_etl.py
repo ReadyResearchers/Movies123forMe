@@ -131,28 +131,28 @@ def clean_data():
 
 st.download_button(
        label="Download Opus Files",
-       data=opus.to_csv().encode("utf-8"),
+       data=clean_data()[0].to_csv().encode("utf-8"),
        file_name='opus.csv',
        mime='text/csv',
         )
     
 st.download_button(
        label="Download Netflix Files",
-       data=netflix.to_csv().encode("utf-8"),
+       data=clean_data()[1].to_csv().encode("utf-8"),
        file_name='netflix.csv',
        mime='text/csv',
 )
 
 st.download_button(
        label="Download Disney + Files",
-       data=disney.to_csv().encode("utf-8"),
+       data=clean_data()[3].to_csv().encode("utf-8"),
        file_name='disney.csv',
        mime='text/csv',
     )
     
 st.download_button(
        label="Download Hulu Files",
-       data=hulu.to_csv().encode("utf-8"),
+       data=clean_data()[4].to_csv().encode("utf-8"),
        file_name='hulu.csv',
        mime='text/csv',
     )
@@ -160,7 +160,7 @@ st.download_button(
 
 st.download_button(
        label="Download Prime Files",
-       data=prime.to_csv().encode("utf-8"),
+       data=clean_data()[2].to_csv().encode("utf-8"),
        file_name='prime.csv',
        mime='text/csv',
     )

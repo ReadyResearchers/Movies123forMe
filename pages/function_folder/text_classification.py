@@ -9,15 +9,10 @@ from sklearn.feature_extraction.text import CountVectorizer
 import nltk
 from nltk.stem.porter import PorterStemmer
 from sklearn.metrics.pairwise import cosine_similarity
-import vaex
 
 ## importing necessary files
-chunks = vaex.read_csv('movie_clean.csv')
-data1 = chunks.to_pandas_df(column_names=['Title','Year','Rated','Released','Runtime','Genre','Director',
-                    'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
-                    'Metascore','imdbRating','imdbVotes','imdbID','Type','DVD','BoxOffice',
-                    'Production','Website','Response', 'movie_success','earnings'])
-data = pd.DataFrame(data1)
+chunks = pd.read_csv('movie_clean.csv', chunksize=100)
+data = pd.concat(chunks)
 # creating column names
 data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
                     'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
