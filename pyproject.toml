@@ -6,10 +6,7 @@ authors = ["Adriana Solis <solisa@allegheny.edu>"]
 license = "MIT"
 readme = "README.md"
 include = [ "LICENSE", ]
-packages = [ { include = "src" }, ]
-
-[tool.poetry.scripts]
-movies = "src.machine_learning:cli"
+packages = [ { include = "pages" }, ]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.9.7 || >3.9.7,<4.0"
