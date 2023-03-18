@@ -858,6 +858,8 @@ shap==0.41.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and py
 six==1.16.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
+sklearn==0.0.post1 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
+    --hash=sha256:76b9ed1623775168657b86b5fe966d45752e5c87f528de6240c38923b94147c5
 slicer==0.0.7 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:0b94faa5251c0f23782c03f7b7eedda91d80144059645f452c4bc80fab875976 \
     --hash=sha256:f5d5f7b45f98d155b9c0ba6554fa9770c6b26d5793a3e77a1030fb56910ebeec
@@ -911,7 +913,6 @@ urllib3==1.26.15 ; python_version >= "3.9" and python_version < "4" and python_f
     --hash=sha256:aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42
 validators==0.20.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:24148ce4e64100a2d5e267233e23e7afeb55316b47d30faae7eb6e7292bc226a
-vaex
 watchdog==2.3.1 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" and platform_system != "Darwin" \
     --hash=sha256:03f342a9432fe08107defbe8e405a2cb922c5d00c4c6c168c68b633c64ce6190 \
     --hash=sha256:0d9878be36d2b9271e3abaa6f4f051b363ff54dbbe7e7df1af3c920e4311ee43 \
