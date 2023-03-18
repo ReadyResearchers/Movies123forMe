@@ -125,40 +125,42 @@ def clean_data():
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
                         'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
 
-    st.download_button(
+
+    return opus, netflix, prime, disney, hulu
+
+
+st.download_button(
        label="Download Opus Files",
        data=opus.to_csv().encode("utf-8"),
        file_name='opus.csv',
        mime='text/csv',
         )
     
-    st.download_button(
+st.download_button(
        label="Download Netflix Files",
        data=netflix.to_csv().encode("utf-8"),
        file_name='netflix.csv',
        mime='text/csv',
-    )
+)
 
-    st.download_button(
+st.download_button(
        label="Download Disney + Files",
        data=disney.to_csv().encode("utf-8"),
        file_name='disney.csv',
        mime='text/csv',
-        )
+    )
     
-    st.download_button(
+st.download_button(
        label="Download Hulu Files",
        data=hulu.to_csv().encode("utf-8"),
        file_name='hulu.csv',
        mime='text/csv',
-        )
+    )
     
 
-    st.download_button(
+st.download_button(
        label="Download Prime Files",
        data=prime.to_csv().encode("utf-8"),
        file_name='prime.csv',
        mime='text/csv',
-        )
-
-    return opus, netflix, prime, disney, hulu
+    )

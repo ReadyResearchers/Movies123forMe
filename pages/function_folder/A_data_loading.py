@@ -6,12 +6,12 @@ import plotly.express as px
 
 # st.title('Movies123forMe - A Personalized Movie Selector')
 
-DATA_OPUS = ('movie_data\\movie_data\\')
-DATA_NETFLIX = ('movie_data\\netflix\\')
-DATA_HULU = ('movie_data\\hulu\\')
-DATA_PRIME = ('movie_data\\prime\\')
-DATA_DISNEY = ('movie_data\\disney+\\')
-DATA_IMDB = ('movie_data\\imdb\\')
+DATA_OPUS = ('pages\\movie_data\\movie_data\\')
+DATA_NETFLIX = ('pages\\movie_data\\netflix\\')
+DATA_HULU = ('pages\\movie_data\\hulu\\')
+DATA_PRIME = ('pages\\movie_data\\prime\\')
+DATA_DISNEY = ('pages\\movie_data\\disney+\\')
+DATA_IMDB = ('pages\\movie_data\\imdb\\')
 
 # OPUS PART OF THE CODE
 # creating text element to show the loading of the data in the app
@@ -60,13 +60,11 @@ def load_data_disney(nrows):
     data4.rename(lowercase, axis='columns', inplace=True)
     return data4
 # IMDB PACKAGE PART OF THE CODE
-list_names_imdb = ['title.akas', 'title.basics', 'title.crew', 'title.episode', 'title.principals',
-'title.ratings', 'name.basics']
 
 # creating text element to show the loading of the data in the app
 @st.cache_data
 def load_data_imdb(nrows):
-    title_basics = pd.read_table(DATA_IMDB + list_names_imdb[1] + '.tsv\\data.tsv', nrows=nrows)
+    title_basics = pd.read_table(DATA_IMDB + 'data.tsv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
     # setting up pandas dataframe for all of the files
     title_basics.rename(lowercase, axis='columns', inplace=True)
