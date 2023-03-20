@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pages import B_etl
-from pages.function_folder import merge
+# from pages.function_folder import merge
 from pages.function_folder import text_classification
 from sklearn.model_selection import train_test_split
 from pages import G_machine_learning
@@ -27,7 +27,7 @@ import pathlib
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
 
-data = merge.merge_data()
+data = pd.read_csv("merged_data.csv")
 
 @st.cache_data
 def predict(data):
