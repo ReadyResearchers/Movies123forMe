@@ -13,16 +13,15 @@ def merge_data():
 
     # renaming the column to title
     opus = opus.rename(columns = {'movie_name': 'title'})
-    st.write(imdb.columns)
     # creating dataframes with only the title to merge on
     data = opus[['title']]
     data1 = netflix[['title']]
     data2 = prime[['title']]
     data3 = disney[['title']]
     data4 = hulu[['title']]
-    data5 = imdb[['primarytitle']]
+    # data5 = imdb[['primarytitle']]
 
-    data5 = data5.rename(columns = {'primarytitle': 'title'})
+    # data5 = data5.rename(columns = {'primarytitle': 'title'})
     # shape of data for comparison
     # data.shape
     # data1.shape
@@ -34,8 +33,8 @@ def merge_data():
     merged1 = pd.merge(data, data1, on =['title'], how="outer")
     merged2 = pd.merge(merged1, data2, on=['title'], how="outer")
     merged3 = pd.merge(merged2, data3, on=['title'], how="outer")
-    merged4 = pd.merge(merged3, data4, on=['title'], how="outer")
-    merged_data = pd.merge(merged4, data5, on=['title'], how="outer")
+    merged_data = pd.merge(merged3, data4, on=['title'], how="outer")
+    # merged_data = pd.merge(merged4, data5, on=['title'], how="outer")
     # st.write(merged5.shape)
     merged_data = merged_data.sort_values('title').reset_index(drop=True)
     # st.download_button(
