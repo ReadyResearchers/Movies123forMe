@@ -18,7 +18,7 @@ DATA_IMDB = ('pages\\movie_data\\imdb\\')
 
 @st.cache_data
 def load_data_opus(nrows):
-    data = pd.read_csv(DATA_OPUS + 'movie_data.csv', nrows=nrows)
+    data = pd.read_csv('pages/movie_data/movie_data/movie_data.csv', nrows=nrows)
     lowercase = lambda x: str(x).lower()
     # setting up pandas dataframe for all of the files
     data.rename(lowercase, axis='columns', inplace=True)
