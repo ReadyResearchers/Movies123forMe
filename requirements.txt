@@ -869,6 +869,7 @@ smmap==5.0.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and py
 streamlit==1.20.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:41a544b8dc618ee65726da3ac76149c5b2bf3da7bde6d50625c4f7ec95e6c9e8 \
     --hash=sha256:f6e257e033a2532ce9b37c425717a4e885fa4d0e339fa5dcdbbda8d75ec191e9
+statsmodel
 tenacity==8.2.2 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:2f277afb21b851637e8f52e6a613ff08734c347dc19ade928e519d7d2d8569b0 \
     --hash=sha256:43af037822bd0029025877f3b2d97cc4d7bb0c2991000a3d59d71517c5c969e0
