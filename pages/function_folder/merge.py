@@ -13,15 +13,16 @@ def merge_data():
 
     # renaming the column to title
     opus = opus.rename(columns = {'movie_name': 'title'})
-    imdb = imdb.rename(columns = {'primaryTitle': 'title'})
-
+    st.write(imdb.head())
     # creating dataframes with only the title to merge on
     data = opus[['title']]
     data1 = netflix[['title']]
     data2 = prime[['title']]
     data3 = disney[['title']]
     data4 = hulu[['title']]
-    data5 = imdb[['title']]
+    data5 = imdb[['primarytitle']]
+
+    data5 = data5.rename(columns = {'primarytitle': 'title'})
 
     # shape of data for comparison
     # data.shape
