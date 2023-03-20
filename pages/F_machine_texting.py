@@ -28,9 +28,13 @@ st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Subpage 4 🎈")
 
 st.write("---")
-duplicates = 'movie_search.csv'
 
-train_data = pd.read_csv('movie_clean.csv',encoding='ISO-8859-1')
+train_data = pd.read_csv('movie_clean.csv')
+
+# train_data['earnings'] = train_data["BoxOffice"].replace(np.nan,"0")
+# train_data['earnings'] = train_data['earnings'].str.replace(r'[^\w\s]+', '')
+# st.write(train_data['earnings'])
+
 
 train_data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
 'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
@@ -292,23 +296,23 @@ def predict_text():
         test_X=[]
 
 
-        # #text pre processing
-        # for i in range(0, len(train_X_non)):
-        #     review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
-        #     review = review.lower()
-        #     review = review.split()
-        #     review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
-        #     review = ' '.join(review)
-        #     train_X.append(review)
+        #text pre processing
+        for i in range(0, len(train_X_non)):
+            review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
+            review = review.lower()
+            review = review.split()
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = ' '.join(review)
+            train_X.append(review)
 
-        # #text pre processing
-        # for i in range(0, len(test_X_non)):
-        #     review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
-        #     review = review.lower()
-        #     review = review.split()
-        #     review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
-        #     review = ' '.join(review)
-        #     test_X.append(review)
+        #text pre processing
+        for i in range(0, len(test_X_non)):
+            review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
+            review = review.lower()
+            review = review.split()
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = ' '.join(review)
+            test_X.append(review)
 
         # st.write(train_X[10])
 
