@@ -993,6 +993,8 @@ wordcloud==1.8.2.2 ; python_version >= "3.9" and python_full_version != "3.9.7" 
     --hash=sha256:dd6d3f253f163ce21f6efc2cc675caf16ce474977de925b0adcdae9b97fe8659 \
     --hash=sha256:e6376f09543416d03844313d7e6e39eb0a42547e07001ac50be93fbd4c6c4431 \
     --hash=sha256:f6377f570838661ade045793e100f506a4e1f92ddac23455470a03617e30d2a8
-# zipp==3.15.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
-#     --hash=sha256:112929ad649da941c23de50f356a2b5570c954b65150642bccdd66bf194d224b \
-#     --hash=sha256:48904fc76a60e542af151aded95726c1a5c34ed43ab4134b597665c86d7ad556
+zipp==3.15.0 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
+    --hash=sha256:112929ad649da941c23de50f356a2b5570c954b65150642bccdd66bf194d224b \
+    --hash=sha256:48904fc76a60e542af151aded95726c1a5c34ed43ab4134b597665c86d7ad556
+patsy==0.5.2 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
+    --hash=sha256:7eb5349754ed6aa982af81f636479b1b8db9d5b1a6e957a6016ec0534b5c86b7
