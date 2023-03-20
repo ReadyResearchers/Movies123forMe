@@ -292,30 +292,30 @@ def predict_text():
         test_X=[]
 
 
-        #text pre processing
-        for i in range(0, len(train_X_non)):
-            review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
-            review = review.lower()
-            review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
-            review = ' '.join(review)
-            train_X.append(review)
+        # #text pre processing
+        # for i in range(0, len(train_X_non)):
+        #     review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
+        #     review = review.lower()
+        #     review = review.split()
+        #     review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+        #     review = ' '.join(review)
+        #     train_X.append(review)
 
-        #text pre processing
-        for i in range(0, len(test_X_non)):
-            review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
-            review = review.lower()
-            review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
-            review = ' '.join(review)
-            test_X.append(review)
+        # #text pre processing
+        # for i in range(0, len(test_X_non)):
+        #     review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
+        #     review = review.lower()
+        #     review = review.split()
+        #     review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+        #     review = ' '.join(review)
+        #     test_X.append(review)
 
         # st.write(train_X[10])
 
         #tf idf
         tf_idf = TfidfVectorizer()
         #applying tf idf to training data
-        # X_train = tf_idf.fit(train_X)
+        X_train = tf_idf.fit(train_X)
         X_train_tf = tf_idf.transform(train_X)
         # st.write("n_samples: %d, n_features: %d" % X_train_tf.shape)
 
