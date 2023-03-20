@@ -315,7 +315,7 @@ def predict_text():
         #tf idf
         tf_idf = TfidfVectorizer()
         #applying tf idf to training data
-        X_train = tf_idf.fit(train_X)
+        # X_train = tf_idf.fit(train_X)
         X_train_tf = tf_idf.transform(train_X)
         # st.write("n_samples: %d, n_features: %d" % X_train_tf.shape)
 
