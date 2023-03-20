@@ -23,7 +23,6 @@ from functools import reduce
 import json
 import csv
 import pathlib
-import vaex
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
