@@ -1,28 +1,28 @@
-import streamlit as st # pylint: disable=E0401
-import pandas as pd # pylint: disable=E0401
-from pages import clean_data # pylint: disable=E0401
+import streamlit as st # pylint: disable=E0401, C0413
+import pandas as pd # pylint: disable=E0401, C0413
+from pages import clean_data # pylint: disable=E0401, C0413
 # from pages.function_folder import merge
-from pages.function_folder import text_classification # pylint: disable=E0401
-from sklearn.model_selection import train_test_split # pylint: disable=E0401
-from pages import G_machine_learning # pylint: disable=E0401
+from pages.function_folder import text_classification # pylint: disable=E0401, C0413
+from sklearn.model_selection import train_test_split # pylint: disable=E0401, C0413
+from pages import G_machine_learning # pylint: disable=E0401, C0413
 
-import numpy as np # pylint: disable=E0401
-import joblib # pylint: disable=E0401
-import requests # pylint: disable=E0401
-import re # pylint: disable=E0401
-import nltk # pylint: disable=E0401
-from sklearn.feature_extraction.text import TfidfVectorizer # pylint: disable=E0401
-from sklearn.metrics.pairwise import cosine_similarity # pylint: disable=E0401
+import numpy as np # pylint: disable=E0401, C0413
+import joblib # pylint: disable=E0401, C0413
+import requests # pylint: disable=E0401, C0413
+import re # pylint: disable=E0401, C0413
+import nltk # pylint: disable=E0401, C0413
+from sklearn.feature_extraction.text import TfidfVectorizer # pylint: disable=E0401, C0413
+from sklearn.metrics.pairwise import cosine_similarity # pylint: disable=E0401, C0413
 nltk.download('stopwords')
 nltk.download('punkt')
-from nltk import word_tokenize # pylint: disable=E0401
-from nltk.corpus import stopwords # pylint: disable=E0401
-import pickle # pylint: disable=E0401
-from streamlit import session_state as session # pylint: disable=E0401
-from functools import reduce # pylint: disable=E0401
-import json # pylint: disable=E0401
-import csv # pylint: disable=E0401
-import pathlib # pylint: disable=E0401
+from nltk import word_tokenize # pylint: disable=E0401, C0413
+from nltk.corpus import stopwords # pylint: disable=E0401, C0413
+import pickle # pylint: disable=E0401, C0413
+from streamlit import session_state as session # pylint: disable=E0401, C0413
+from functools import reduce # pylint: disable=E0401, C0413
+import json # pylint: disable=E0401, C0413
+import csv # pylint: disable=E0401, C0413
+import pathlib # pylint: disable=E0401, C0413
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
@@ -31,6 +31,7 @@ data = pd.read_csv("merged_data.csv")
 
 @st.cache_data
 def predict(data):
+    """Initial set up function to import the machine learning models."""
     logreg_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/logreg_model.sav"
     lr_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/lr_model.sav"
     rf_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/rf_model.sav"
@@ -38,14 +39,15 @@ def predict(data):
     dtc_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/dtc_model.sav"
     svm_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/svm_model.sav"
     logreg = joblib.load(logreg_filename)
-    lr = joblib.load(lr_filename)
-    rf = joblib.load(rf_filename)
-    et = joblib.load(et_filename)
-    dtc = joblib.load(dtc_filename)
-    svm = joblib.load(svm_filename)
+    lr = joblib.load(lr_filename) # pylint: disable=C0103
+    rf = joblib.load(rf_filename) # pylint: disable=C0103
+    et = joblib.load(et_filename) # pylint: disable=C0103
+    dtc = joblib.load(dtc_filename) # pylint: disable=C0103
+    svm = joblib.load(svm_filename) # pylint: disable=C0103
     return logreg.predict(data), lr.predict(data), rf.predict(data), et.predict(data), dtc.predict(data), svm.predict(data) # pylint: disable=C0301
 
 def submit_form():
+    """Function to create the movie prediction form."""
     # first section
     prod_budget = st.slider('What kind of production budget do you want for your movie?', min_value=0, max_value=525000000, value=1000000, step=100000) # pylint: disable=C0301
 
@@ -146,6 +148,7 @@ def submit_form():
                 st.write("Please try again later.")
 
 def search_movies():
+    """Function to search for the movies using the OMDB API."""
     title = st.text_input("Type the title of the desired Movie/TV Show:")
     # def running():
     #     creating a baseline list of movies in csv file for analysis
