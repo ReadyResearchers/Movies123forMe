@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-from pages import B_etl
+from pages import clean_data
 import streamlit as st
 import seaborn as sns
 from sklearn.tree import DecisionTreeClassifier
@@ -24,7 +24,7 @@ st.sidebar.markdown("# Subpage 2 🎈")
 ## setting up environment
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-opus = B_etl.clean_data()[0]
+opus = clean_data.clean_data()[0]
     
 opus_cols = ['production_budget', 'rating', 'sequel', 'genre_Action', 'genre_Comedy', 'genre_Drama', 
 'genre_Adventure', 'genre_Black Comedy', 'genre_Concert/Performance', 'genre_Documentary', 'genre_Horror',

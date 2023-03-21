@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import requests
 import re
-from pages import B_etl
+from pages import clean_data
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 import nltk

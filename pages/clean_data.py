@@ -1,3 +1,5 @@
+"""This file will clean the imported movie data and provide downloadable CSV files."""
+
 import pandas as pd
 import streamlit as st
 import sys
@@ -110,11 +112,12 @@ def clean_data():
     disney = disney.assign(cast=disney['cast'].str.split(",")).explode('cast')
     disney = disney.assign(country=disney['country'].str.split(",")).explode('country')
     disney = disney.assign(listed_in=disney['listed_in'].str.split(",")).explode('listed_in')
-    
-    
+
+
     # creating dummy variables for str columns
     opus = pd.get_dummies(opus, columns=['genre'])
-    opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3, 'NC-17': 4, 'Not Rated': 5})
+    opus['rating'] = opus['rating'].map({'G':0, 'PG': 1, 'PG-13': 2, 'R': 3,
+    'NC-17': 4, 'Not Rated': 5})
     netflix['rating'] = netflix['rating'].map({'TV-Y': 0, 'TV-Y7': 1, 'TV-Y7-FV': 2,
                         'G': 3, 'TV-G': 4, 'PG': 5, 'TV-PG': 6, 'PG-13': 7, 'TV-14': 8,
                         'R': 9, 'TV-MA': 10, 'NC-17': 11, 'NR': 12, 'UR': 13})
@@ -135,7 +138,7 @@ st.download_button(
        file_name='opus.csv',
        mime='text/csv',
         )
-    
+
 st.download_button(
        label="Download Netflix Files",
        data=clean_data()[1].to_csv().encode("utf-8"),
@@ -149,14 +152,14 @@ st.download_button(
        file_name='disney.csv',
        mime='text/csv',
     )
-    
+
 st.download_button(
        label="Download Hulu Files",
        data=clean_data()[4].to_csv().encode("utf-8"),
        file_name='hulu.csv',
        mime='text/csv',
     )
-    
+
 
 st.download_button(
        label="Download Prime Files",
