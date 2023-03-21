@@ -9,8 +9,6 @@ from pages import G_machine_learning # pylint: disable=E0401, C0413, C0411, C041
 import numpy as np # pylint: disable=E0401, C0413, C0411
 import joblib # pylint: disable=E0401, C0413, C0411
 import requests # pylint: disable=E0401, C0413, C0411
-import nltk # pylint: disable=E0401, C0413, C0411
-from functools import reduce # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
@@ -19,7 +17,7 @@ st.sidebar.markdown("# Main Page 🎈")
 data = pd.read_csv("merged_data.csv")
 
 @st.cache_data
-def predict(data):
+def predict(data): # pylint: disable=W0621
     """Initial set up function to import the machine learning models."""
     logreg_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/logreg_model.sav"
     lr_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/lr_model.sav"
@@ -171,7 +169,7 @@ def search_movies():
         with col1:
             st.image(req['Poster'])
         with col2:
-            st.subheader(re['Title'])
+            st.subheader(req['Title'])
             st.caption(f"Genre: {req['Genre']} | Year: {req['Year']} | Rated: {req['Rated']} | Released: {req['Released']}") # pylint: disable=C0301
             st.write(req['Plot'])
             st.text(f"Rating: {req['imdbRating']}")
@@ -181,10 +179,10 @@ def search_movies():
         with open('response.json', 'r', encoding='utf-8') as file:
             json.loads(file.read())
         with open('response.json', encoding='utf-8') as inputfile:
-            df = pd.read_json(inputfile)
-        open('movie_search.csv', 'a', encoding='utf-8').write(df.to_csv(header = False, index=False)) # pylint: disable=R1732
+            df = pd.read_json(inputfile) # pylint: disable=C0103
+        open('movie_search.csv', 'a', encoding='utf-8').write(df.to_csv(header = False, index=False)) # pylint: disable=R1732, C0301
         duplicates = pd.read_csv('movie_search.csv', on_bad_lines='skip')
-        open('movie_clean.csv', 'a', encoding='utf-8').write(duplicates.to_csv(header = False, index=False)) # pylint: disable=C0301, R7132
+        open('movie_clean.csv', 'a', encoding='utf-8').write(duplicates.to_csv(header = False, index=False)) # pylint: disable=C0301, R1732, W0012
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
