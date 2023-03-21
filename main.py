@@ -1,3 +1,5 @@
+"""Main Method for the Interactive Movie Recommendation app."""
+
 import streamlit as st # pylint: disable=E0401, C0413
 import pandas as pd # pylint: disable=E0401, C0413
 from pages import clean_data # pylint: disable=E0401, C0413
@@ -30,7 +32,7 @@ st.sidebar.markdown("# Main Page 🎈")
 data = pd.read_csv("merged_data.csv")
 
 @st.cache_data
-def predict(data):
+def predict(dataa):
     """Initial set up function to import the machine learning models."""
     logreg_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/logreg_model.sav"
     lr_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/lr_model.sav"
@@ -76,10 +78,10 @@ def submit_form():
     clickSubmit = st.button('Predict success of your movie!')
 
     if clickSubmit:
-        df = np.array([[prod_budget, rating, sequel, genre_Action, 
-        genre_Comedy, genre_Drama, genre_Adventure, 
+        df = np.array([[prod_budget, rating, sequel, genre_Action,
+        genre_Comedy, genre_Drama, genre_Adventure,
         genre_BlackComedy, genre_Concert, genre_Documentary,
-        genre_Horror, genre_Musical, genre_RomanticComedy, 
+        genre_Horror, genre_Musical, genre_RomanticComedy,
         genre_Thriller, genre_Western]], dtype=int)
 
         result_logreg = predict(df)[0]
@@ -106,44 +108,44 @@ def submit_form():
         st.subheader("Movie Success Results:")
         for i in result_logreg:
             if i[0].round() == 0:
-                st.write(f"The Logistic Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_logreg) }% confidence! :(")
+                st.write(f"The Logistic Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_logreg) }% confidence! :(") # pylint: disable=C0303
             elif i[0].round() == 1:
-                st.write(f"The Logistic Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_logreg) }% confidence! :)")
+                st.write(f"The Logistic Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_logreg) }% confidence! :)") # pylint: disable=C0303
             else:
                 st.write("Please try again later.")
         for i in result_lr:
             if i[0].round() == 0:
-                st.write(f"The Linear Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_lr) }% confidence! :(")
+                st.write(f"The Linear Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_lr) }% confidence! :(") # pylint: disable=C0303
             elif i[0].round() == 1:
-                st.write(f"The Linear Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_lr) }% confidence! :)")
+                st.write(f"The Linear Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_lr) }% confidence! :)") # pylint: disable=C0303
             else:
                 st.write("Please try again later.")
         for i in result_rf:
             if i[0].round() == 0:
-                st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_rf) }% confidence! :(")
+                st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_rf) }% confidence! :(") # pylint: disable=C0303
             elif i[0].round() == 1:
-                st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_rf) }% confidence! :)")
+                st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_rf) }% confidence! :)") # pylint: disable=C0303
             else:
                 st.write("Please try again later.")
         for i in result_et:
             if i[0].round() == 0:
-                st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_et) }% confidence! :(")
+                st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_et) }% confidence! :(") # pylint: disable=C0303
             elif i[0].round() == 1:
-                st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_et) }% confidence! :)")
+                st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_et) }% confidence! :)") # pylint: disable=C0303
             else:
                 st.write("Please try again later.")
         for i in result_dtc:
             if i[0].round() == 0:
-                st.write(f"The Decision Tree Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_dtc) }% confidence! :(")
+                st.write(f"The Decision Tree Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_dtc) }% confidence! :(") # pylint: disable=C0303
             elif i[0].round() == 1:
-                st.write(f"The Decision Tree Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_dtc) }% confidence! :)")
+                st.write(f"The Decision Tree Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_dtc) }% confidence! :)") # pylint: disable=C0303
             else:
                 st.write("Please try again later.")
         for i in result_svm:
             if i[0].round() == 0:
-                st.write(f"The Support Vector Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_svm) }% confidence! :(")
+                st.write(f"The Support Vector Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_svm) }% confidence! :(") # pylint: disable=C0303
             elif i[0].round() == 1:
-                st.write(f"The Support Vector Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_svm) }% confidence! :)")
+                st.write(f"The Support Vector Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_svm) }% confidence! :)") # pylint: disable=C0303
             else:
                 st.write("Please try again later.")
 
@@ -183,7 +185,7 @@ def search_movies():
             st.image(re['Poster'])
         with col2:
             st.subheader(re['Title'])
-            st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+            st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}") # pylint: disable=C0303
             st.write(re['Plot'])
             st.text(f"Rating: {re['imdbRating']}")
             st.progress(float(re['imdbRating']) / 10)
@@ -195,7 +197,7 @@ def search_movies():
             df = pd.read_json(inputfile)
         open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
         duplicates = pd.read_csv('movie_search.csv', on_bad_lines='skip')
-        open('movie_clean.csv', 'a', encoding='utf-8').write(duplicates.to_csv(header = False, index=False))
+        open('movie_clean.csv', 'a', encoding='utf-8').write(duplicates.to_csv(header = False, index=False)) # pylint: disable=C0303
 
     if len(title) == 0:
         url = f'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -206,7 +208,7 @@ def search_movies():
             st.image(re['Poster'])
         with col2:
             st.subheader(re['Title'])
-            st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}")
+            st.caption(f"Genre: {re['Genre']} | Year: {re['Year']} | Rated: {re['Rated']} | Released: {re['Released']}") # pylint: disable=C0303
             st.write(re['Plot'])
             st.text(f"Rating: {re['imdbRating']}")
             st.progress(float(re['imdbRating']) / 10)
