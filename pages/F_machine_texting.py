@@ -7,7 +7,7 @@ import string
 from pages.function_folder import A_data_loading
 import re
 from nltk.stem import WordNetLemmatizer, PorterStemmer
-from nltk.corpus import stopwords
+from nltk.corpus import stopwords as sw
 from nltk.tokenize import word_tokenize
 from collections import Counter
 from wordcloud import WordCloud
@@ -53,9 +53,9 @@ def predict_text():
     def actor():
         t_data = train_data[['Actors', 'movie_success']].dropna().reset_index()
         #stopword removal and lemmatization
-        stopwords = nltk.corpus.stopwords.words('english')
+        # stopwords = nltk.corpus.stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
-        nltk.download('stopwords')
+        # nltk.download('stopwords')
         # st.write(t_data.head())
 
         train_X_non = t_data['Actors']   # '0' refers to the review text
@@ -70,7 +70,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -79,7 +79,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -111,7 +111,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -130,9 +130,9 @@ def predict_text():
     def description():  
         t_data = train_data[['Plot', 'movie_success']].dropna().reset_index()
         #stopword removal and lemmatization
-        stopwords = nltk.corpus.stopwords.words('english')
+        # stopwords = nltk.corpus.stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
-        nltk.download('stopwords')
+        # nltk.download('stopwords')
         # st.write(t_data.head())
 
         train_X_non = t_data['Plot']   # '0' refers to the review text
@@ -147,7 +147,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -156,7 +156,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -187,7 +187,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -207,9 +207,9 @@ def predict_text():
             
         t_data = train_data[['Genre', 'movie_success']].dropna().reset_index()
         #stopword removal and lemmatization
-        stopwords = nltk.corpus.stopwords.words('english')
+        # stopwords = stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
-        nltk.download('stopwords')
+        # nltk.download('stopwords')
         # st.write(t_data.head())
 
         train_X_non = t_data['Genre']   # '0' refers to the review text
@@ -224,7 +224,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -233,7 +233,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -264,7 +264,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -283,9 +283,9 @@ def predict_text():
     def title():  
         t_data = train_data[['Title', 'movie_success']].dropna().reset_index()
         #stopword removal and lemmatization
-        stopwords = nltk.corpus.stopwords.words('english')
+        # stopwords = sw.words('english')
         lemmatizer = WordNetLemmatizer()
-        nltk.download('stopwords')
+        # nltk.download('stopwords')
         # st.write(t_data.head())
 
         train_X_non = t_data['Title']   # '0' refers to the review text
@@ -301,7 +301,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -310,7 +310,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -341,7 +341,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -361,9 +361,9 @@ def predict_text():
     def director():
         t_data = train_data[['Director', 'movie_success']].dropna().reset_index()
         #stopword removal and lemmatization
-        stopwords = nltk.corpus.stopwords.words('english')
+        # stopwords = nltk.corpus.stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
-        nltk.download('stopwords')
+        # nltk.download('stopwords')
         # st.write(t_data.head())
 
         train_X_non = t_data['Director']   # '0' refers to the review text
@@ -378,7 +378,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -387,7 +387,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -418,7 +418,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -438,9 +438,9 @@ def predict_text():
     def rating():
         t_data = train_data[['Rated', 'movie_success']].dropna().reset_index()
         #stopword removal and lemmatization
-        stopwords = nltk.corpus.stopwords.words('english')
+        # stopwords = nltk.corpus.stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
-        nltk.download('stopwords')
+        # nltk.download('stopwords')
         # st.write(t_data.head())
 
         train_X_non = t_data['Rated']   # '0' refers to the review text
@@ -455,7 +455,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -464,7 +464,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -495,7 +495,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
