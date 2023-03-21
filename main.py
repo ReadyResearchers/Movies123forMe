@@ -1,28 +1,28 @@
-import streamlit as st
-import pandas as pd
-from pages import clean_data
+import streamlit as st # pylint: disable=E0401
+import pandas as pd # pylint: disable=E0401
+from pages import clean_data # pylint: disable=E0401
 # from pages.function_folder import merge
-from pages.function_folder import text_classification
-from sklearn.model_selection import train_test_split
-from pages import G_machine_learning
+from pages.function_folder import text_classification # pylint: disable=E0401
+from sklearn.model_selection import train_test_split # pylint: disable=E0401
+from pages import G_machine_learning # pylint: disable=E0401
 
-import numpy as np
-import joblib
-import requests
-import re
-import nltk
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np # pylint: disable=E0401
+import joblib # pylint: disable=E0401
+import requests # pylint: disable=E0401
+import re # pylint: disable=E0401
+import nltk # pylint: disable=E0401
+from sklearn.feature_extraction.text import TfidfVectorizer # pylint: disable=E0401
+from sklearn.metrics.pairwise import cosine_similarity # pylint: disable=E0401
 nltk.download('stopwords')
 nltk.download('punkt')
-from nltk import word_tokenize
-from nltk.corpus import stopwords
-import pickle
-from streamlit import session_state as session
-from functools import reduce
-import json
-import csv
-import pathlib
+from nltk import word_tokenize # pylint: disable=E0401
+from nltk.corpus import stopwords # pylint: disable=E0401
+import pickle # pylint: disable=E0401
+from streamlit import session_state as session # pylint: disable=E0401
+from functools import reduce # pylint: disable=E0401
+import json # pylint: disable=E0401
+import csv # pylint: disable=E0401
+import pathlib # pylint: disable=E0401
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
