@@ -10,6 +10,8 @@ By looking at the emerging trends in the entertainment industry, it can be infer
 
 ## Installation
 
+To run through Streamlit Cloud, simply navigate to the following [URL](https://movies123forme.streamlit.app/). If you prefer to host locally to your machine, please go through the following installation steps.
+
 As this project relies on [Poetry](https://python-poetry.org/docs/) for dependency and package management, the way to install all necessary dependencies is by simply running the following:
 
 ```poetry install```
