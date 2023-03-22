@@ -13,15 +13,10 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Caching
-        uses: actions/cache@v2
-        with:
-        path: $/{/{ env.pythonLocation /}/}
-        key: $/{/{ env.pythonLocation /}/}-$/{/{ hashFiles('setup.py') /}/}-$/{/{ hashFiles('requirements.txt') /}/}
     - name: Install dependencies
-        run: |
+      run: |
         pip install numba
         python -m pip install --upgrade pip
         pip install streamlit
     - name: Test Execution of Code
-        run: streamlit run main.py --server.maxMessageSize 300
+      run: streamlit run main.py --server.maxMessageSize 300
