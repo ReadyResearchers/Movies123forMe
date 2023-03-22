@@ -70,7 +70,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -79,7 +79,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -111,7 +111,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -147,7 +147,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -156,7 +156,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -187,7 +187,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -224,7 +224,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -233,7 +233,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -264,7 +264,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -301,7 +301,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -310,7 +310,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -341,7 +341,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -378,7 +378,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -387,7 +387,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -418,7 +418,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -455,7 +455,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -464,7 +464,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -495,7 +495,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set('SmartStoplist.txt')]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
@@ -571,7 +571,7 @@ def wordcloud():
     columns = ['Title', 'Director', 'Actors', 'Rated', 'Genre', 'Plot']
     st.subheader("Choose which feature to generate a word cloud for!")
     choice = st.selectbox("", columns, key=columns)
-    stop_words_file = 'pages\\SmartStoplist.txt'
+    stop_words_file = 'pages\\pages/SmartStoplist.txt'
 
     stop_words = []
 
