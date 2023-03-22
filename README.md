@@ -1,4 +1,4 @@
-![GitHub Actions]('https://github.com/ReadyResearchers/Movies123forMe/actions/workflows/pylint.yml/badge.svg')
+![License](https://img.shields.io/github/license/ReadyResearchers/Movies123forMe) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ReadyResearchers/Movies123forMe/pylint.yml)
 
 <p align="center">
   <img src="img/header_readme.png" />
