@@ -1,4 +1,4 @@
-#
+![GitHub Actions]('https://github.com/ReadyResearchers/Movies123forMe/actions/workflows/pylint.yml/badge.svg')
 
 <p align="center">
   <img src="img/header_readme.png" />
