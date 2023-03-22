@@ -7,7 +7,11 @@ import string
 from pages.function_folder import A_data_loading
 import re
 from nltk.stem import WordNetLemmatizer, PorterStemmer
-from nltk.corpus import stopwords as sw
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+nltk.download('wordnet')
+
 from nltk.tokenize import word_tokenize
 from collections import Counter
 from wordcloud import WordCloud
@@ -53,9 +57,8 @@ def predict_text():
     def actor():
         t_data = train_data[['Actors', 'movie_success']].dropna().reset_index()
         #stopword removal and lemmatization
-        # stopwords = nltk.corpus.stopwords.words('english')
+        stopwords = stopwords.words('english')
         lemmatizer = WordNetLemmatizer()
-        # nltk.download('stopwords')
         # st.write(t_data.head())
 
         train_X_non = t_data['Actors']   # '0' refers to the review text
@@ -70,7 +73,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
             review = ' '.join(review)
             train_X.append(review)
 
@@ -79,7 +82,7 @@ def predict_text():
             review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
             review = review.lower()
             review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
             review = ' '.join(review)
             test_X.append(review)
 
@@ -111,7 +114,7 @@ def predict_text():
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
         review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in open('pages/SmartStoplist.txt')]
+        review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopwords)]
         test_processed =[ ' '.join(review)]
 
         # st.write(test_processed)
