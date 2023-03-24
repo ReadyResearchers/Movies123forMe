@@ -11,6 +11,7 @@ import numpy as np # pylint: disable=E0401, C0413, C0411
 import joblib # pylint: disable=E0401, C0413, C0411
 import requests # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
+import subprocess
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
@@ -184,6 +185,7 @@ def search_movies():
         open('movie_search.csv', 'a', encoding='utf-8').write(df.to_csv(header = False, index=False)) # pylint: disable=R1732, C0301
         duplicates = pd.read_csv('movie_search.csv', on_bad_lines='skip')
         open('movie_clean.csv', 'a', encoding='utf-8').write(duplicates.to_csv(header = False, index=False)) # pylint: disable=C0301, R1732, W0012
+        subprocess.run("commit.sh", shell=True)
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -207,7 +209,6 @@ def interface():
     success = st.sidebar.selectbox("Select a Movie Experience :)", choices)
     if success == 'Movie Search':
         search_movies()
-        
     elif success == 'Predict Success of a Movie!':
         submit_form()
     elif success == 'What Movie Should You Watch?':
