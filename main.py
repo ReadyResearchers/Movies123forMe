@@ -185,7 +185,7 @@ def search_movies():
         open('movie_search.csv', 'a', encoding='utf-8').write(df.to_csv(header = False, index=False)) # pylint: disable=R1732, C0301
         duplicates = pd.read_csv('movie_search.csv', on_bad_lines='skip')
         open('movie_clean.csv', 'a', encoding='utf-8').write(duplicates.to_csv(header = False, index=False)) # pylint: disable=C0301, R1732, W0012
-        subprocess.run("commit.sh", shell=True) # pylint: disable=W1510
+        subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
