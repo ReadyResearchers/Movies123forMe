@@ -24,7 +24,7 @@ st.sidebar.markdown("# Subpage 2 🎈")
 ## setting up environment
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-opus = clean_data.clean_data()[0]
+opus = pd.read_csv('movie_clean.csv')
     
 opus_cols = ['production_budget', 'rating', 'sequel', 'genre_Action', 'genre_Comedy', 'genre_Drama', 
 'genre_Adventure', 'genre_Black Comedy', 'genre_Concert/Performance', 'genre_Documentary', 'genre_Horror',
