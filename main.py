@@ -164,8 +164,14 @@ def search_movies():
         with open('movie_clean.csv', 'a', newline='') as outFile:
             tail = df.tail(1)
             outFile.write(tail.to_csv(header=False, index=False, mode='a' ))
+            df = pd.read_csv('movie_clean.csv')
+            df['earnings'] = df["BoxOffice"].replace(np.nan,"0")
+            df['earnings'] = df['earnings'].str.replace(r'[^\w\s]+', "", regex=True)
+            df = df[df['earnings'].str.contains("TRUE") == False]
+            df['movie_success'] = np.where(
+                df['earnings'].astype(int) > 55507312, 1, 0)
             outFile.close()
-        # subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
+        subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
