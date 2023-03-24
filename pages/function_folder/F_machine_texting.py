@@ -570,221 +570,221 @@ def predict_text():
         labels = np.asarray(labels).reshape(2,2)
         sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
         st.write(fig)
-    if types == 'Director':
-        director()
-        countvec = CountVectorizer(ngram_range=(1,4), 
-                           stop_words='english',  
-                           strip_accents='unicode', 
-                           max_features=1000)
-        X = train_data.Director.values
-        y = train_data.movie_success.values
-        # Split data into train and test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                            test_size = 0.3, 
-                                                            random_state = 0)
-        # Instantiate classifier
-        mnb = MultinomialNB()
+    # if types == 'Director':
+    #     director()
+    #     countvec = CountVectorizer(ngram_range=(1,4), 
+    #                        stop_words='english',  
+    #                        strip_accents='unicode', 
+    #                        max_features=1000)
+    #     X = train_data.Director.values
+    #     y = train_data.movie_success.values
+    #     # Split data into train and test sets
+    #     X_train, X_test, y_train, y_test = train_test_split(X, y, 
+    #                                                         test_size = 0.3, 
+    #                                                         random_state = 0)
+    #     # Instantiate classifier
+    #     mnb = MultinomialNB()
 
-        # Create bag of words
-        X_train = countvec.fit_transform(X_train)
-        X_test = countvec.transform(X_test)
+    #     # Create bag of words
+    #     X_train = countvec.fit_transform(X_train)
+    #     X_test = countvec.transform(X_test)
 
-        # Train the classifier/Fit the model
-        mnb.fit(X_train, y_train)
+    #     # Train the classifier/Fit the model
+    #     mnb.fit(X_train, y_train)
 
-        scores = mnb.score(X_test, y_test)
+    #     scores = mnb.score(X_test, y_test)
 
-        st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
-        # Make predictions
-        y_pred = mnb.predict(X_test)
+    #     st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+    #     # Make predictions
+    #     y_pred = mnb.predict(X_test)
 
-        # y_pred = naive_bayes_classifier.predict(X_test_tf)
-        cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
-        st.write('Confusion matrix given all titles in the sample:', cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    cm.flatten()/np.sum(cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
-    if types == 'Actors':
-        actor()
-        countvec = CountVectorizer(ngram_range=(1,4), 
-                           stop_words='english',  
-                           strip_accents='unicode', 
-                           max_features=1000)
-        X = train_data.Actors.values
-        y = train_data.movie_success.values
-        # Split data into train and test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                            test_size = 0.3, 
-                                                            random_state = 0)
-        # Instantiate classifier
-        mnb = MultinomialNB()
+    #     # y_pred = naive_bayes_classifier.predict(X_test_tf)
+    #     cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
+    #     st.write('Confusion matrix given all titles in the sample:', cm)
+    #     st.write("Heatmap of the Confusion Matrix:")
+    #     fig, ax = plt.subplots()
+    #     group_names = ['True Neg','False Pos','False Neg','True Pos']
+    #     group_counts = ["{0:0.0f}".format(value) for value in
+    #             cm.flatten()]
+    #     group_percentages = ["{0:.2%}".format(value) for value in
+    #                 cm.flatten()/np.sum(cm)]
+    #     labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
+    #             zip(group_names,group_counts,group_percentages)]
+    #     labels = np.asarray(labels).reshape(2,2)
+    #     sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
+    #     st.write(fig)
+    # if types == 'Actors':
+    #     actor()
+    #     countvec = CountVectorizer(ngram_range=(1,4), 
+    #                        stop_words='english',  
+    #                        strip_accents='unicode', 
+    #                        max_features=1000)
+    #     X = train_data.Actors.values
+    #     y = train_data.movie_success.values
+    #     # Split data into train and test sets
+    #     X_train, X_test, y_train, y_test = train_test_split(X, y, 
+    #                                                         test_size = 0.3, 
+    #                                                         random_state = 0)
+    #     # Instantiate classifier
+    #     mnb = MultinomialNB()
 
-        # Create bag of words
-        X_train = countvec.fit_transform(X_train)
-        X_test = countvec.transform(X_test)
+    #     # Create bag of words
+    #     X_train = countvec.fit_transform(X_train)
+    #     X_test = countvec.transform(X_test)
 
-        # Train the classifier/Fit the model
-        mnb.fit(X_train, y_train)
+    #     # Train the classifier/Fit the model
+    #     mnb.fit(X_train, y_train)
 
-        scores = mnb.score(X_test, y_test)
+    #     scores = mnb.score(X_test, y_test)
 
-        st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
-        # Make predictions
-        y_pred = mnb.predict(X_test)
+    #     st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+    #     # Make predictions
+    #     y_pred = mnb.predict(X_test)
 
-        # y_pred = naive_bayes_classifier.predict(X_test_tf)
-        cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
-        st.write('Confusion matrix given all titles in the sample:', cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    cm.flatten()/np.sum(cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
-    if types == 'Rated':
-        rating()
-        countvec = CountVectorizer(ngram_range=(1,4), 
-                           stop_words='english',  
-                           strip_accents='unicode', 
-                           max_features=1000)
-        X = train_data.Rated.values
-        y = train_data.movie_success.values
-        # Split data into train and test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                            test_size = 0.3, 
-                                                            random_state = 0)
-        # Instantiate classifier
-        mnb = MultinomialNB()
+    #     # y_pred = naive_bayes_classifier.predict(X_test_tf)
+    #     cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
+    #     st.write('Confusion matrix given all titles in the sample:', cm)
+    #     st.write("Heatmap of the Confusion Matrix:")
+    #     fig, ax = plt.subplots()
+    #     group_names = ['True Neg','False Pos','False Neg','True Pos']
+    #     group_counts = ["{0:0.0f}".format(value) for value in
+    #             cm.flatten()]
+    #     group_percentages = ["{0:.2%}".format(value) for value in
+    #                 cm.flatten()/np.sum(cm)]
+    #     labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
+    #             zip(group_names,group_counts,group_percentages)]
+    #     labels = np.asarray(labels).reshape(2,2)
+    #     sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
+    #     st.write(fig)
+    # if types == 'Rated':
+    #     rating()
+    #     countvec = CountVectorizer(ngram_range=(1,4), 
+    #                        stop_words='english',  
+    #                        strip_accents='unicode', 
+    #                        max_features=1000)
+    #     X = train_data.Rated.values
+    #     y = train_data.movie_success.values
+    #     # Split data into train and test sets
+    #     X_train, X_test, y_train, y_test = train_test_split(X, y, 
+    #                                                         test_size = 0.3, 
+    #                                                         random_state = 0)
+    #     # Instantiate classifier
+    #     mnb = MultinomialNB()
 
-        # Create bag of words
-        X_train = countvec.fit_transform(X_train)
-        X_test = countvec.transform(X_test)
+    #     # Create bag of words
+    #     X_train = countvec.fit_transform(X_train)
+    #     X_test = countvec.transform(X_test)
 
-        # Train the classifier/Fit the model
-        mnb.fit(X_train, y_train)
+    #     # Train the classifier/Fit the model
+    #     mnb.fit(X_train, y_train)
 
-        scores = mnb.score(X_test, y_test)
+    #     scores = mnb.score(X_test, y_test)
 
-        st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
-        # Make predictions
-        y_pred = mnb.predict(X_test)
+    #     st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+    #     # Make predictions
+    #     y_pred = mnb.predict(X_test)
 
-        # y_pred = naive_bayes_classifier.predict(X_test_tf)
-        cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
-        st.write('Confusion matrix given all titles in the sample:', cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    cm.flatten()/np.sum(cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
-    if types == 'Genre':
-        genre()
-        countvec = CountVectorizer(ngram_range=(1,4), 
-                           stop_words='english',  
-                           strip_accents='unicode', 
-                           max_features=1000)
-        X = train_data.Genre.values
-        y = train_data.movie_success.values
-        # Split data into train and test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                            test_size = 0.3, 
-                                                            random_state = 0)
-        # Instantiate classifier
-        mnb = MultinomialNB()
+    #     # y_pred = naive_bayes_classifier.predict(X_test_tf)
+    #     cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
+    #     st.write('Confusion matrix given all titles in the sample:', cm)
+    #     st.write("Heatmap of the Confusion Matrix:")
+    #     fig, ax = plt.subplots()
+    #     group_names = ['True Neg','False Pos','False Neg','True Pos']
+    #     group_counts = ["{0:0.0f}".format(value) for value in
+    #             cm.flatten()]
+    #     group_percentages = ["{0:.2%}".format(value) for value in
+    #                 cm.flatten()/np.sum(cm)]
+    #     labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
+    #             zip(group_names,group_counts,group_percentages)]
+    #     labels = np.asarray(labels).reshape(2,2)
+    #     sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
+    #     st.write(fig)
+    # if types == 'Genre':
+    #     genre()
+    #     countvec = CountVectorizer(ngram_range=(1,4), 
+    #                        stop_words='english',  
+    #                        strip_accents='unicode', 
+    #                        max_features=1000)
+    #     X = train_data.Genre.values
+    #     y = train_data.movie_success.values
+    #     # Split data into train and test sets
+    #     X_train, X_test, y_train, y_test = train_test_split(X, y, 
+    #                                                         test_size = 0.3, 
+    #                                                         random_state = 0)
+    #     # Instantiate classifier
+    #     mnb = MultinomialNB()
 
-        # Create bag of words
-        X_train = countvec.fit_transform(X_train)
-        X_test = countvec.transform(X_test)
+    #     # Create bag of words
+    #     X_train = countvec.fit_transform(X_train)
+    #     X_test = countvec.transform(X_test)
 
-        # Train the classifier/Fit the model
-        mnb.fit(X_train, y_train)
+    #     # Train the classifier/Fit the model
+    #     mnb.fit(X_train, y_train)
 
-        scores = mnb.score(X_test, y_test)
+    #     scores = mnb.score(X_test, y_test)
 
-        st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
-        # Make predictions
-        y_pred = mnb.predict(X_test)
+    #     st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+    #     # Make predictions
+    #     y_pred = mnb.predict(X_test)
 
-        # y_pred = naive_bayes_classifier.predict(X_test_tf)
-        cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
-        st.write('Confusion matrix given all titles in the sample:', cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    cm.flatten()/np.sum(cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
-    if types == 'Plot':
-        description()
-        countvec = CountVectorizer(ngram_range=(1,4), 
-                           stop_words='english',  
-                           strip_accents='unicode', 
-                           max_features=1000)
-        X = train_data.Plot.values
-        y = train_data.movie_success.values
-        # Split data into train and test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                            test_size = 0.3, 
-                                                            random_state = 0)
-        # Instantiate classifier
-        mnb = MultinomialNB()
+    #     # y_pred = naive_bayes_classifier.predict(X_test_tf)
+    #     cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
+    #     st.write('Confusion matrix given all titles in the sample:', cm)
+    #     st.write("Heatmap of the Confusion Matrix:")
+    #     fig, ax = plt.subplots()
+    #     group_names = ['True Neg','False Pos','False Neg','True Pos']
+    #     group_counts = ["{0:0.0f}".format(value) for value in
+    #             cm.flatten()]
+    #     group_percentages = ["{0:.2%}".format(value) for value in
+    #                 cm.flatten()/np.sum(cm)]
+    #     labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
+    #             zip(group_names,group_counts,group_percentages)]
+    #     labels = np.asarray(labels).reshape(2,2)
+    #     sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
+    #     st.write(fig)
+    # if types == 'Plot':
+    #     description()
+    #     countvec = CountVectorizer(ngram_range=(1,4), 
+    #                        stop_words='english',  
+    #                        strip_accents='unicode', 
+    #                        max_features=1000)
+    #     X = train_data.Plot.values
+    #     y = train_data.movie_success.values
+    #     # Split data into train and test sets
+    #     X_train, X_test, y_train, y_test = train_test_split(X, y, 
+    #                                                         test_size = 0.3, 
+    #                                                         random_state = 0)
+    #     # Instantiate classifier
+    #     mnb = MultinomialNB()
 
-        # Create bag of words
-        X_train = countvec.fit_transform(X_train)
-        X_test = countvec.transform(X_test)
+    #     # Create bag of words
+    #     X_train = countvec.fit_transform(X_train)
+    #     X_test = countvec.transform(X_test)
 
-        # Train the classifier/Fit the model
-        mnb.fit(X_train, y_train)
+    #     # Train the classifier/Fit the model
+    #     mnb.fit(X_train, y_train)
 
-        scores = mnb.score(X_test, y_test)
+    #     scores = mnb.score(X_test, y_test)
 
-        st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
-        # Make predictions
-        y_pred = mnb.predict(X_test)
+    #     st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+    #     # Make predictions
+    #     y_pred = mnb.predict(X_test)
 
-        # y_pred = naive_bayes_classifier.predict(X_test_tf)
-        cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
-        st.write('Confusion matrix given all titles in the sample:', cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    cm.flatten()/np.sum(cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
+    #     # y_pred = naive_bayes_classifier.predict(X_test_tf)
+    #     cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
+    #     st.write('Confusion matrix given all titles in the sample:', cm)
+    #     st.write("Heatmap of the Confusion Matrix:")
+    #     fig, ax = plt.subplots()
+    #     group_names = ['True Neg','False Pos','False Neg','True Pos']
+    #     group_counts = ["{0:0.0f}".format(value) for value in
+    #             cm.flatten()]
+    #     group_percentages = ["{0:.2%}".format(value) for value in
+    #                 cm.flatten()/np.sum(cm)]
+    #     labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
+    #             zip(group_names,group_counts,group_percentages)]
+    #     labels = np.asarray(labels).reshape(2,2)
+    #     sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
+    #     st.write(fig)
 
 
 def classification():
