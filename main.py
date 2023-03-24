@@ -158,19 +158,20 @@ def search_movies():
             json.loads(file.read())
         with open('response.json', encoding='utf-8') as inputfile:
             df = pd.read_json(inputfile) # pylint: disable=C0103
-        open('movie_search.csv', 'a', encoding='utf-8').write(df.to_csv(header = False, index=False)) # pylint: disable=R1732, C0301
-        inFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_search.csv', 'r')
-        outFile = open('C:\\Users\\solis\\OneDrive\\Documents\\comp\\Movies123forMe\\movie_clean.csv', 'a')
-        # remove any \n characters in file
-        dups = []
-        for line in inFile:
-            if line in dups:
-                continue
-            else:
-                outFile.write(line)
-                dups.append(line)
-        outFile.close()
-        inFile.close()
+        with open('movie_search.csv', 'a', encoding='utf-8') as f:
+            f.write(df.to_csv(header = False, index=False))
+        with open('movie_clean.csv', 'a', encoding='utf-8') as f1:
+            f1.write(df.to_csv(header=False, index=False))
+        # # remove any \n characters in file
+        # dups = []
+        # for line in inFile:
+        #     if line in dups:
+        #         continue
+        #     else:
+        #         outFile.write(line)
+        #         dups.append(line)
+        # outFile.close()
+        # inFile.close()
         subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
 
     if len(title) == 0:
