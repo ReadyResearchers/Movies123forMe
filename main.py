@@ -12,6 +12,7 @@ import joblib # pylint: disable=E0401, C0413, C0411
 import requests # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
 import subprocess # pylint: disable=C0411
+import csv
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
@@ -139,30 +140,6 @@ def submit_form(): # pylint: disable=R0914, R0912, R0915
 def search_movies():
     """Function to search for the movies using the OMDB API."""
     title = st.text_input("Type the title of the desired Movie/TV Show:")
-    # def running():
-    #     creating a baseline list of movies in csv file for analysis
-    #     for _, row in data.iterrows():
-    #         i = str(row[0])
-    #         web = f'http://www.omdbapi.com/?t={i}&apikey=a98f1e4b&type=movie'
-    #         res = requests.get(web)
-    #         res = res.json()
-    #         if res['Response'] == 'False':
-    #             continue
-    #         try:
-    #             with open('response.json', 'w') as json_file:
-    #                 json.dump(res, json_file)
-    #             with open('response.json', 'r') as file:
-    #                 json.loads(file.read())
-    #             with open('response.json', encoding='utf-8') as inputfile:
-    #                 df = pd.read_json(inputfile)
-    #             open('movie_search.csv', 'a').write(df.to_csv(header = False, index=False))
-    #         except:
-    #                 st.write("Try again tomorrow!")
-    #         else:
-    #             continue
-    # running()
-    ## importing necessary files
-
     if title:
         url = f'http://www.omdbapi.com/?t={title}&apikey=a98f1e4b'
         req = requests.get(url)
@@ -182,10 +159,13 @@ def search_movies():
             json.loads(file.read())
         with open('response.json', encoding='utf-8') as inputfile:
             df = pd.read_json(inputfile) # pylint: disable=C0103
-        open('movie_search.csv', 'a', encoding='utf-8').write(df.to_csv(header = False, index=False)) # pylint: disable=R1732, C0301
-        duplicates = pd.read_csv('movie_search.csv', on_bad_lines='skip')
-        open('movie_clean.csv', 'a', encoding='utf-8').write(duplicates.to_csv(header = False, index=False)) # pylint: disable=C0301, R1732, W0012
-        subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
+        with open('movie_search.csv', 'a', encoding='utf-8') as inFile:
+            inFile.write(df.to_csv(header = False, index=False))
+        with open('movie_clean.csv', 'a', newline='') as outFile:
+            tail = df.tail(1)
+            outFile.write(tail.to_csv(header=False, index=False, mode='a' ))
+            outFile.close()
+        # subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'

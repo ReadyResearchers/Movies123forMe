@@ -10,6 +10,18 @@ import nltk
 from nltk.stem.porter import PorterStemmer
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+# remove any \n characters in file
+# inFile = open('movie_search.csv', 'r')
+# dups = []
+# for line in inFile:
+#     if line in dups:
+#         continue
+#     else:
+#         outFile.write(line)
+#         dups.append(line)
+# outFile.close()
+# inFile.close()
 ## importing necessary files
 chunks = pd.read_csv('movie_clean.csv', chunksize=100)
 data = pd.concat(chunks)

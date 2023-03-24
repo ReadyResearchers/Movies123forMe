@@ -37,9 +37,16 @@ st.sidebar.markdown("# Subpage 4 🎈")
 st.write("---")
 
 train_data = pd.read_csv('movie_clean.csv')
-
+st.write(train_data.head())
 # train_data['earnings'] = train_data["BoxOffice"].replace(np.nan,"0")
-# train_data['earnings'] = train_data['earnings'].str.replace(r'[^\w\s]+', '')
+# train_data['earnings'] = train_data['earnings'].str.replace(r'[^\w\s]+', "", regex=True)
+# st.write(train_data['earnings'])
+# train_data = train_data[train_data['earnings'].str.contains("TRUE") == False]
+# st.write(train_data['earnings'].astype(float))
+
+# train_data['movie_success'] = np.where(
+#     train_data['earnings'] > 55507312, 1, 0)
+
 
 train_data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Director',
 'Writer','Actors','Plot','Language','Country','Awards','Poster','Ratings',
