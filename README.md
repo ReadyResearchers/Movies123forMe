@@ -1,4 +1,4 @@
-#
+![License](https://img.shields.io/github/license/ReadyResearchers/Movies123forMe) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ReadyResearchers/Movies123forMe/pylint.yml) [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://movies123forme.streamlit.app/)
 
 <p align="center">
   <img src="img/header_readme.png" />
