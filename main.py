@@ -5,13 +5,14 @@ import pandas as pd # pylint: disable=E0401, C0413, C0411
 # from pages.function_folder import merge
 from pages.function_folder import text_classification # pylint: disable=E0401, C0413, C0411
 from pages import G_machine_learning # pylint: disable=E0401, C0413, C0411, C0412
-# from pages.function_folder import F_machine_texting
+from pages.function_folder import F_machine_texting
 
 import numpy as np # pylint: disable=E0401, C0413, C0411
 import joblib # pylint: disable=E0401, C0413, C0411
 import requests # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
 import subprocess # pylint: disable=C0411
+import csv
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
@@ -158,21 +159,13 @@ def search_movies():
             json.loads(file.read())
         with open('response.json', encoding='utf-8') as inputfile:
             df = pd.read_json(inputfile) # pylint: disable=C0103
-        with open('movie_search.csv', 'a', encoding='utf-8') as f:
-            f.write(df.to_csv(header = False, index=False))
-        with open('movie_clean.csv', 'a', encoding='utf-8') as f1:
-            f1.write(df.to_csv(header=False, index=False))
-        # # remove any \n characters in file
-        # dups = []
-        # for line in inFile:
-        #     if line in dups:
-        #         continue
-        #     else:
-        #         outFile.write(line)
-        #         dups.append(line)
-        # outFile.close()
-        # inFile.close()
-        subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
+        with open('movie_search.csv', 'a', encoding='utf-8') as inFile:
+            inFile.write(df.to_csv(header = False, index=False))
+        with open('movie_clean.csv', 'a', newline='') as outFile:
+            tail = df.tail(1)
+            outFile.write(tail.to_csv(header=False, index=False, mode='a' ))
+            outFile.close()
+        # subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -200,7 +193,7 @@ def interface():
         submit_form()
     elif success == 'What Movie Should You Watch?':
         text_classification.category()
-    # elif success == 'Predict Movie Success with Text':
-    #     F_machine_texting.predict_text()
+    elif success == 'Predict Movie Success with Text':
+        F_machine_texting.predict_text()
 
 interface()
