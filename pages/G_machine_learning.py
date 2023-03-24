@@ -26,7 +26,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 opus = pd.read_csv('movie_clean.csv')
     
-opus_cols = ['Year', 'Rated', 'Released', 'Runtime', 'Metascore', 'imdbRating',
+opus_cols = ['Rated', 'Released', 'Runtime', 'Metascore', 'imdbRating',
 'imdbVotes', 'earnings']
     
 ox, oy = opus[opus_cols], opus['movie_success']
