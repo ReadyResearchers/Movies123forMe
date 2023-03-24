@@ -53,7 +53,6 @@ train_data[['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 
 train_data = train_data.drop_duplicates().reset_index()
 # movies['tags'] = movies['Genre'] + " " +  movies['Plot'] + " " + movies['Actors'] + " " + movies['Director'] + " " + movies['Writer'] + " " + movies['Rated']
 
-
 def predict_text():
     def actor():
         t_data = train_data[['Actors', 'movie_success']].dropna().reset_index()
