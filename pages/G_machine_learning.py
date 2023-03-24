@@ -26,9 +26,10 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 opus = pd.read_csv('movie_clean.csv')
     
-opus_cols = ['production_budget', 'rating', 'sequel', 'genre_Action', 'genre_Comedy', 'genre_Drama', 
-'genre_Adventure', 'genre_Black Comedy', 'genre_Concert/Performance', 'genre_Documentary', 'genre_Horror',
-'genre_Musical', 'genre_Romantic Comedy', 'genre_Thriller/Suspense', 'genre_Western']
+opus_cols = ['Title', 'Year', 'Rated', 'Released', 'Runtime', 'Genre', 'Director',
+'Writer', 'Actors', 'Plot', 'Language', 'Country', 'Awards', 'Poster', 'Ratings', 'Metascore', 'imdbRating',
+'imdbVotes', 'imdbID', 'Type', 'DVD', 'BoxOffice', 'Production', 'Website', 
+'Response', 'earnings']
     
 ox, oy = opus[opus_cols], opus['movie_success']
 
