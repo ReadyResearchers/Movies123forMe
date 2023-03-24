@@ -3,7 +3,8 @@ statsmodels==0.13.5 ; python_version >= "3.9" and python_full_version != "3.9.7"
     --hash=sha256:072950d6f7820a6b0bd6a27b2d792a6d6f952a1d2f62f0dcf8dd808799475855
 inotify==0.2.10 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:974a623a338482b62e16d4eb705fb863ed33ec178680fc3e96ccdf0df6c02a07
-nose==1.3.7 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0"
+nose==1.3.7 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
+    --hash=sha256:9ff7c6cc443f8c51994b34a667bbcf45afd6d945be7477b52e97516fd17c53ac
 altair==4.2.2 ; python_version >= "3.9" and python_full_version != "3.9.7" and python_version < "4.0" \
     --hash=sha256:39399a267c49b30d102c10411e67ab26374156a84b1aeb9fcd15140429ba49c5 \
     --hash=sha256:8b45ebeaf8557f2d760c5c77b79f02ae12aee7c46c27c06014febab6f849bc87
