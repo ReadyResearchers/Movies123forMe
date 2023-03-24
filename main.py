@@ -12,7 +12,6 @@ import joblib # pylint: disable=E0401, C0413, C0411
 import requests # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
 import subprocess # pylint: disable=C0411
-import csv
 
 st.markdown("# Welcome to the Movie Analysis Experience 🎈")
 st.sidebar.markdown("# Main Page 🎈")
@@ -159,15 +158,15 @@ def search_movies():
             json.loads(file.read())
         with open('response.json', encoding='utf-8') as inputfile:
             df = pd.read_json(inputfile) # pylint: disable=C0103
-        with open('movie_search.csv', 'a', encoding='utf-8') as inFile:
+        with open('movie_search.csv', 'a', encoding='utf-8') as inFile: # pylint: disable=C0103
             inFile.write(df.to_csv(header = False, index=False))
-        with open('movie_clean.csv', 'a', newline='') as outFile:
+        with open('movie_clean.csv', 'a', newline='', encoding='utf-8') as outFile: # pylint: disable=C0103
             tail = df.tail(1)
             outFile.write(tail.to_csv(header=False, index=False, mode='a' ))
-            df = pd.read_csv('movie_clean.csv')
+            df = pd.read_csv('movie_clean.csv') # pylint: disable=C0103
             df['earnings'] = df["BoxOffice"].replace(np.nan,"0")
             df['earnings'] = df['earnings'].str.replace(r'[^\w\s]+', "", regex=True)
-            df = df[df['earnings'].str.contains("TRUE") == False]
+            df = df[df['earnings'].str.contains("TRUE") == False] # pylint: disable=C0103, C0121
             df['movie_success'] = np.where(
                 df['earnings'].astype(int) > 55507312, 1, 0)
             outFile.close()
