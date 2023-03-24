@@ -207,6 +207,7 @@ def interface():
     success = st.sidebar.selectbox("Select a Movie Experience :)", choices)
     if success == 'Movie Search':
         search_movies()
+        
     elif success == 'Predict Success of a Movie!':
         submit_form()
     elif success == 'What Movie Should You Watch?':
