@@ -202,7 +202,8 @@ def search_movies():
 
 def interface():
     """Main interface for the app."""
-    choices = ['Movie Search', 'Predict Success of a Movie!', 'What Movie Should You Watch?', 'Predict Movie Success with Text']
+    choices = ['Movie Search', 'Predict Success of a Movie!', 
+    'What Movie Should You Watch?', 'Predict Movie Success with Text']
     success = st.sidebar.selectbox("Select a Movie Experience :)", choices)
     if success == 'Movie Search':
         search_movies()
