@@ -5,6 +5,7 @@ import pandas as pd # pylint: disable=E0401, C0413, C0411
 # from pages.function_folder import merge
 from pages.function_folder import text_classification # pylint: disable=E0401, C0413, C0411
 from pages import G_machine_learning # pylint: disable=E0401, C0413, C0411, C0412
+from pages.function_folder import F_machine_texting
 
 import numpy as np # pylint: disable=E0401, C0413, C0411
 import joblib # pylint: disable=E0401, C0413, C0411
@@ -201,14 +202,15 @@ def search_movies():
 
 def interface():
     """Main interface for the app."""
-    choices = ['Movie Search', 'Predict Success of a Movie!', 'What Movie Should You Watch?']
+    choices = ['Movie Search', 'Predict Success of a Movie!', 'What Movie Should You Watch?', 'Predict Movie Success with Text']
     success = st.sidebar.selectbox("Select a Movie Experience :)", choices)
     if success == 'Movie Search':
         search_movies()
-    if success == 'Predict Success of a Movie!':
+    elif success == 'Predict Success of a Movie!':
         submit_form()
     elif success == 'What Movie Should You Watch?':
         text_classification.category()
-
+    elif success == 'Predict Movie Success with Text':
+        F_machine_texting.predict_text()
 
 interface()
