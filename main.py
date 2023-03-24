@@ -171,7 +171,7 @@ def search_movies():
             df['movie_success'] = np.where(
                 df['earnings'].astype(int) > 55507312, 1, 0)
             outFile.close()
-        subprocess.run("commit.sh", shell=True, check=True, capture_output=True) # pylint: disable=W1510
+        subprocess.run("commit.sh", shell=True, check=True) # pylint: disable=W1510
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
