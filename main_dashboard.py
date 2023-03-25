@@ -29,15 +29,16 @@ def main():
     This Streamlit application was built as a senior comprehrensive thesis project, 
     in fulfillment of all requirements brought forth by the Allegheny College 
     Department of Computer Science. To read the thesis that this website was built on, 
-    then feel free to read/download the below:
+    feel free to read/download using the download button below:
     """)
 
-    # displaying the thesis
-    pdf_file = "pages/SeniorThesis.pdf"
-    with open(pdf_file,"rb") as f:
-      base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-    pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
-    st.markdown(pdf_display, unsafe_allow_html=True)
+    with open("pages/SeniorThesis.pdf", "rb") as pdf_file:
+        PDFbyte = pdf_file.read()
+
+    st.download_button(label="Senior Thesis v2.0.0",
+        data=PDFbyte,
+        file_name="senior_thesis.pdf",
+        mime='application/octet-stream')
     # displaying the descriptions of every page
     intro_markdown = read_markdown_file()
     st.markdown(intro_markdown, unsafe_allow_html=True)
