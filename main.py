@@ -4,7 +4,7 @@ import streamlit as st # pylint: disable=E0401, C0413, C0411
 import pandas as pd # pylint: disable=E0401, C0413, C0411
 # from pages.function_folder import merge
 from pages.function_folder import text_classification # pylint: disable=E0401, C0413, C0411
-from pages import G_machine_learning # pylint: disable=E0401, C0413, C0411, C0412
+from pages import machine_learning # pylint: disable=E0401, C0413, C0411, C0412
 from pages.function_folder import F_machine_texting
 
 import numpy as np # pylint: disable=E0401, C0413, C0411
@@ -12,10 +12,12 @@ import joblib # pylint: disable=E0401, C0413, C0411
 import requests # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
 import subprocess # pylint: disable=C0411
-import sys
+import sys # pylint: disable=C0411
 import main_dashboard
 
-st.markdown("<style>h1 {text-align: center;}</style><h1>Welcome to the Movie Analysis Experience 🎈</h1>", unsafe_allow_html=True)
+st.markdown("""
+<style>h1 {text-align: center;}</style><h1>Welcome to the Movie Analysis Experience 🎈</h1>
+""", unsafe_allow_html=True)
 st.sidebar.markdown("# Main Page 🎈")
 
 data = pd.read_csv("merged_data.csv")
