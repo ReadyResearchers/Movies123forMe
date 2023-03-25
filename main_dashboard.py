@@ -36,7 +36,10 @@ def main():
     pdf_file = "pages/SeniorThesis.pdf"
     with open(pdf_file,"rb") as f:
       base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+    pdf_display = f"""
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src '*.streamlit.app' blob:; style-src 'self'; frame-src '*.streamlit.app'">
+    <iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">
+    </iframe>"""
     st.markdown(pdf_display, unsafe_allow_html=True)
     
     # displaying the descriptions of every page
