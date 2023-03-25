@@ -32,19 +32,26 @@ def regression():
         #if i == 1:
             #print(opus['production_budget'].mean())
     col = opus.columns
-    columns = {1: opus.columns[0], 2: opus.columns[1], 3: opus.columns[2],
+    columns= {1: opus.columns[0], 2: opus.columns[1], 3: opus.columns[2],
         4: opus.columns[3], 5: opus.columns[4], 6: opus.columns[5],
         7: opus.columns[6], 8: opus.columns[7], 9: opus.columns[8],
         10: opus.columns[9], 11: opus.columns[10], 12: opus.columns[11],
         13: opus.columns[12], 14: opus.columns[13], 15: opus.columns[14],
         16: opus.columns[15], 17: opus.columns[16], 18: opus.columns[17],
         19: opus.columns[18]}
+    columns_num = {1: opus.columns[1], 2: opus.columns[2], 3: opus.columns[3], 
+        4: opus.columns[4], 5: opus.columns[5], 6: opus.columns[6], 7: opus.columns[10],
+        8: opus.columns[11],
+        9: opus.columns[12], 10: opus.columns[13], 11: opus.columns[14],
+        12: opus.columns[15], 13: opus.columns[16], 14: opus.columns[17],
+        15: opus.columns[18]}
     category = st.sidebar.selectbox("Select a category to analyze", list(columns.keys()), format_func=lambda x: columns[x])
-    x_val = st.sidebar.selectbox("X-value: ", col[:])
-    y_val = st.sidebar.selectbox("Y-val: ", col[:8])
+    x_val = st.sidebar.selectbox("X-value: ", list(columns_num.keys()), format_func=lambda x: columns_num[x])
+    y_val = st.sidebar.selectbox("Y-val: ", list(columns_num.keys()), format_func=lambda x: columns_num[x])
     if x_val == y_val:
         x_val = opus.columns[1]
-        y_val = opus.columns[3]
+        y_val = opus.columns[4]
+        category = opus.columns[6]
 
     # scatterplot chart
     fig = px.scatter(opus, x = x_val, y = y_val, color = columns[category], 
