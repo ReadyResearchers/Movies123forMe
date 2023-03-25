@@ -35,6 +35,7 @@ def regression():
     use_demo = st.sidebar.checkbox('Use Demo of Regression:')
     if use_demo:
         # scatterplot chart
+        st.write(opus['genre_BlackComedy'])
         fig = px.scatter(opus, x = opus['genre_BlackComedy'], y = opus['movie_success'], color = opus['rating'], 
                         trendline = 'ols', title = f"Scatterplot of {y_val} on {x_val}")
         fig.data[1].line.color = 'red'
