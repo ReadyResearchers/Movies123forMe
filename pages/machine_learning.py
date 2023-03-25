@@ -17,9 +17,27 @@ import seaborn as sns
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import confusion_matrix
 import joblib
+import base64
 
-st.markdown("# Welcome to the Movie Analysis Experience 🎈")
-st.sidebar.markdown("# Subpage 2 🎈")
+st.markdown("<style>h1 {text-align: center;}</style><h1>Welcome to the Movie Analysis Experience 🎈</h1>", unsafe_allow_html=True)
+# displaying the gif header for the landing page
+path='img/movies123forme_header.mp4'
+with open(path, "rb") as f:
+    video_content = f.read()
+video_str = f"data:video/mp4;base64,{base64.b64encode(video_content).decode()}"
+st.markdown(f"""
+<center>
+    <video style="display: auto; margin: auto; width: 600px;" controls loop autoplay>
+        <source src="{video_str}" type="video/mp4">
+    </video>
+</center>
+""", unsafe_allow_html=True)
+st.write("---")
+
+st.markdown("<h3>Machine Learning Experience 🎈</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("# Page 4 🎈")
+
+
 
 ## setting up environment
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -79,7 +97,7 @@ def logreg():
 
 @st.cache_resource
 def load_models():
-    st.write("Loading models...")
+    st.sidebar.write("Loading models...")
     # saving the different results of the model to the disk
     lr_filename = 'lr_model.sav'
     joblib.dump(lr()[0], lr_filename)
@@ -98,22 +116,22 @@ def load_models():
     # logistic regression
     logreg_filename = 'logreg_model.sav'
     joblib.dump(logreg()[0], logreg_filename)
-    st.write("Done! Saved to disk.")
+    st.sidebar.write("Done! Saved to disk.")
 
 
 def main_dashboard():
-    st.subheader("Running a machine learning model on movie success:")
+    st.sidebar.markdown(" #### Running a machine learning model on movie success:")
     
     algorithms = ['Linear Regression', 'Random Forest Regressor', 'Extra Tree Regressor', 
     'Decision Tree', 'Support Vector Machine', 'Logistic Regression', 'Load Models']
-    choice = st.selectbox("Choose an algorithm to train the model on: ", algorithms, key=algorithms)
+    choice = st.sidebar.selectbox("Choose an algorithm to train the model on: ", algorithms, key=algorithms)
     
     if choice == 'Linear Regression':
         lr = LinearRegression()
         # model building
         lr_fit = lr.fit(ox_train, oy_train)
         scores_lr = lr.score(ox_test, oy_test)
-        st.write("Accuracy: ", scores_lr)
+        st.sidebar.write("Accuracy: ", scores_lr)
         otrain_pred = lr.predict(ox_train)
         otest_pred = lr.predict(ox_test)
 
@@ -131,7 +149,7 @@ def main_dashboard():
 
         rf_fit = rf.fit(ox_train, oy_train)
         scores_rf = rf.score(ox_test, oy_test)
-        st.write("Accuracy: ", scores_rf)
+        st.sidebar.write("Accuracy: ", scores_rf)
         otrain_pred = rf.predict(ox_train)
         otest_pred = rf.predict(ox_test)
 
@@ -149,7 +167,7 @@ def main_dashboard():
 
         et_fit = et.fit(ox_train, oy_train)
         scores_et = et.score(ox_test, oy_test)
-        st.write("Accuracy: ", scores_et)
+        st.sidebar.write("Accuracy: ", scores_et)
         otrain_pred = et.predict(ox_train)
         otest_pred = et.predict(ox_test)
 
@@ -169,13 +187,13 @@ def main_dashboard():
 
         scores_dtc = dtc.score(ox_test, oy_test)
 
-        st.write('Accuracy for Opus: ', scores_dtc)
+        st.sidebar.write('Accuracy: ', scores_dtc)
 
         o_pred = dtc.predict(ox_test)
 
         o_cm = confusion_matrix(oy_test,o_pred)
 
-        st.write('Confusion matrix for Opus: ', o_cm)
+        st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
         fig, ax = plt.subplots()
         group_names = ['True Neg','False Pos','False Neg','True Pos']
@@ -195,13 +213,13 @@ def main_dashboard():
 
         scores_svm = svm.score(ox_test, oy_test)
 
-        st.write('Accuracy for Opus: ', scores_svm)
+        st.sidebar.write('Accuracy: ', scores_svm)
 
         o_pred = svm.predict(ox_test)
 
         o_cm = confusion_matrix(oy_test,o_pred)
 
-        st.write('Confusion matrix for Opus: ', o_cm)
+        st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
         fig, ax = plt.subplots()
         group_names = ['True Neg','False Pos','False Neg','True Pos']
@@ -221,13 +239,13 @@ def main_dashboard():
 
         scores_logreg = logreg.score(ox_test, oy_test)
 
-        st.write('Accuracy for Opus: ', scores_logreg)
+        st.sidebar.write('Accuracy: ', scores_logreg)
 
         o_pred = logreg.predict(ox_test)
 
         o_cm = confusion_matrix(oy_test,o_pred)
 
-        st.write('Confusion matrix for Opus: ', o_cm)
+        st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
         fig, ax = plt.subplots()
         group_names = ['True Neg','False Pos','False Neg','True Pos']

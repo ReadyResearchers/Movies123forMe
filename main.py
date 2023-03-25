@@ -13,8 +13,9 @@ import requests # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
 import subprocess # pylint: disable=C0411
 import sys
+import main_dashboard
 
-st.markdown("# Welcome to the Movie Analysis Experience 🎈")
+st.markdown("<style>h1 {text-align: center;}</style><h1>Welcome to the Movie Analysis Experience 🎈</h1>", unsafe_allow_html=True)
 st.sidebar.markdown("# Main Page 🎈")
 
 data = pd.read_csv("merged_data.csv")
@@ -22,12 +23,12 @@ data = pd.read_csv("merged_data.csv")
 @st.cache_data
 def predict(data): # pylint: disable=W0621
     """Initial set up function to import the machine learning models."""
-    logreg_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/logreg_model.sav"
-    lr_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/lr_model.sav"
-    rf_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/rf_model.sav"
-    et_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/et_model.sav"
-    dtc_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/dtc_model.sav"
-    svm_filename = "C:/Users/solis/OneDrive/Documents/comp/Movies123forMe/svm_model.sav"
+    logreg_filename = "logreg_model.sav"
+    lr_filename = "lr_model.sav"
+    rf_filename = "rf_model.sav"
+    et_filename = "et_model.sav"
+    dtc_filename = "dtc_model.sav"
+    svm_filename = "svm_model.sav"
     logreg = joblib.load(logreg_filename)
     lr = joblib.load(lr_filename) # pylint: disable=C0103
     rf = joblib.load(rf_filename) # pylint: disable=C0103
@@ -94,48 +95,51 @@ def submit_form(): # pylint: disable=R0914, R0912, R0915
         score_svm = G_machine_learning.svm()[1]
 
         st.subheader("Movie Success Results:")
-        for i in result_logreg:
-            if i[0].round() == 0:
-                st.write(f"The Logistic Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_logreg) }% confidence! :(") # pylint: disable=C0301
-            elif i[0].round() == 1:
-                st.write(f"The Logistic Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_logreg) }% confidence! :)") # pylint: disable=C0301
-            else:
-                st.write("Please try again later.")
-        for i in result_lr:
-            if i[0].round() == 0:
-                st.write(f"The Linear Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_lr) }% confidence! :(") # pylint: disable=C0301
-            elif i[0].round() == 1:
-                st.write(f"The Linear Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_lr) }% confidence! :)") # pylint: disable=C0301
-            else:
-                st.write("Please try again later.")
-        for i in result_rf:
-            if i[0].round() == 0:
-                st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_rf) }% confidence! :(") # pylint: disable=C0301
-            elif i[0].round() == 1:
-                st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_rf) }% confidence! :)") # pylint: disable=C0301
-            else:
-                st.write("Please try again later.")
-        for i in result_et:
-            if i[0].round() == 0:
-                st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_et) }% confidence! :(") # pylint: disable=C0301
-            elif i[0].round() == 1:
-                st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_et) }% confidence! :)") # pylint: disable=C0301
-            else:
-                st.write("Please try again later.")
-        for i in result_dtc:
-            if i[0].round() == 0:
-                st.write(f"The Decision Tree Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_dtc) }% confidence! :(") # pylint: disable=C0301
-            elif i[0].round() == 1:
-                st.write(f"The Decision Tree Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_dtc) }% confidence! :)") # pylint: disable=C0301
-            else:
-                st.write("Please try again later.")
-        for i in result_svm:
-            if i[0].round() == 0:
-                st.write(f"The Support Vector Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_svm) }% confidence! :(") # pylint: disable=C0301
-            elif i[0].round() == 1:
-                st.write(f"The Support Vector Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_svm) }% confidence! :)") # pylint: disable=C0301
-            else:
-                st.write("Please try again later.")
+        try:
+            for i in result_logreg:
+                if i[0].round() == 0:
+                    st.write(f"The Logistic Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_logreg) }% confidence! :(") # pylint: disable=C0301
+                elif i[0].round() == 1:
+                    st.write(f"The Logistic Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_logreg) }% confidence! :)") # pylint: disable=C0301
+                else:
+                    st.write("Please try again later.")
+            for i in result_lr:
+                if i[0].round() == 0:
+                    st.write(f"The Linear Regression Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_lr) }% confidence! :(") # pylint: disable=C0301
+                elif i[0].round() == 1:
+                    st.write(f"The Linear Regression Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_lr) }% confidence! :)") # pylint: disable=C0301
+                else:
+                    st.write("Please try again later.")
+            for i in result_rf:
+                if i[0].round() == 0:
+                    st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_rf) }% confidence! :(") # pylint: disable=C0301
+                elif i[0].round() == 1:
+                    st.write(f"The Random Forest Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_rf) }% confidence! :)") # pylint: disable=C0301
+                else:
+                    st.write("Please try again later.")
+            for i in result_et:
+                if i[0].round() == 0:
+                    st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_et) }% confidence! :(") # pylint: disable=C0301
+                elif i[0].round() == 1:
+                    st.write(f"The Extra Tree Regressor Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_et) }% confidence! :)") # pylint: disable=C0301
+                else:
+                    st.write("Please try again later.")
+            for i in result_dtc:
+                if i[0].round() == 0:
+                    st.write(f"The Decision Tree Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_dtc) }% confidence! :(") # pylint: disable=C0301
+                elif i[0].round() == 1:
+                    st.write(f"The Decision Tree Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_dtc) }% confidence! :)") # pylint: disable=C0301
+                else:
+                    st.write("Please try again later.")
+            for i in result_svm:
+                if i[0].round() == 0:
+                    st.write(f"The Support Vector Machine Learning model predicted your movie would NOT BE A SUCCESS with a { (100 * score_svm) }% confidence! :(") # pylint: disable=C0301
+                elif i[0].round() == 1:
+                    st.write(f"The Support Vector Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_svm) }% confidence! :)") # pylint: disable=C0301
+                else:
+                    st.write("Please try again later.")
+        except:
+            st.write("We are tinkering here! Give us a minute.")
 
 def search_movies():
     """Function to search for the movies using the OMDB API."""
@@ -190,9 +194,11 @@ def search_movies():
 
 def interface():
     """Main interface for the app."""
-    choices = ['Movie Search', 'Predict Success of a Movie!',
+    choices = ['Main', 'Movie Search', 'Predict Success of a Movie!',
     'What Movie Should You Watch?', 'Predict Movie Success with Text']
     success = st.sidebar.selectbox("Select a Movie Experience :)", choices)
+    if success == 'Main':
+        main_dashboard.main()
     if success == 'Movie Search':
         search_movies()
     elif success == 'Predict Success of a Movie!':

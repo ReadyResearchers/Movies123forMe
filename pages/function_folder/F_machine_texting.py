@@ -31,11 +31,6 @@ import nltk
 
 from sklearn.feature_selection import chi2
 
-st.markdown("# Welcome to the Movie Analysis Experience 🎈")
-st.sidebar.markdown("# Subpage 4 🎈")
-
-st.write("---")
-
 train_data = pd.read_csv('movie_clean.csv')
 st.write(train_data.head())
 # train_data['earnings'] = train_data["BoxOffice"].replace(np.nan,"0")
@@ -347,7 +342,7 @@ def predict_text():
         # st.write(metrics.classification_report(test_y, y_pred, target_names=['movie_success']))
         # st.write("Confusion matrix:")
         # st.write(metrics.confusion_matrix(test_y, y_pred))
-        test_data = st.text_input("Input a movie title to see if they would be in a successful movie:")
+        test_data = st.sidebar.text_input("Input a movie title to see if they would be in a successful movie:")
 
         review = re.sub('[^a-zA-Z]', ' ', test_data)
         review = review.lower()
@@ -361,12 +356,12 @@ def predict_text():
         #1= good review
         res=naive_bayes_classifier.predict(test_input)[0]
         if len(test_data) == 0:
-            st.write("MOVIE_TITLE is NOT predicted to be a title of a successful movie!")
+            st.sidebar.write("MOVIE_TITLE is NOT predicted to be a title of a successful movie!")
         else:
             if res==1:
-                st.write(f"{test_data} is predicted to be a title of a successful movie!")
+                st.sidebar.write(f"{test_data} is predicted to be a title of a successful movie!")
             elif res==0:
-                st.write(f"{test_data} is NOT predicted to be a title of a successful movie!")
+                st.sidebar.write(f"{test_data} is NOT predicted to be a title of a successful movie!")
 
 
     def director():
@@ -525,7 +520,7 @@ def predict_text():
 
     col = ['Title', 'Director', 'Actors', 'Rated', 'Genre', 'Plot']
     st.subheader("Choose which feature to predict movie success!")
-    types = st.selectbox("", col)
+    types = st.sidebar.selectbox("", col, key=col)
     
     if types == 'Title':
         title()
@@ -551,7 +546,7 @@ def predict_text():
         
         scores = mnb.score(X_test, y_test)
 
-        st.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+        st.sidebar.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
         # Make predictions
         y_pred = mnb.predict(X_test)
 

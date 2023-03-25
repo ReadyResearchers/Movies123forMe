@@ -33,6 +33,8 @@ pathlib = "^1.0.1"
 numpy = "^1.24.2"
 joblib = "^1.2.0"
 gitpython = "^3.1.31"
+statsmodels = "^0.13.5"
+inotify = "^0.2.10"
 
 [tool.poetry.dev-dependencies]
 

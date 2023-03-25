@@ -1,11 +1,27 @@
 import streamlit as st
 from pages import clean_data
+import base64
 
 import plotly.express as px
 
-st.markdown("# Welcome to the Movie Analysis Experience 🎈")
-st.sidebar.markdown("# Subpage 6 🎈")
 
+st.markdown("<style>h1 {text-align: center;}</style><h1>Welcome to the Movie Analysis Experience 🎈</h1>", unsafe_allow_html=True)
+# displaying the gif header for the landing page
+path='img/movies123forme_header.mp4'
+with open(path, "rb") as f:
+    video_content = f.read()
+video_str = f"data:video/mp4;base64,{base64.b64encode(video_content).decode()}"
+st.markdown(f"""
+<center>
+    <video style="display: auto; margin: auto; width: 600px;" controls loop autoplay>
+        <source src="{video_str}" type="video/mp4">
+    </video>
+</center>
+""", unsafe_allow_html=True)
+st.write("---")
+
+st.markdown("<h3>The Data Regression Experience 🎈</h3>", unsafe_allow_html=True)
+st.sidebar.write(" Page 5 🎈")
 
 def regression():
     """Run linear regression on opus data."""
@@ -23,9 +39,9 @@ def regression():
         13: opus.columns[12], 14: opus.columns[13], 15: opus.columns[14],
         16: opus.columns[15], 17: opus.columns[16], 18: opus.columns[17],
         19: opus.columns[18]}
-    category = st.selectbox("Select a category to analyze", list(columns.keys()), format_func=lambda x: columns[x])
-    x_val = st.selectbox("X-value: ", col[:])
-    y_val = st.selectbox("Y-val: ", col[:8])
+    category = st.sidebar.selectbox("Select a category to analyze", list(columns.keys()), format_func=lambda x: columns[x])
+    x_val = st.sidebar.selectbox("X-value: ", col[:])
+    y_val = st.sidebar.selectbox("Y-val: ", col[:8])
     if x_val == y_val:
         x_val = opus.columns[1]
         y_val = opus.columns[3]

@@ -3,18 +3,43 @@
 import pandas as pd
 import streamlit as st
 import sys
+import base64
 from pages.function_folder import A_data_loading
+
+
+st.markdown("<style>h1 {text-align: center;}</style><h1>Welcome to the Movie Analysis Experience 🎈</h1>", unsafe_allow_html=True)
+# displaying the gif header for the landing page
+path='img/movies123forme_header.mp4'
+with open(path, "rb") as f:
+    video_content = f.read()
+video_str = f"data:video/mp4;base64,{base64.b64encode(video_content).decode()}"
+st.markdown(f"""
+<center>
+    <video style="display: auto; margin: auto; width: 600px;" controls loop autoplay>
+        <source src="{video_str}" type="video/mp4">
+    </video>
+</center>
+""", unsafe_allow_html=True)
+st.write("---")
+
+st.markdown("<h3>The Data Cleaning Experience 🎈</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("# Page 2🎈")
+
+# initializing variables to be used
+opus = A_data_loading.load_data_opus(10000)
+netflix = A_data_loading.load_data_netflix(3000)
+disney = A_data_loading.load_data_disney(3000)
+hulu = A_data_loading.load_data_hulu(3000)
+prime = A_data_loading.load_data_prime(3000)
 
 
 @st.cache_data
 def clean_data():
-
     opus = A_data_loading.load_data_opus(10000)
     netflix = A_data_loading.load_data_netflix(3000)
     disney = A_data_loading.load_data_disney(3000)
     hulu = A_data_loading.load_data_hulu(3000)
     prime = A_data_loading.load_data_prime(3000)
-
     # compile the list of columns to be dropped for analysis
 
     opus_drop = ['movie_name', 'creative_type', 'source', 'production_method']
@@ -63,7 +88,7 @@ def clean_data():
     prime = prime.dropna()
     netflix = netflix.dropna()
     disney = disney.dropna()
-    hulu = hulu.dropna()
+    # hulu = hulu.dropna()
 
     # changing dtype of columns
     opus['production_year'] = pd.to_numeric(opus['production_year'])
@@ -132,38 +157,48 @@ def clean_data():
     return opus, netflix, prime, disney, hulu
 
 
+# writing preliminary files
+st.write(opus)
 st.download_button(
-       label="Download Opus Files",
+       label="Download Cleaned Opus Files",
        data=clean_data()[0].to_csv().encode("utf-8"),
        file_name='opus.csv',
        mime='text/csv',
-        )
+)
+st.write("---")
 
+st.write(netflix)
 st.download_button(
-       label="Download Netflix Files",
+       label="Download Cleaned Netflix Files",
        data=clean_data()[1].to_csv().encode("utf-8"),
        file_name='netflix.csv',
        mime='text/csv',
 )
+st.write("---")
 
+st.write(disney)
 st.download_button(
-       label="Download Disney + Files",
+       label="Download Cleaned Disney+ Files",
        data=clean_data()[3].to_csv().encode("utf-8"),
        file_name='disney.csv',
        mime='text/csv',
-    )
+)
+st.write("---")
 
+st.write(hulu)
 st.download_button(
-       label="Download Hulu Files",
+       label="Download Cleaned Hulu Files",
        data=clean_data()[4].to_csv().encode("utf-8"),
        file_name='hulu.csv',
        mime='text/csv',
-    )
+)
+st.write("---")
 
-
+st.write(prime)
 st.download_button(
-       label="Download Prime Files",
+       label="Download Cleaned Amazon Prime Files",
        data=clean_data()[2].to_csv().encode("utf-8"),
        file_name='prime.csv',
        mime='text/csv',
-    )
+)
+st.write("---")

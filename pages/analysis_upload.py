@@ -1,20 +1,36 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import base64
 
 from pages.function_folder import functions
 
-st.markdown("# Welcome to the Movie Analysis Experience 🎈")
-st.sidebar.markdown("# Subpage 8 🎈")
+st.markdown("<style>h1 {text-align: center;}</style><h1>Welcome to the Movie Analysis Experience 🎈</h1>", unsafe_allow_html=True)
+# displaying the gif header for the landing page
+path='img/movies123forme_header.mp4'
+with open(path, "rb") as f:
+    video_content = f.read()
+video_str = f"data:video/mp4;base64,{base64.b64encode(video_content).decode()}"
+st.markdown(f"""
+<center>
+    <video style="display: auto; margin: auto; width: 600px;" controls loop autoplay>
+        <source src="{video_str}" type="video/mp4">
+    </video>
+</center>
+""", unsafe_allow_html=True)
+st.write("---")
+
+st.markdown("<h3>Analysis Upload Experience 🎈</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("# Page 2 🎈")
 
 
 functions.space()
-st.write('<p style="font-size:130%">Import Dataset</p>', unsafe_allow_html=True)
+st.sidebar.markdown('*Import Dataset OR Use Preset Dataset*', unsafe_allow_html=True)
 
-file_format = st.radio('Select file format:', ('csv', 'excel'), key='file_format')
-dataset = st.file_uploader(label = '')
+file_format = st.sidebar.radio('Select file format:', ('csv', 'excel'), key='file_format')
+dataset = st.sidebar.file_uploader(label = '')
 
-use_defo = st.checkbox('Use example Dataset')
+use_defo = st.sidebar.checkbox('Use example Dataset')
 if use_defo:
     dataset = 'pages/movie_data/movie_data/movie_data.csv'
 
