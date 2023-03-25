@@ -1,10 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import joblib
 import re
-import string
-from pages.function_folder import A_data_loading
 import re
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 import nltk

@@ -89,12 +89,12 @@ def submit_form(): # pylint: disable=R0914, R0912, R0915
         result_dtc = result_dtc.reshape(1, -1)
         result_svm = result_svm.reshape(1, -1)
 
-        score_logreg = G_machine_learning.logreg()[1]
-        score_lr = G_machine_learning.lr()[1]
-        score_rf = G_machine_learning.rf()[1]
-        score_et = G_machine_learning.et()[1]
-        score_dtc = G_machine_learning.dtc()[1]
-        score_svm = G_machine_learning.svm()[1]
+        score_logreg = machine_learning.logreg()[1]
+        score_lr = machine_learning.lr()[1]
+        score_rf = machine_learning.rf()[1]
+        score_et = machine_learning.et()[1]
+        score_dtc = machine_learning.dtc()[1]
+        score_svm = machine_learning.svm()[1]
 
         st.subheader("Movie Success Results:")
         try:
@@ -140,7 +140,7 @@ def submit_form(): # pylint: disable=R0914, R0912, R0915
                     st.write(f"The Support Vector Machine Learning model predicted your movie would BE A SUCCESS with a { (100 * score_svm) }% confidence! :)") # pylint: disable=C0301
                 else:
                     st.write("Please try again later.")
-        except:
+        except: # pylint: disable=W0702
             st.write("We are tinkering here! Give us a minute.")
 
 def search_movies():

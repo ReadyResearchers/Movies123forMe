@@ -7,7 +7,6 @@ import nltk
 from nltk.stem.porter import PorterStemmer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from pages.function_folder import A_data_loading
 
 movies = pd.read_csv('movie_clean.csv')
 
@@ -65,4 +64,6 @@ def recommend(movie):
     for i in movies_list:
         print(new_df.iloc[i[0]].Title)
 
-st.write(recommend('Megamind'))
+title = st.sidebar.selectbox("Please enter a movie title to get started: ", movies.Title.values)
+
+recommend(title)
