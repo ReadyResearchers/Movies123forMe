@@ -161,6 +161,8 @@ To use this page, simply do the following:
 - Users can select which columns from the dataset to include in the algorithm and which column to use as the target variable.
 - Once users have selected an algorithm, the page run the algorithm with the chosen values in order to display difference between the predicted values and the actual values for the target variables via plot or confusion matrix.
 
+To get started, simply [navigate to the machine learning page](https://movies123forme/machine_learning)!
+
 ---
 
 ### Regressions Page
@@ -174,5 +176,7 @@ This regression analysis page shows a scatter plot of the selected movie variabl
 In addition to the scatter plot, the analysis page also displays summary statistics and the regression equation, allowing users to better understand the relationship between the movie variables.
 
 By selecting the chosen variables and analyzing the scatter plot, users can gain insights into the relationship between the variables and better understand how different aspects of a movie are related.
+
+To get started, simply [navigate to the regressions page](https://movies123forme/regressions)!
 
 ---
