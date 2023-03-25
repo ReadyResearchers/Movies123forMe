@@ -37,8 +37,8 @@ if dataset == 'Opus':
         13: opus.columns[12], 14: opus.columns[13], 15: opus.columns[14],
         16: opus.columns[15], 17: opus.columns[16], 18: opus.columns[17],
         19: opus.columns[18], 20: opus.columns[19]}
-    column = st.sidebar.multiselect("Please specify a column to find the mean: ", list(columns.keys()), format_func=lambda x: columns[x])
-    type = st.sidebar.multiselect("Please specify a column to group by: ", list(columns.keys()), format_func=lambda x: columns[x])
+    column = st.sidebar.selectbox("Please specify a column to find the mean: ", list(columns.keys()), format_func=lambda x: columns[x])
+    type = st.sidebar.selectbox("Please specify a column to group by: ", list(columns.keys()), format_func=lambda x: columns[x])
     # c = columns[column]
     if type == column:
         type = 5
