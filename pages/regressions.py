@@ -35,8 +35,7 @@ def regression():
     use_demo = st.sidebar.checkbox('Use Demo of Regression:')
     if use_demo:
         # scatterplot chart
-        st.write(opus['genre_BlackComedy'])
-        fig = px.scatter(opus, x = opus['genre_BlackComedy'], y = opus['movie_success'], color = opus['rating'], 
+        fig = px.scatter(opus, x = 'genre_BlackComedy', y = 'movie_success', color = 'rating', 
                         trendline = 'ols', title = f"Scatterplot of {y_val} on {x_val}")
         fig.data[1].line.color = 'red'
         fig.update_xaxes(rangeslider_visible = True)
@@ -45,18 +44,18 @@ def regression():
         trendline = res['px_fit_results'].iloc[0]
         st.write(trendline.summary())
         # pie chart
-        fig1 = px.pie(opus, values = opus['genre_BlackComedy'], names = opus['movie_success'], 
+        fig1 = px.pie(opus, values = 'genre_BlackComedy', names = 'movie_success', 
                     title = f'Percentage of movie "{y_val}" in "{x_val}"')
         fig1.update_traces(textinfo="percent+value")
         st.plotly_chart(fig1)
 
         # bar chart
-        fig2 = px.bar(opus, x = opus['genre_BlackComedy'], y = opus['movie_success'], color = opus['rating'],
+        fig2 = px.bar(opus, x = 'genre_BlackComedy', y = 'movie_success', color = 'rating',
         title = f'Bar chart of {x_val} on {y_val}')
         st.plotly_chart(fig2)
 
         #might need to work on this to get the func to work
-        fig3 = px.bar(opus, opus['genre_BlackComedy'], color = opus['rating'],
+        fig3 = px.bar(opus, 'genre_BlackComedy', color = 'rating',
         title = f'Bar chart of the count of {x_val}')
         st.plotly_chart(fig3)
         show_stat = st.sidebar.checkbox('Show Summary statistics:')
