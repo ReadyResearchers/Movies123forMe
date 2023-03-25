@@ -83,7 +83,7 @@ def regression():
         if x_val == y_val:
             x_val = opus.columns[1]
             y_val = opus.columns[4]
-            category = 'rating'
+            category = 7
 
         # scatterplot chart
         fig = px.scatter(opus, x = x_val, y = y_val, color = columns1[category], 
