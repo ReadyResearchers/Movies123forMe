@@ -25,6 +25,7 @@ import seaborn as sns
 from nltk.util import ngrams
 from sklearn import metrics
 import nltk
+import functions
 
 from sklearn.feature_selection import chi2
 
@@ -223,170 +224,174 @@ def predict_text():
         else:
             df = pd.read_excel(dataset)
     
-        num_columns = df.select_dtypes(exclude = 'object').columns
+        # num_columns = df.select_dtypes(exclude = 'object').columns
         cat_columns = df.select_dtypes(include = 'object').columns
-        target = st.sidebar.selectbox("Choose a target column for analysis: ", df.columns)
-        dataset['tags'] = " ".join(cat_columns)
-        t_data = dataset[['tags', f'{target}']].dropna().reset_index()
-        #stopword removal and lemmatization
-        stopw = sw.words('english')
-        lemmatizer = WordNetLemmatizer()
-        # nltk.download('stopwords')
-        # st.write(t_data.head())
 
-        train_X_non = t_data['tags']   # '0' refers to the review text
-        train_y = t_data[f'{target}']   # '1' corresponds to Label (1 - positive and 0 - negative)
-        test_X_non = t_data['tags']
-        test_y = t_data[f'{target}']
-        train_X=[]
-        test_X=[]
-
-
-        #text pre processing
-        for i in range(0, len(train_X_non)):
-            review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
-            review = review.lower()
-            review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopw)]
-            review = ' '.join(review)
-            train_X.append(review)
-
-        #text pre processing
-        for i in range(0, len(test_X_non)):
-            review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
-            review = review.lower()
-            review = review.split()
-            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopw)]
-            review = ' '.join(review)
-            test_X.append(review)
-
-        # st.write(train_X[10])
-
-        #tf idf
-        tf_idf = TfidfVectorizer()
-        #applying tf idf to training data
-        X_train = tf_idf.fit(train_X)
-        X_train_tf = tf_idf.transform(train_X)
-        # st.write("n_samples: %d, n_features: %d" % X_train_tf.shape)
-
-        #transforming test data into tf-idf matrix
-        X_test = tf_idf.fit(test_X)
-        X_test_tf = tf_idf.transform(test_X)
-        # st.write("n_samples: %d, n_features: %d" % X_test_tf.shape)
-        #naive bayes classifier
-        naive_bayes_classifier = MultinomialNB()
-        naive_bayes_classifier.fit(X_train_tf, train_y)
-        #predicted y
-        y_pred = naive_bayes_classifier.predict(X_test_tf)
-
-        # st.write(metrics.classification_report(test_y, y_pred, target_names=['movie_success']))
-        # st.write("Confusion matrix:")
-        # st.write(metrics.confusion_matrix(test_y, y_pred))
-        test_data = st.sidebar.text_input("Input any feature of a movie to see if it is correlated with a successful movie: " +
-        "For example, a movie's: plot, MPAA genre, director, writer, actor/actress, title, genre can be " + 
-        "inputted into the text box for analysis of our machine learning model.")
-
-        review = re.sub('[^a-zA-Z]', ' ', test_data)
-        review = review.lower()
-        review = review.split()
-        review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopw)]
-        test_processed =[ ' '.join(review)]
-
-        # st.write(test_processed)
-        test_input = tf_idf.transform(test_processed)
-        #0= bad review
-        #1= good review
-        res=naive_bayes_classifier.predict(test_input)[0]
-        if len(test_data) == 0:
-            st.sidebar.write("MOVIE_FEATURE is NOT predicted to be a feature of a successful movie!")
+        if len(cat_columns) = 0:
+            st.write("There is no categorical data that we can analyze.")
         else:
-            if res==1:
-                st.sidebar.write(f"{test_data} is predicted to be a feature of a successful movie!")
-            elif res==0:
-                st.sidebar.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
+            target = functions.sidebar_singleselect_container('Choose column for Analysis:', cat_columns, 'Count')
+            dataset['tags'] = " ".join(df[cat_columns])
+            t_data = dataset[['tags', f'{target}']].dropna().reset_index()
+            #stopword removal and lemmatization
+            stopw = sw.words('english')
+            lemmatizer = WordNetLemmatizer()
+            # nltk.download('stopwords')
+            # st.write(t_data.head())
 
-        countvec = CountVectorizer(ngram_range=(1,4), 
-                stop_words='english',  
-                strip_accents='unicode', 
-                max_features=1000)
-        X = dataset.tags.values
-        y = dataset[f'{target}'].values
-        # Split data into train and test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                            test_size = 0.3, 
-                                            random_state = 42)
-        # Instantiate classifier
-        mnb = MultinomialNB()
-
-        # Create bag of words
-        X_train = countvec.fit_transform(X_train)
-        X_test = countvec.transform(X_test)
-
-        # Train the classifier/Fit the model
-        mnb.fit(X_train, y_train)
-            
-        scores = mnb.score(X_test, y_test)
-
-        st.sidebar.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
-        # Make predictions
-        y_pred = mnb.predict(X_test)
-
-        # y_pred = naive_bayes_classifier.predict(X_test_tf)
-        cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
-        st.write('Confusion matrix given all titles in the sample:', cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    cm.flatten()/np.sum(cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
+            train_X_non = t_data['tags']   # '0' refers to the review text
+            train_y = t_data[f'{target}']   # '1' corresponds to Label (1 - positive and 0 - negative)
+            test_X_non = t_data['tags']
+            test_y = t_data[f'{target}']
+            train_X=[]
+            test_X=[]
 
 
-        def classification():
-            data_cols = ['Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']
-            classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
-            grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
-            if classification == grouping:
-                classification = 'Rated'
-                grouping = 'Title'
-            x = train_data[data_cols]
+            #text pre processing
+            for i in range(0, len(train_X_non)):
+                review = re.sub('[^a-zA-Z]', ' ', train_X_non[i])
+                review = review.lower()
+                review = review.split()
+                review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopw)]
+                review = ' '.join(review)
+                train_X.append(review)
 
-            # add column encoding the type as an integer and create dictionaries
-            x[f'{classification}_id'] = x[classification].factorize()[0]
-            category_id_df = x[[classification, f'{classification}_id']].drop_duplicates().sort_values(f'{classification}_id')
-            category_to_id = dict(category_id_df.values)
-            id_to_category = dict(category_id_df[[f'{classification}_id', classification]].values)
+            #text pre processing
+            for i in range(0, len(test_X_non)):
+                review = re.sub('[^a-zA-Z]', ' ', test_X_non[i])
+                review = review.lower()
+                review = review.split()
+                review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopw)]
+                review = ' '.join(review)
+                test_X.append(review)
 
-            # checking to see the balance of classes
-            fig = plt.figure(figsize=(8,6))
-            x.groupby(train_data[classification])[grouping].count().plot.bar(ylim=0)
-            st.subheader(f"Count of {grouping} associated with a certain {classification}:")
-            st.pyplot(fig)
+            # st.write(train_X[10])
 
-            # # extracting features from text using the measure term frequency inverse document frequency (tfidf)
-            # tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', ngram_range=(1, 2), stop_words='english')
-            # features = tfidf.fit_transform(x[grouping].astype(str)).toarray()
-            # labels = x[f'{classification}_id']
+            #tf idf
+            tf_idf = TfidfVectorizer()
+            #applying tf idf to training data
+            X_train = tf_idf.fit(train_X)
+            X_train_tf = tf_idf.transform(train_X)
+            # st.write("n_samples: %d, n_features: %d" % X_train_tf.shape)
 
-            # st.subheader(f"Correlated words grouped by {classification}")
-            # N = 2
-            # for Product, category_id in sorted(id_to_category.items()):
-            #     features_chi2 = chi2(features, labels == category_id)
-            #     indices = np.argsort(features_chi2[0])
-            #     feature_names = np.array(tfidf.get_feature_names_out())[indices]
-            #     unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
-            #     bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
-            #     st.write("# '{}':".format(Product))
-            #     st.write("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
-            #     st.write("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
-            #     st.write("---")
-        classification()
+            #transforming test data into tf-idf matrix
+            X_test = tf_idf.fit(test_X)
+            X_test_tf = tf_idf.transform(test_X)
+            # st.write("n_samples: %d, n_features: %d" % X_test_tf.shape)
+            #naive bayes classifier
+            naive_bayes_classifier = MultinomialNB()
+            naive_bayes_classifier.fit(X_train_tf, train_y)
+            #predicted y
+            y_pred = naive_bayes_classifier.predict(X_test_tf)
+
+            # st.write(metrics.classification_report(test_y, y_pred, target_names=['movie_success']))
+            # st.write("Confusion matrix:")
+            # st.write(metrics.confusion_matrix(test_y, y_pred))
+            test_data = st.sidebar.text_input("Input any feature of a movie to see if it is correlated with a successful movie: " +
+            "For example, a movie's: plot, MPAA genre, director, writer, actor/actress, title, genre can be " + 
+            "inputted into the text box for analysis of our machine learning model.")
+
+            review = re.sub('[^a-zA-Z]', ' ', test_data)
+            review = review.lower()
+            review = review.split()
+            review = [lemmatizer.lemmatize(word) for word in review if not word in set(stopw)]
+            test_processed =[ ' '.join(review)]
+
+            # st.write(test_processed)
+            test_input = tf_idf.transform(test_processed)
+            #0= bad review
+            #1= good review
+            res=naive_bayes_classifier.predict(test_input)[0]
+            if len(test_data) == 0:
+                st.sidebar.write("MOVIE_FEATURE is NOT predicted to be a feature of a successful movie!")
+            else:
+                if res==1:
+                    st.sidebar.write(f"{test_data} is predicted to be a feature of a successful movie!")
+                elif res==0:
+                    st.sidebar.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
+
+            countvec = CountVectorizer(ngram_range=(1,4), 
+                    stop_words='english',  
+                    strip_accents='unicode', 
+                    max_features=1000)
+            X = dataset.tags.values
+            y = dataset[f'{target}'].values
+            # Split data into train and test sets
+            X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                test_size = 0.3, 
+                                                random_state = 42)
+            # Instantiate classifier
+            mnb = MultinomialNB()
+
+            # Create bag of words
+            X_train = countvec.fit_transform(X_train)
+            X_test = countvec.transform(X_test)
+
+            # Train the classifier/Fit the model
+            mnb.fit(X_train, y_train)
+                
+            scores = mnb.score(X_test, y_test)
+
+            st.sidebar.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+            # Make predictions
+            y_pred = mnb.predict(X_test)
+
+            # y_pred = naive_bayes_classifier.predict(X_test_tf)
+            cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
+            st.write('Confusion matrix given all titles in the sample:', cm)
+            st.write("Heatmap of the Confusion Matrix:")
+            fig, ax = plt.subplots()
+            group_names = ['True Neg','False Pos','False Neg','True Pos']
+            group_counts = ["{0:0.0f}".format(value) for value in
+                    cm.flatten()]
+            group_percentages = ["{0:.2%}".format(value) for value in
+                        cm.flatten()/np.sum(cm)]
+            labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
+                    zip(group_names,group_counts,group_percentages)]
+            labels = np.asarray(labels).reshape(2,2)
+            sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
+            st.write(fig)
+
+
+            def classification():
+                data_cols = ['Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']
+                classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
+                grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
+                if classification == grouping:
+                    classification = 'Rated'
+                    grouping = 'Title'
+                x = train_data[data_cols]
+
+                # add column encoding the type as an integer and create dictionaries
+                x[f'{classification}_id'] = x[classification].factorize()[0]
+                category_id_df = x[[classification, f'{classification}_id']].drop_duplicates().sort_values(f'{classification}_id')
+                category_to_id = dict(category_id_df.values)
+                id_to_category = dict(category_id_df[[f'{classification}_id', classification]].values)
+
+                # checking to see the balance of classes
+                fig = plt.figure(figsize=(8,6))
+                x.groupby(train_data[classification])[grouping].count().plot.bar(ylim=0)
+                st.subheader(f"Count of {grouping} associated with a certain {classification}:")
+                st.pyplot(fig)
+
+                # # extracting features from text using the measure term frequency inverse document frequency (tfidf)
+                # tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', ngram_range=(1, 2), stop_words='english')
+                # features = tfidf.fit_transform(x[grouping].astype(str)).toarray()
+                # labels = x[f'{classification}_id']
+
+                # st.subheader(f"Correlated words grouped by {classification}")
+                # N = 2
+                # for Product, category_id in sorted(id_to_category.items()):
+                #     features_chi2 = chi2(features, labels == category_id)
+                #     indices = np.argsort(features_chi2[0])
+                #     feature_names = np.array(tfidf.get_feature_names_out())[indices]
+                #     unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
+                #     bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
+                #     st.write("# '{}':".format(Product))
+                #     st.write("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
+                #     st.write("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
+                #     st.write("---")
+            classification()
 
 
 def wordcloud():

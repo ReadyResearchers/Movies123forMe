@@ -1,5 +1,6 @@
 import io
 import pandas as pd
+import streamlit as st
 
 
 def df_info(df):
@@ -61,3 +62,11 @@ def sidebar_multiselect_container(massage, arr, key):
         selected_num_cols = container.multiselect(massage, arr, default = arr[0])
 
     return selected_num_cols    
+
+
+def sidebar_singleselect_container(massage, arr, key):
+    
+    container = st.sidebar.container()
+    selected_num_cols = container.selectbox(massage, arr, default = arr[0])
+
+    return selected_num_cols   
