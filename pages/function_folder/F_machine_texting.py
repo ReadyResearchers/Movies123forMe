@@ -122,8 +122,8 @@ def predict_text_example():
             st.sidebar.write(f"{test_data} is predicted to be a feature of a successful movie!")
         elif res==0:
             st.sidebar.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
-
-    tagging = st.sidebar.selectbox("Pick a feature to generate the confusion matrix information: ", train_data.columns)
+    cat_columns = train_data.select_dtypes(include = 'object').columns
+    tagging = st.sidebar.selectbox("Pick a feature to generate the confusion matrix information: ", cat_columns)
     countvec = CountVectorizer(ngram_range=(1,4), 
             stop_words='english',  
             strip_accents='unicode', 
