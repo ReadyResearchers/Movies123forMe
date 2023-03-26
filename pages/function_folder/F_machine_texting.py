@@ -224,9 +224,7 @@ def wordcloud():
 
     st.set_option('deprecation.showPyplotGlobalUse', False)
     def preprocess(raw_text):
-        st.write(train_data['tags'].head())
-        st.write(train_data['tags'].dtype)
-        text = " ".join(str(e) for e in raw_text)
+        text = " ".join(raw_text)
         #regular expression keeping only letters 
         letters_only_text = re.sub("[^a-zA-Z]", " ", text)
 
@@ -249,7 +247,7 @@ def wordcloud():
         
         # converting list back to string
         return " ".join(stemmed_words)
-    train_data['tags'].dropna().reset_index()
+    train_data['tags'].dropna()
     train_data['tags'].apply(preprocess)
 
     most_common = Counter(" ".join(train_data["prep"]).split()).most_common(10)
