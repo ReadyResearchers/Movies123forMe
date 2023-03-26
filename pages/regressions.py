@@ -1,6 +1,7 @@
 import streamlit as st
 from pages import clean_data
 import base64
+import seaborn as sns
 
 import plotly.express as px
 
@@ -55,6 +56,10 @@ def regression():
         fig3 = px.bar(opus, 'genre_Black Comedy', color = 'rating',
         title = f"Bar chart of the count of 'genre_Black Comedy'")
         st.plotly_chart(fig3)
+
+        sns.regplot(x='genre_Black Comedy', y='movie_success', data=opus, logistic=True, ci=None,
+        scatter_kws={'color': 'blue'}, line_kws={'color': 'red'})
+
         show_stat = st.sidebar.checkbox('Show Summary statistics:')
         if show_stat:
             res = px.get_trendline_results(fig)
@@ -103,6 +108,9 @@ def regression():
         fig3 = px.bar(opus, x = columns_num[x_val], color = columns1[category],
         title = f'Bar chart of the count of {columns_num[x_val]}')
         st.plotly_chart(fig3)
+
+        sns.regplot(x=columns_num[x_val], y=columns_num[y_val], data=opus, logistic=True, ci=None,
+        scatter_kws={'color': 'black'}, line_kws={'color': 'red'})
 
         show_stat = st.sidebar.checkbox('Show Summary statistics:')
         if show_stat:
