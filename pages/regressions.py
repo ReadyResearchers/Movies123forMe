@@ -40,9 +40,6 @@ def regression():
         fig.data[1].line.color = 'red'
         fig.update_xaxes(rangeslider_visible = True)
         st.plotly_chart(fig)
-        res = px.get_trendline_results(fig)
-        trendline = res['px_fit_results'].iloc[0]
-        st.write(trendline.summary())
         # pie chart
         fig1 = px.pie(opus, values = 'genre_Black Comedy', names = 'movie_success', 
                     title = f"Percentage of 'movie_success' from 'genre_Black Comedy'")
