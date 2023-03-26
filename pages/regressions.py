@@ -78,9 +78,9 @@ def regression():
         x_val = st.sidebar.selectbox("X-value: ", list(columns_num.keys()), format_func=lambda x: columns_num[x])
         y_val = st.sidebar.selectbox("Y-val: ", list(columns_num.keys()), format_func=lambda x: columns_num[x])
         if x_val == y_val:
-            x_val = opus.columns[1]
-            y_val = opus.columns[3]
-            category = 7
+            x_val = opus.columns[3]
+            y_val = opus.columns[7]
+            category = 11
 
         # scatterplot chart
         fig = px.scatter(opus, x = x_val, y = y_val, color = columns1[category], 
