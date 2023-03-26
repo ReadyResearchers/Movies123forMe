@@ -224,9 +224,8 @@ def wordcloud():
 
     st.set_option('deprecation.showPyplotGlobalUse', False)
     def preprocess(raw_text):
-        text = " ".join(raw_text)
         #regular expression keeping only letters 
-        letters_only_text = re.sub("[^a-zA-Z]", " ", text)
+        letters_only_text = re.sub("[^a-zA-Z]", " ", raw_text)
 
         # convert to lower case and split into words -> convert string into list ( 'hello world' -> ['hello', 'world'])
         words = letters_only_text.lower().split()
