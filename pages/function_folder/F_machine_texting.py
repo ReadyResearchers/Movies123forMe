@@ -249,13 +249,13 @@ def wordcloud():
     train_data['tags'].dropna()
     train_data['tags'].apply(preprocess)
 
-    most_common = Counter(" ".join(train_data["prep"]).split()).most_common(10)
+    most_common = Counter(" ".join(train_data["tags"]).split()).most_common(10)
 
     #nice library to produce wordclouds
     all_words = '' 
 
     #looping through all incidents and joining them to one text, to extract most common words
-    for arg in train_data["prep"]: 
+    for arg in train_data["tags"]: 
 
         tokens = arg.split()  
         
