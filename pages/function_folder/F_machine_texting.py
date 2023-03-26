@@ -258,9 +258,6 @@ def predict_text_example():
 def predict_text():
     file_format = st.sidebar.radio('Select file format:', ('csv', 'excel'), key='file_format')
     dataset = st.sidebar.file_uploader(label = '')
-
-    use_defo = st.sidebar.checkbox('Use example Dataset')
-
     if dataset:
         if file_format == 'csv':
             df = pd.read_csv(dataset)
@@ -269,11 +266,14 @@ def predict_text():
     
         # num_columns = df.select_dtypes(exclude = 'object').columns
         cat_columns = df.select_dtypes(include = 'object').columns
-
+        st.write("We have identified the following categorical columns: ")
+        st.write(df[cat_columns])
         if len(cat_columns) == 0:
             st.write("There is no categorical data that we can analyze.")
         else:
-            target = functions.sidebar_singleselect_container('Choose column for Analysis:', cat_columns, 'Count')
+            i = 0
+            while (i < len())
+            target = functions.sidebar_singleselect_container('Choose column for Analysis:', cat_columns)
             dataset['tags'] = " ".join(df[cat_columns])
             t_data = dataset[['tags', f'{target}']].dropna().reset_index()
             #stopword removal and lemmatization

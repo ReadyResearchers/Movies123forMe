@@ -64,9 +64,9 @@ def sidebar_multiselect_container(massage, arr, key):
     return selected_num_cols    
 
 
-def sidebar_singleselect_container(massage, arr, key):
+def sidebar_singleselect_container(massage, arr):
     
     container = st.sidebar.container()
-    selected_num_cols = container.selectbox(massage, arr, default = arr[0])
+    selected_num_cols = container.selectbox(massage, arr)
 
     return selected_num_cols   
