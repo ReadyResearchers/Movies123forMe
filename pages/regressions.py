@@ -20,8 +20,6 @@ st.markdown(f"""
     </video>
 </center>
 """, unsafe_allow_html=True)
-st.write("---")
-
 st.markdown("<h3>The Data Regression Experience 🎈</h3>", unsafe_allow_html=True)
 st.sidebar.write(" Page 5 🎈")
 

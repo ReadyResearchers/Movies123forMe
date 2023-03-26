@@ -1,8 +1,10 @@
 ![License](https://img.shields.io/github/license/ReadyResearchers/Movies123forMe) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ReadyResearchers/Movies123forMe/pylint.yml) [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://movies123forme.streamlit.app/)
 
-<p align="center">
-  <img src="img/header_readme.png" />
-</p>
+<center>
+  <video style="display: auto; margin: auto; width: 600px;" controls autoplay muted loop>
+    <source src="img/movies123forme_header.mp4" type="video/mp4">
+  </video>
+</center>
 
 ## Abstract
 
