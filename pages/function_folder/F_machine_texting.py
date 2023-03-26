@@ -128,7 +128,7 @@ def predict_text_example():
             stop_words='english',  
             strip_accents='unicode', 
             max_features=1000)
-    X = train_data.tagging.values
+    X = train_data[f'{tagging}'].values
     y = train_data.movie_success.values
     # Split data into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, 
@@ -358,7 +358,7 @@ def predict_text():
                     stop_words='english',  
                     strip_accents='unicode', 
                     max_features=1000)
-            X = df.tagging.values
+            X = df[f'{tagging}'].values
             y = df[f'{target}'].values
             # Split data into train and test sets
             X_train, X_test, y_train, y_test = train_test_split(X, y, 
