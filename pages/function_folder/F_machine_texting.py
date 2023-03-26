@@ -103,8 +103,8 @@ def predict_text_example():
     #predicted y
     y_pred = naive_bayes_classifier.predict(X_test_tf)
 
-    test_data = st.sidebar.text_input("Input any feature of a movie to see if it is correlated with a successful movie:")
-    st.sidebar.write("For example, a movie's: plot, MPAA genre, director, writer, actor/actress, title, genre can be " + 
+    test_data = st.sidebar.text_input("Input any feature of a movie to see if it is correlated with a successful movie:" +
+    "For example, a movie's: plot, MPAA genre, director, writer, actor/actress, title, genre can be " + 
     "inputted into the text box for analysis of our machine learning model.")
 
     review = re.sub('[^a-zA-Z]', ' ', test_data)
@@ -123,11 +123,12 @@ def predict_text_example():
         elif res==0:
             st.sidebar.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
 
+    tagging = st.sidebar.selectbox("Pick a feature to generate the confusion matrix information: ", train_data.columns)
     countvec = CountVectorizer(ngram_range=(1,4), 
             stop_words='english',  
             strip_accents='unicode', 
             max_features=1000)
-    X = train_data.Title.values
+    X = train_data.tagging.values
     y = train_data.movie_success.values
     # Split data into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, 
@@ -145,7 +146,7 @@ def predict_text_example():
             
     scores = mnb.score(X_test, y_test)
 
-    st.sidebar.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+    st.sidebar.write('Accuracy of Predicting Movie Success Given all Categorical Features in Sample: ', scores)
     # Make predictions
     y_pred = mnb.predict(X_test)
 
@@ -351,11 +352,13 @@ def predict_text():
                 elif res==0:
                     st.sidebar.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
 
+            tagging = st.sidebar.selectbox("Pick a feature to generate the confusion matrix information: ", cat_columns)
+
             countvec = CountVectorizer(ngram_range=(1,4), 
                     stop_words='english',  
                     strip_accents='unicode', 
                     max_features=1000)
-            X = df.tags.values
+            X = df.tagging.values
             y = df[f'{target}'].values
             # Split data into train and test sets
             X_train, X_test, y_train, y_test = train_test_split(X, y, 
@@ -373,7 +376,7 @@ def predict_text():
                 
             scores = mnb.score(X_test, y_test)
 
-            st.sidebar.write('Accuracy of Predicting Movie Success Given all Titles in Sample: ', scores)
+            st.sidebar.write('Accuracy of Predicting Movie Success Given all Categorical Features in Sample: ', scores)
             # Make predictions
             y_pred = mnb.predict(X_test)
 
