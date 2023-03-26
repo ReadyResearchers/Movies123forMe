@@ -209,5 +209,7 @@ def interface():
         text_classification.category()
     elif success == 'Predict Movie Success with Text':
         F_machine_texting.predict_text()
+        F_machine_texting.wordcloud()
+        F_machine_texting.classification()
 
 interface()

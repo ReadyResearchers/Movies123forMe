@@ -1,6 +1,6 @@
 import io
 import pandas as pd
-import streamlit as st
+
 
 def df_info(df):
     df.columns = df.columns.str.replace(' ', '_')
