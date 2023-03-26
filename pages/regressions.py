@@ -78,30 +78,30 @@ def regression():
         x_val = st.sidebar.selectbox("X-value: ", list(columns_num.keys()), format_func=lambda x: columns_num[x])
         y_val = st.sidebar.selectbox("Y-val: ", list(columns_num.keys()), format_func=lambda x: columns_num[x])
         if x_val == y_val:
-            x_val = opus.columns[3]
-            y_val = opus.columns[7]
+            x_val = 3
+            y_val = 11
             category = 11
 
         # scatterplot chart
-        fig = px.scatter(opus, x = x_val, y = y_val, color = columns1[category], 
-                        trendline = 'ols', title = f"Scatterplot of {y_val} on {x_val}")
+        fig = px.scatter(opus, x = columns_num[x_val], y = columns_num[y_val], color = columns1[category], 
+                        trendline = 'ols', title = f"Scatterplot of {columns_num[y_val]} on {columns_num[x_val]}")
         fig.data[1].line.color = 'red'
         fig.update_xaxes(rangeslider_visible = True)
         st.plotly_chart(fig)
         # pie chart
-        fig1 = px.pie(opus, values = x_val, names = y_val, 
-                    title = f'Percentage of movie "{y_val}" in "{x_val}"')
+        fig1 = px.pie(opus, values = columns_num[x_val], names = columns_num[y_val], 
+                    title = f'Percentage of movie "{columns_num[y_val]}" in "{columns_num[x_val]}"')
         fig1.update_traces(textinfo="percent+value")
         st.plotly_chart(fig1)
 
         # bar chart
-        fig2 = px.bar(opus, x = x_val, y = y_val, color = columns1[category],
-        title = f'Bar chart of {x_val} on {y_val}')
+        fig2 = px.bar(opus, x = columns_num[x_val], y = columns_num[y_val], color = columns1[category],
+        title = f'Bar chart of {columns_num[x_val]} on {columns_num[y_val]}')
         st.plotly_chart(fig2)
 
         #might need to work on this to get the func to work
-        fig3 = px.bar(opus, x = x_val, color = columns1[category],
-        title = f'Bar chart of the count of {x_val}')
+        fig3 = px.bar(opus, x = columns_num[x_val], color = columns1[category],
+        title = f'Bar chart of the count of {columns_num[x_val]}')
         st.plotly_chart(fig3)
 
         show_stat = st.sidebar.checkbox('Show Summary statistics:')
