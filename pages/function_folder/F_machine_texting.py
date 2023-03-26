@@ -181,7 +181,6 @@ def classification():
         classification = 'Genre'
         grouping = 'Rated'
     x = train_data[data_cols]
-    y = train_data[data_cols].drop('movie_success', axis=1)
 
     # add column encoding the type as an integer and create dictionaries
     x[f'{classification}_id'] = x[classification].factorize()[0]
