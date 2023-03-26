@@ -50,8 +50,7 @@ data_cols = ['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer',
 train_data = train_data[[data_cols]]
 # #st.write(movies.isnull().sum())
 train_data = train_data.drop_duplicates().reset_index()
-train_data['tags'] = train_data['Genre'] + " " +  train_data['Plot'] + " " + 
-train_data['Actors'] + " " + train_data['Director'] + " " + train_data['Writer'] + " " + train_data['Rated']
+train_data['tags'] = train_data['Genre'] + " " +  train_data['Plot'] + " " + train_data['Actors'] + " " + train_data['Director'] + " " + train_data['Writer'] + " " + train_data['Rated']
 
 def predict_text():
     t_data = train_data[['tags', 'movie_success']].dropna().reset_index()
