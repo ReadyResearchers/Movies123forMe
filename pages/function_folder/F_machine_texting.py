@@ -271,8 +271,6 @@ def predict_text():
         if len(cat_columns) == 0:
             st.write("There is no categorical data that we can analyze.")
         else:
-            i = 0
-            while (i < len())
             target = functions.sidebar_singleselect_container('Choose column for Analysis:', cat_columns)
             dataset['tags'] = " ".join(df[cat_columns])
             t_data = dataset[['tags', f'{target}']].dropna().reset_index()
