@@ -103,7 +103,7 @@ def predict_text_example():
     #predicted y
     y_pred = naive_bayes_classifier.predict(X_test_tf)
 
-    test_data = st.sidebar.text_input("Input any feature of a movie to see if it is correlated with a successful movie:" +
+    test_data = st.text_input("Input any feature of a movie to see if it is correlated with a successful movie:" +
     "For example, a movie's: plot, MPAA genre, director, writer, actor/actress, title, genre can be " + 
     "inputted into the text box for analysis of our machine learning model.")
 
@@ -116,14 +116,14 @@ def predict_text_example():
     test_input = tf_idf.transform(test_processed)
     res=naive_bayes_classifier.predict(test_input)[0]
     if len(test_data) == 0:
-        st.sidebar.write("MOVIE_FEATURE is NOT predicted to be a title of a successful movie!")
+        st.write("MOVIE_FEATURE is NOT predicted to be a title of a successful movie!")
     else:
         if res==1:
-            st.sidebar.write(f"{test_data} is predicted to be a feature of a successful movie!")
+            st.write(f"{test_data} is predicted to be a feature of a successful movie!")
         elif res==0:
-            st.sidebar.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
+            st.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
     cat_columns = train_data.select_dtypes(include = 'object').columns
-    tagging = st.sidebar.selectbox("Pick a feature to generate the confusion matrix information: ", cat_columns)
+    tagging = st.selectbox("Pick a feature to generate the confusion matrix information: ", cat_columns)
     countvec = CountVectorizer(ngram_range=(1,4), 
             stop_words='english',  
             strip_accents='unicode', 
@@ -146,7 +146,7 @@ def predict_text_example():
             
     scores = mnb.score(X_test, y_test)
 
-    st.sidebar.write('Accuracy of Predicting Movie Success Given all Categorical Features in Sample: ', scores)
+    st.write('Accuracy of Predicting Movie Success Given all Categorical Features in Sample: ', scores)
     # Make predictions
     y_pred = mnb.predict(X_test)
 
@@ -329,7 +329,7 @@ def predict_text():
             # st.write(metrics.classification_report(test_y, y_pred, target_names=['movie_success']))
             # st.write("Confusion matrix:")
             # st.write(metrics.confusion_matrix(test_y, y_pred))
-            test_data = st.sidebar.text_input("Input any feature of a movie to see if it is correlated with a successful movie: " +
+            test_data = st.text_input("Input any feature of a movie to see if it is correlated with a successful movie: " +
             "For example, a movie's: plot, MPAA genre, director, writer, actor/actress, title, genre can be " + 
             "inputted into the text box for analysis of our machine learning model.")
 
@@ -345,14 +345,14 @@ def predict_text():
             #1= good review
             res=naive_bayes_classifier.predict(test_input)[0]
             if len(test_data) == 0:
-                st.sidebar.write("MOVIE_FEATURE is NOT predicted to be a feature of a successful movie!")
+                st.write("MOVIE_FEATURE is NOT predicted to be a feature of a successful movie!")
             else:
                 if res==1:
-                    st.sidebar.write(f"{test_data} is predicted to be a feature of a successful movie!")
+                    st.write(f"{test_data} is predicted to be a feature of a successful movie!")
                 elif res==0:
-                    st.sidebar.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
+                    st.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
 
-            tagging = st.sidebar.selectbox("Pick a feature to generate the confusion matrix information: ", cat_columns)
+            tagging = st.selectbox("Pick a feature to generate the confusion matrix information: ", cat_columns)
 
             countvec = CountVectorizer(ngram_range=(1,4), 
                     stop_words='english',  
@@ -376,7 +376,7 @@ def predict_text():
                 
             scores = mnb.score(X_test, y_test)
 
-            st.sidebar.write('Accuracy of Predicting Movie Success Given all Categorical Features in Sample: ', scores)
+            st.write('Accuracy of Predicting Movie Success Given all Categorical Features in Sample: ', scores)
             # Make predictions
             y_pred = mnb.predict(X_test)
 
