@@ -174,12 +174,12 @@ def predict_text():
 
 
 def classification():
-    data_cols = ['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated', 'movie_success']
+    data_cols = ['Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']
     classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
-    grouping = 'movie_success'
+    grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
     if classification == grouping:
-        classification = 'Rated'
-        grouping = 'movie_success'
+        classification = 'Genre'
+        grouping = 'Rated'
     x = train_data[data_cols]
     y = train_data[data_cols].drop('movie_success', axis=1)
 
