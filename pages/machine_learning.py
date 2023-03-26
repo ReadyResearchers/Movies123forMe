@@ -144,22 +144,6 @@ def main_dashboard():
         plt.xlabel('Experimental LogS of Movie Success')
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
-        
-        o_cm = confusion_matrix(oy_train,otrain_pred)
-
-        st.sidebar.write('Confusion matrix: ', o_cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                o_cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    o_cm.flatten()/np.sum(o_cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(o_cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
     if choice == 'Random Forest Regressor':
         rf = RandomForestRegressor(max_depth=2, random_state=42)
 
@@ -178,22 +162,6 @@ def main_dashboard():
         plt.xlabel('Experimental LogS of Movie Success')
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
-
-        o_cm = confusion_matrix(oy_train,otrain_pred)
-
-        st.sidebar.write('Confusion matrix: ', o_cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                o_cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    o_cm.flatten()/np.sum(o_cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(o_cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
     if choice == 'Extra Tree Regressor':
         et = ExtraTreeRegressor(random_state=42)
 
@@ -212,22 +180,6 @@ def main_dashboard():
         plt.xlabel('Experimental LogS of Movie Success')
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
-        
-        o_cm = confusion_matrix(oy_train,otrain_pred)
-
-        st.sidebar.write('Confusion matrix: ', o_cm)
-        st.write("Heatmap of the Confusion Matrix:")
-        fig, ax = plt.subplots()
-        group_names = ['True Neg','False Pos','False Neg','True Pos']
-        group_counts = ["{0:0.0f}".format(value) for value in
-                o_cm.flatten()]
-        group_percentages = ["{0:.2%}".format(value) for value in
-                    o_cm.flatten()/np.sum(o_cm)]
-        labels = [f"{v1}\n{v2}\n{v3}" for v1, v2, v3 in
-                zip(group_names,group_counts,group_percentages)]
-        labels = np.asarray(labels).reshape(2,2)
-        sns.heatmap(o_cm, annot=labels, fmt='', cmap='Blues', ax=ax)
-        st.write(fig)
     if choice == 'Decision Tree':
         dtc = DecisionTreeClassifier()
 
