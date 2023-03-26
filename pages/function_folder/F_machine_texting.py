@@ -272,8 +272,8 @@ def predict_text():
             st.write("There is no categorical data that we can analyze.")
         else:
             target = functions.sidebar_singleselect_container('Choose column for Analysis:', cat_columns)
-            dataset['tags'] = " ".join(df[cat_columns])
-            t_data = dataset[['tags', f'{target}']].dropna().reset_index()
+            df['tags'] = " ".join(df[cat_columns])
+            t_data = df[['tags', f'{target}']].dropna().reset_index()
             #stopword removal and lemmatization
             stopw = sw.words('english')
             lemmatizer = WordNetLemmatizer()
@@ -355,8 +355,8 @@ def predict_text():
                     stop_words='english',  
                     strip_accents='unicode', 
                     max_features=1000)
-            X = dataset.tags.values
-            y = dataset[f'{target}'].values
+            X = df.tags.values
+            y = df[f'{target}'].values
             # Split data into train and test sets
             X_train, X_test, y_train, y_test = train_test_split(X, y, 
                                                 test_size = 0.3, 
