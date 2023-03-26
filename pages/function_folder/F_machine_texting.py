@@ -195,7 +195,8 @@ def classification():
     st.pyplot(fig)
 
     # extracting features from text using the measure term frequency inverse document frequency (tfidf)
-    tfidf = TfidfVectorizer(sublinear_tf=True, min_df=3, norm='l2', encoding='latin-1', ngram_range=(1, 2), stop_words='english')
+    tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', ngram_range=(1, 2), stop_words='english')
+    x[grouping].dropna()
     features = tfidf.fit_transform(x[grouping]).toarray()
     labels = x[f'{classification}_id']
 
