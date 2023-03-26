@@ -166,8 +166,8 @@ def predict_text_example():
 
     def classification():
         data_cols = ['Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']
-        classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
-        grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
+        classification = st.sidebar.selectbox("Please choose a column to sort: ", data_cols)
+        grouping = st.sidebar.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
         if classification == grouping:
             classification = 'Rated'
             grouping = 'Title'
