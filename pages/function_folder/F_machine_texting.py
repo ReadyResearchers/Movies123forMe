@@ -122,13 +122,12 @@ def predict_text_example():
             st.write(f"{test_data} is predicted to be a feature of a successful movie!")
         elif res==0:
             st.write(f"{test_data} is NOT predicted to be a feature of a successful movie!")
-    cat_columns = train_data.select_dtypes(include = 'object').columns
-    tagging = st.selectbox("Pick a feature to generate the confusion matrix information: ", cat_columns)
     countvec = CountVectorizer(ngram_range=(1,4), 
             stop_words='english',  
             strip_accents='unicode', 
             max_features=1000)
-    X = train_data[f'{tagging}'].values
+    st.write("Generating the Confusion Matrix for the 'Title' column in the dataset")
+    X = train_data.Title.values
     y = train_data.movie_success.values
     # Split data into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, 
@@ -146,13 +145,12 @@ def predict_text_example():
             
     scores = mnb.score(X_test, y_test)
 
-    st.write('Accuracy of Predicting Movie Success Given all Categorical Features in Sample: ', scores)
+    st.write('Accuracy of Predicting Movie Success Given all Titles in the Sample: ', scores)
     # Make predictions
     y_pred = mnb.predict(X_test)
 
     # y_pred = naive_bayes_classifier.predict(X_test_tf)
     cm = confusion_matrix(y_true=y_test, y_pred=y_pred)
-    st.write('Confusion matrix given all titles in the sample:', cm)
     st.write("Heatmap of the Confusion Matrix:")
     fig, ax = plt.subplots()
     group_names = ['True Neg','False Pos','False Neg','True Pos']
