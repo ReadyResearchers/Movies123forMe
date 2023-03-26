@@ -177,6 +177,46 @@ def predict_text():
         sns.heatmap(cm, annot=labels, fmt='', cmap='Blues', ax=ax)
         st.write(fig)
 
+        def classification():
+            data_cols = ['Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']
+            classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
+            grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
+            if classification == grouping:
+                classification = 'Rated'
+                grouping = 'Title'
+            x = train_data[data_cols]
+
+            # add column encoding the type as an integer and create dictionaries
+            x[f'{classification}_id'] = x[classification].factorize()[0]
+            category_id_df = x[[classification, f'{classification}_id']].drop_duplicates().sort_values(f'{classification}_id')
+            category_to_id = dict(category_id_df.values)
+            id_to_category = dict(category_id_df[[f'{classification}_id', classification]].values)
+
+            # checking to see the balance of classes
+            fig = plt.figure(figsize=(8,6))
+            x.groupby(train_data[classification])[grouping].count().plot.bar(ylim=0)
+            st.subheader(f"Count of {grouping} associated with a certain {classification}:")
+            st.pyplot(fig)
+
+            # # extracting features from text using the measure term frequency inverse document frequency (tfidf)
+            # tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', ngram_range=(1, 2), stop_words='english')
+            # features = tfidf.fit_transform(x[grouping].astype(str)).toarray()
+            # labels = x[f'{classification}_id']
+
+            # st.subheader(f"Correlated words grouped by {classification}")
+            # N = 2
+            # for Product, category_id in sorted(id_to_category.items()):
+            #     features_chi2 = chi2(features, labels == category_id)
+            #     indices = np.argsort(features_chi2[0])
+            #     feature_names = np.array(tfidf.get_feature_names_out())[indices]
+            #     unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
+            #     bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
+            #     st.write("# '{}':".format(Product))
+            #     st.write("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
+            #     st.write("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
+            #     st.write("---")
+        classification()
+
     if dataset:
         if file_format == 'csv':
             df = pd.read_csv(dataset)
@@ -308,44 +348,45 @@ def predict_text():
         st.write(fig)
 
 
-def classification():
-    data_cols = ['Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']
-    classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
-    grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
-    if classification == grouping:
-        classification = 'Rated'
-        grouping = 'Title'
-    x = train_data[data_cols]
+        def classification():
+            data_cols = ['Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated']
+            classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
+            grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
+            if classification == grouping:
+                classification = 'Rated'
+                grouping = 'Title'
+            x = train_data[data_cols]
 
-    # add column encoding the type as an integer and create dictionaries
-    x[f'{classification}_id'] = x[classification].factorize()[0]
-    category_id_df = x[[classification, f'{classification}_id']].drop_duplicates().sort_values(f'{classification}_id')
-    category_to_id = dict(category_id_df.values)
-    id_to_category = dict(category_id_df[[f'{classification}_id', classification]].values)
+            # add column encoding the type as an integer and create dictionaries
+            x[f'{classification}_id'] = x[classification].factorize()[0]
+            category_id_df = x[[classification, f'{classification}_id']].drop_duplicates().sort_values(f'{classification}_id')
+            category_to_id = dict(category_id_df.values)
+            id_to_category = dict(category_id_df[[f'{classification}_id', classification]].values)
 
-    # checking to see the balance of classes
-    fig = plt.figure(figsize=(8,6))
-    x.groupby(train_data[classification])[grouping].count().plot.bar(ylim=0)
-    st.subheader(f"Count of {grouping} associated with a certain {classification}:")
-    st.pyplot(fig)
+            # checking to see the balance of classes
+            fig = plt.figure(figsize=(8,6))
+            x.groupby(train_data[classification])[grouping].count().plot.bar(ylim=0)
+            st.subheader(f"Count of {grouping} associated with a certain {classification}:")
+            st.pyplot(fig)
 
-    # extracting features from text using the measure term frequency inverse document frequency (tfidf)
-    tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', ngram_range=(1, 2), stop_words='english')
-    features = tfidf.fit_transform(x[grouping].astype(str)).toarray()
-    labels = x[f'{classification}_id']
+            # # extracting features from text using the measure term frequency inverse document frequency (tfidf)
+            # tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', ngram_range=(1, 2), stop_words='english')
+            # features = tfidf.fit_transform(x[grouping].astype(str)).toarray()
+            # labels = x[f'{classification}_id']
 
-    st.subheader(f"Correlated words grouped by {classification}")
-    N = 2
-    for Product, category_id in sorted(id_to_category.items()):
-        features_chi2 = chi2(features, labels == category_id)
-        indices = np.argsort(features_chi2[0])
-        feature_names = np.array(tfidf.get_feature_names_out())[indices]
-        unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
-        bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
-        st.write("# '{}':".format(Product))
-        st.write("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
-        st.write("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
-        st.write("---")
+            # st.subheader(f"Correlated words grouped by {classification}")
+            # N = 2
+            # for Product, category_id in sorted(id_to_category.items()):
+            #     features_chi2 = chi2(features, labels == category_id)
+            #     indices = np.argsort(features_chi2[0])
+            #     feature_names = np.array(tfidf.get_feature_names_out())[indices]
+            #     unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
+            #     bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
+            #     st.write("# '{}':".format(Product))
+            #     st.write("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
+            #     st.write("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
+            #     st.write("---")
+        classification()
 
 
 def wordcloud():
@@ -420,4 +461,3 @@ def wordcloud():
 
 predict_text()
 wordcloud()
-classification()
