@@ -211,7 +211,6 @@ def interface():
         use_ex = st.sidebar.checkbox("Use Sample Dataset")
         if use_ex:
             F_machine_texting.predict_text_example()
-        else:
-            F_machine_texting.predict_text()
+
 
 interface()
