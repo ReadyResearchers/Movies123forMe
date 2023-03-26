@@ -178,8 +178,8 @@ def classification():
     classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
     grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
     if classification == grouping:
-        classification = 'Genre'
-        grouping = 'Rated'
+        classification = 'Rated'
+        grouping = 'Title'
     x = train_data[data_cols]
 
     # add column encoding the type as an integer and create dictionaries
@@ -196,8 +196,7 @@ def classification():
 
     # extracting features from text using the measure term frequency inverse document frequency (tfidf)
     tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', ngram_range=(1, 2), stop_words='english')
-    st.write(x[grouping])
-    features = tfidf.fit_transform(x[grouping]).toarray()
+    features = tfidf.fit_transform(x[grouping].values.astype(str)).toarray()
     labels = x[f'{classification}_id']
 
     st.subheader(f"Correlated words grouped by {classification}")
