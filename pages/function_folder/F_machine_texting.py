@@ -246,10 +246,9 @@ def wordcloud():
         
         # converting list back to string
         return " ".join(stemmed_words)
-    train_data['tags'].dropna()
-    train_data['tags'].apply(preprocess)
+    train_data['tags'].dropna().apply(preprocess)
 
-    most_common = Counter(" ".join(train_data["tags"]).split()).most_common(10)
+    most_common = Counter(" ".join(str(train_data["tags"])).split()).most_common(10)
 
     #nice library to produce wordclouds
     all_words = '' 
