@@ -38,9 +38,9 @@ if use_defo:
 
 if dataset:
     if file_format == 'csv' or use_defo:
-        df = pd.read_csv(dataset)
+        df = pd.read_csv(dataset, engine='python')
     else:
-        df = pd.read_excel(dataset)
+        df = pd.read_excel(dataset, engine='python')
     
     st.subheader('Dataframe:')
     n, m = df.shape
