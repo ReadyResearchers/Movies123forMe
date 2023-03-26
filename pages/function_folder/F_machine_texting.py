@@ -174,6 +174,7 @@ def predict_text():
 
 
 def classification():
+    data_cols = ['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated', 'movie_success']
     classification = st.selectbox("Please choose a column to find the unigrams and bigrams for: ", data_cols)
     grouping = st.selectbox("Please choose a column to group by: ", data_cols, key=np.random)
     x = train_data[data_cols]
@@ -223,9 +224,9 @@ def wordcloud():
 
     st.set_option('deprecation.showPyplotGlobalUse', False)
     def preprocess(raw_text):
-        
+        text = " ".join(str(e) for e in raw_text)
         #regular expression keeping only letters 
-        letters_only_text = re.sub("[^a-zA-Z]", " ", raw_text)
+        letters_only_text = re.sub("[^a-zA-Z]", " ", text)
 
         # convert to lower case and split into words -> convert string into list ( 'hello world' -> ['hello', 'world'])
         words = letters_only_text.lower().split()
@@ -246,7 +247,8 @@ def wordcloud():
         
         # converting list back to string
         return " ".join(stemmed_words)
-    train_data['prep'] = train_data['tags'].dropna().reset_index().apply(preprocess)
+    train_data['tags'].dropna().reset_index()
+    train_data['tags'].apply(preprocess)
 
     most_common = Counter(" ".join(train_data["prep"]).split()).most_common(10)
 
