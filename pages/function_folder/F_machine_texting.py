@@ -256,7 +256,7 @@ def wordcloud():
     #looping through all incidents and joining them to one text, to extract most common words
     for arg in train_data["tags"]: 
 
-        tokens = arg.split()  
+        tokens = str(arg).split()  
         
         all_words += " ".join(tokens)+" "
 
