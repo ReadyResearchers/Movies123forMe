@@ -145,7 +145,7 @@ def main_dashboard():
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
         
-        o_cm = confusion_matrix(oy_test,otrain_pred)
+        o_cm = confusion_matrix(oy_test,otest_pred)
 
         st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
@@ -179,7 +179,7 @@ def main_dashboard():
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
 
-        o_cm = confusion_matrix(oy_test,otrain_pred)
+        o_cm = confusion_matrix(oy_test,otest_pred)
 
         st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
@@ -213,7 +213,7 @@ def main_dashboard():
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
         
-        o_cm = confusion_matrix(oy_test,otrain_pred)
+        o_cm = confusion_matrix(oy_test,otest_pred)
 
         st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
@@ -237,13 +237,14 @@ def main_dashboard():
 
         st.sidebar.write('Accuracy: ', scores_dtc)
 
+        o1_pred = et.predict(ox_train)
         o_pred = dtc.predict(ox_test)
 
         plt.figure(figsize=(5,5))
-        plt.scatter(x=oy_train, y=o_pred, c="#7CAE00", alpha=0.3)
-        z = np.polyfit(oy_train, o_pred, 1)
+        plt.scatter(x=oy_train, y=o1_pred, c="#7CAE00", alpha=0.3)
+        z = np.polyfit(oy_train, o1_pred, 1)
         p = np.poly1d(z)
-        plt.plot(oy_train,p(o_pred),"#F8766D")
+        plt.plot(oy_train,p(o1_pred),"#F8766D")
         plt.ylabel('Predicted LogS of Movie Success')
         plt.xlabel('Experimental LogS of Movie Success')
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
@@ -273,13 +274,14 @@ def main_dashboard():
 
         st.sidebar.write('Accuracy: ', scores_svm)
 
+        o1_pred = et.predict(ox_train)
         o_pred = svm.predict(ox_test)
 
         plt.figure(figsize=(5,5))
-        plt.scatter(x=oy_train, y=o_pred, c="#7CAE00", alpha=0.3)
-        z = np.polyfit(oy_train, o_pred, 1)
+        plt.scatter(x=oy_train, y=o1_pred, c="#7CAE00", alpha=0.3)
+        z = np.polyfit(oy_train, o1_pred, 1)
         p = np.poly1d(z)
-        plt.plot(oy_train,p(o_pred),"#F8766D")
+        plt.plot(oy_train,p(o1_pred),"#F8766D")
         plt.ylabel('Predicted LogS of Movie Success')
         plt.xlabel('Experimental LogS of Movie Success')
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
@@ -309,13 +311,14 @@ def main_dashboard():
 
         st.sidebar.write('Accuracy: ', scores_logreg)
 
+        o1_pred = et.predict(ox_train)
         o_pred = logreg.predict(ox_test)
 
         plt.figure(figsize=(5,5))
-        plt.scatter(x=oy_train, y=o_pred, c="#7CAE00", alpha=0.3)
-        z = np.polyfit(oy_train, o_pred, 1)
+        plt.scatter(x=oy_train, y=o1_pred, c="#7CAE00", alpha=0.3)
+        z = np.polyfit(oy_train, o1_pred, 1)
         p = np.poly1d(z)
-        plt.plot(oy_train,p(o_pred),"#F8766D")
+        plt.plot(oy_train,p(o1_pred),"#F8766D")
         plt.ylabel('Predicted LogS of Movie Success')
         plt.xlabel('Experimental LogS of Movie Success')
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
