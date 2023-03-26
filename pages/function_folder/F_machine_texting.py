@@ -46,8 +46,7 @@ train_data.columns = ['Title','Year','Rated','Released','Runtime','Genre','Direc
 'Production','Website','Response', 'movie_success','earnings']
 
 train_data = train_data.drop_duplicates(subset = ['Title'], keep='first').reset_index()
-data_cols = ['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated', 'movie_success']
-train_data = train_data[[data_cols]]
+train_data = train_data[['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director', 'Writer', 'Rated', 'movie_success']]
 # #st.write(movies.isnull().sum())
 train_data = train_data.drop_duplicates().reset_index()
 train_data['tags'] = train_data['Genre'] + " " +  train_data['Plot'] + " " + train_data['Actors'] + " " + train_data['Director'] + " " + train_data['Writer'] + " " + train_data['Rated']
