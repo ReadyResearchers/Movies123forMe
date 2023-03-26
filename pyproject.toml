@@ -1,42 +1,36 @@
 [tool.poetry]
-name = "Movies123ForMe"
+name = "movies123forme"
 version = "0.1.0"
-description = "description"
-authors = ["Adriana Solis <solisa@allegheny.edu>"]
+description = ""
+authors = ["Adriana Solis <solis.adriana986@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 include = [ "LICENSE", ]
 packages = [ { include = "pages" }, ]
 
 [tool.poetry.scripts]
-movies = "main:interface"
+movies123forme = "main:interface"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.9.7 || >3.9.7,<4.0"
-typer = "^0.6.1"
-rich = "^12.6.0"
-streamlit = "^1.13.0"
-shap = "^0.41.0"
-matplotlib = "^3.6.1"
-plotly = "^5.10.0"
-sklearn = "^0.0.post1"
-llvmlite = "^0.39.1"
-seaborn = "^0.12.2"
-pdfkit = "^1.0.0"
-jinja2 = "^3.1.2"
-fpdf = "^1.7.2"
-functions = "^0.7.0"
-dash = "^2.7.1"
-nltk = "^3.8.1"
-wordcloud = "^1.8.2.2"
-pathlib = "^1.0.1"
-numpy = "^1.24.2"
-joblib = "^1.2.0"
-gitpython = "^3.1.31"
+python = "^3.11"
 statsmodels = "^0.13.5"
 inotify = "^0.2.10"
+altair = "^4.2.2"
+attrs = "^22.2.0"
+blinker = "^1.5"
+cachetools = "^5.3.0"
+streamlit = "^1.20.0"
+pandas = "^1.5.3"
+numpy = "^1.24.2"
+joblib = "^1.2.0"
+requests = "^2.28.2"
+pathlib = "^1.0.1"
+nltk = "^3.8.1"
+sklearn = "^0.0.post1"
+scikit-learn = "^1.2.2"
+seaborn = "^0.12.2"
+plotly = "^5.13.1"
 
-[tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import re
-import re
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 import nltk
 from nltk.corpus import stopwords as sw
@@ -13,7 +12,6 @@ nltk.download('wordnet')
 
 from nltk.tokenize import word_tokenize
 from collections import Counter
-from wordcloud import WordCloud
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -23,9 +21,7 @@ from sklearn.naive_bayes import MultinomialNB
 import matplotlib.pyplot as plt
 import seaborn as sns
 from nltk.util import ngrams
-from sklearn import metrics
 import nltk
-from pages.function_folder import functions
 
 from sklearn.feature_selection import chi2
 
@@ -185,70 +181,3 @@ def predict_text_example():
         st.subheader(f"Count of {grouping} associated with a certain {classification}:")
         st.pyplot(fig)
     classification()
-
-    def wordcloud():
-        stop_words_file = 'pages/SmartStoplist.txt'
-
-        stop_words = []
-
-        with open(stop_words_file, "r") as f:
-            for line in f:
-                stop_words.extend(line.split()) 
-                    
-        stop_words = stop_words  
-
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        def preprocess(raw_text):
-            #regular expression keeping only letters 
-            letters_only_text = re.sub("[^a-zA-Z]", " ", str(raw_text))
-
-            # convert to lower case and split into words -> convert string into list ( 'hello world' -> ['hello', 'world'])
-            words = letters_only_text.lower().split()
-
-            cleaned_words = []
-            lemmatizer = PorterStemmer() #plug in here any other stemmer or lemmatiser you want to try out
-                
-            # remove stopwords
-            for word in words:
-                if word not in stop_words:
-                    cleaned_words.append(word)
-                
-            # stemm or lemmatise words
-            stemmed_words = []
-            for word in cleaned_words:
-                word = lemmatizer.stem(word)   #dont forget to change stem to lemmatize if you are using a lemmatizer
-                stemmed_words.append(word)
-                
-            # converting list back to string
-            return " ".join(stemmed_words)
-        train_data['tags'].dropna().apply(preprocess)
-
-        most_common = Counter(" ".join(str(train_data["tags"])).split()).most_common(10)
-
-        #nice library to produce wordclouds
-        all_words = '' 
-
-        #looping through all incidents and joining them to one text, to extract most common words
-        for arg in train_data["tags"]: 
-
-            tokens = str(arg).split()  
-                
-            all_words += " ".join(tokens)+" "
-
-        wordcloud = WordCloud(width = 700, height = 700, 
-                        background_color ='white', 
-                        min_font_size = 10).generate(all_words) 
-            
-        # plot the WordCloud image                        
-        plt.figure(figsize = (5, 5), facecolor = None) 
-        plt.imshow(wordcloud) 
-        plt.axis("off") 
-        plt.tight_layout(pad = 0) 
-        st.pyplot(plt.show())
-        n_gram = 2
-        n_gram_dic = dict(Counter(ngrams(all_words.split(), n_gram)))
-
-        for i in n_gram_dic:
-            if n_gram_dic[i] >= 2:
-                pairs = i, n_gram_dic[i]
-    wordcloud()

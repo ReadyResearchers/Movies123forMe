@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-import ast
 from sklearn.feature_extraction.text import CountVectorizer
 import nltk
 from nltk.stem.porter import PorterStemmer
