@@ -25,7 +25,7 @@ import seaborn as sns
 from nltk.util import ngrams
 from sklearn import metrics
 import nltk
-import functions
+from pages.function_folder import functions
 
 from sklearn.feature_selection import chi2
 
