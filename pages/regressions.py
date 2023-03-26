@@ -35,8 +35,8 @@ def regression():
     use_demo = st.sidebar.checkbox('Use Demo of Regression:')
     if use_demo:
         # scatterplot chart
-        fig = px.scatter(opus, x = 'genre_BlackComedy', y = 'movie_success', color = 'rating', 
-                        trendline = 'ols', title = f"Scatterplot of 'movie_success' on 'genre_BlackComedy'")
+        fig = px.scatter(opus, x = 'genre_Black Comedy', y = 'movie_success', color = 'rating', 
+                        trendline = 'ols', title = f"Scatterplot of 'movie_success' on 'genre_Black Comedy'")
         fig.data[1].line.color = 'red'
         fig.update_xaxes(rangeslider_visible = True)
         st.plotly_chart(fig)
@@ -44,19 +44,19 @@ def regression():
         trendline = res['px_fit_results'].iloc[0]
         st.write(trendline.summary())
         # pie chart
-        fig1 = px.pie(opus, values = 'genre_BlackComedy', names = 'movie_success', 
-                    title = f"Percentage of 'movie_success' from 'genre_BlackComedy'")
+        fig1 = px.pie(opus, values = 'genre_Black Comedy', names = 'movie_success', 
+                    title = f"Percentage of 'movie_success' from 'genre_Black Comedy'")
         fig1.update_traces(textinfo="percent+value")
         st.plotly_chart(fig1)
 
         # bar chart
-        fig2 = px.bar(opus, x = 'genre_BlackComedy', y = 'movie_success', color = 'rating',
-        title = f"Bar chart of 'movie_success' on 'genre_BlackComedy'")
+        fig2 = px.bar(opus, x = 'genre_Black Comedy', y = 'movie_success', color = 'rating',
+        title = f"Bar chart of 'movie_success' on 'genre_Black Comedy'")
         st.plotly_chart(fig2)
 
         #might need to work on this to get the func to work
-        fig3 = px.bar(opus, 'genre_BlackComedy', color = 'rating',
-        title = f"Bar chart of the count of 'genre_BlackComedy'")
+        fig3 = px.bar(opus, 'genre_Black Comedy', color = 'rating',
+        title = f"Bar chart of the count of 'genre_Black Comedy'")
         st.plotly_chart(fig3)
         show_stat = st.sidebar.checkbox('Show Summary statistics:')
         if show_stat:
