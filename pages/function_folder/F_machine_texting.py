@@ -227,7 +227,7 @@ def predict_text():
         # num_columns = df.select_dtypes(exclude = 'object').columns
         cat_columns = df.select_dtypes(include = 'object').columns
 
-        if len(cat_columns) = 0:
+        if len(cat_columns) == 0:
             st.write("There is no categorical data that we can analyze.")
         else:
             target = functions.sidebar_singleselect_container('Choose column for Analysis:', cat_columns, 'Count')
