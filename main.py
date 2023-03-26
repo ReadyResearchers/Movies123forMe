@@ -208,8 +208,10 @@ def interface():
     elif success == 'What Movie Should You Watch?':
         text_classification.category()
     elif success == 'Predict Movie Success with Text':
-        F_machine_texting.predict_text()
-        F_machine_texting.wordcloud()
-        F_machine_texting.classification()
+        use_ex = st.sidebar.checkbox("Use Sample Dataset")
+        if use_ex:
+            F_machine_texting.predict_text_example()
+        else:
+            F_machine_texting.predict_text()
 
 interface()
