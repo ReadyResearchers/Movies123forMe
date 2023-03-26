@@ -196,7 +196,7 @@ def classification():
 
     # extracting features from text using the measure term frequency inverse document frequency (tfidf)
     tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', ngram_range=(1, 2), stop_words='english')
-    features = tfidf.fit_transform(x[grouping].values.astype(str)).toarray()
+    features = tfidf.fit_transform(x[grouping].values.astype('U')).toarray()
     labels = x[f'{classification}_id']
 
     st.subheader(f"Correlated words grouped by {classification}")
