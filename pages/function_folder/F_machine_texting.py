@@ -201,7 +201,7 @@ def classification():
 
     st.subheader(f"Correlated words grouped by {classification}")
     N = 2
-    for Product, category_id in sorted(category_to_id.items()):
+    for Product, category_id in sorted(category_to_id.values):
         features_chi2 = chi2(features, labels == category_id)
         indices = np.argsort(features_chi2[0])
         feature_names = np.array(tfidf.get_feature_names_out())[indices]
