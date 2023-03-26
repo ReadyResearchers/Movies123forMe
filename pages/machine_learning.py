@@ -145,7 +145,7 @@ def main_dashboard():
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
         
-        o_cm = confusion_matrix(oy_test,otest_pred)
+        o_cm = confusion_matrix(oy_train,otrain_pred)
 
         st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
@@ -179,7 +179,7 @@ def main_dashboard():
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
 
-        o_cm = confusion_matrix(oy_test,otest_pred)
+        o_cm = confusion_matrix(oy_train,otrain_pred)
 
         st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
@@ -213,7 +213,7 @@ def main_dashboard():
         st.write("Visualizing the difference between the train and test data when prediciting 'movie_success'")
         st.pyplot(plt.plot())
         
-        o_cm = confusion_matrix(oy_test,otest_pred)
+        o_cm = confusion_matrix(oy_train,otrain_pred)
 
         st.sidebar.write('Confusion matrix: ', o_cm)
         st.write("Heatmap of the Confusion Matrix:")
@@ -237,7 +237,7 @@ def main_dashboard():
 
         st.sidebar.write('Accuracy: ', scores_dtc)
 
-        o1_pred = et.predict(ox_train)
+        o1_pred = dtc.predict(ox_train)
         o_pred = dtc.predict(ox_test)
 
         plt.figure(figsize=(5,5))
@@ -274,7 +274,7 @@ def main_dashboard():
 
         st.sidebar.write('Accuracy: ', scores_svm)
 
-        o1_pred = et.predict(ox_train)
+        o1_pred = svm.predict(ox_train)
         o_pred = svm.predict(ox_test)
 
         plt.figure(figsize=(5,5))
@@ -311,7 +311,7 @@ def main_dashboard():
 
         st.sidebar.write('Accuracy: ', scores_logreg)
 
-        o1_pred = et.predict(ox_train)
+        o1_pred = logreg.predict(ox_train)
         o_pred = logreg.predict(ox_test)
 
         plt.figure(figsize=(5,5))
