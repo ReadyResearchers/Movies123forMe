@@ -224,6 +224,8 @@ def wordcloud():
 
     st.set_option('deprecation.showPyplotGlobalUse', False)
     def preprocess(raw_text):
+        st.write(train_data['tags'].head())
+        st.write(train_data['tags'].dtype)
         text = " ".join(str(e) for e in raw_text)
         #regular expression keeping only letters 
         letters_only_text = re.sub("[^a-zA-Z]", " ", text)
