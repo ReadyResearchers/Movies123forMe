@@ -13,6 +13,7 @@ import requests # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
 import subprocess # pylint: disable=C0411
 import main_dashboard
+import sys
 
 st.markdown("""
 <style>h1 {text-align: center;}</style><h1>Welcome to the Movie Analysis Experience 🎈</h1>
@@ -176,7 +177,7 @@ def search_movies():
             df['movie_success'] = np.where(
                 df['earnings'].astype(int) > 55507312, 1, 0)
             outFile.close()
-        subprocess.run("commit.sh", shell=True) # pylint: disable=W1510
+        subprocess.run([f'{sys.executable}', "commit.sh"], shell=True) # pylint: disable=W1510
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -222,7 +223,7 @@ def load_movies():
                 outFile.close()
         except: # pylint: disable=W0702
             continue
-    subprocess.run("commit.sh", shell=True) # pylint: disable=W1510
+    subprocess.run([f'{sys.executable}', "commit.sh"], shell=True) # pylint: disable=W1510
 
 
 def interface():
