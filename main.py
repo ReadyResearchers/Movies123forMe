@@ -222,7 +222,7 @@ def load_movies():
                 outFile.close()
         except: # pylint: disable=W0702
             continue
-    subprocess.run("commit.sh", shell=True, check=True)
+    subprocess.run("commit.sh", shell=True)
 
 
 def interface():

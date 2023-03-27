@@ -1,3 +1,4 @@
+#!/bin/sh
 git init
 git add .
 git commit -m "autoupdate `date +%F-%T`"
