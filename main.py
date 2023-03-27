@@ -12,7 +12,6 @@ import joblib # pylint: disable=E0401, C0413, C0411
 import requests # pylint: disable=E0401, C0413, C0411
 import json # pylint: disable=E0401, C0413, C0411
 import subprocess # pylint: disable=C0411
-import sys # pylint: disable=C0411
 import main_dashboard
 
 st.markdown("""
@@ -199,7 +198,7 @@ def load_movies():
     movies = pd.read_csv('pages/movie_data/testing_data/tmdb_movies_data.csv')
     for _, row in movies.iterrows():
         try:
-            i = str(row['title'])            
+            i = str(row['title'])        
             url = f'http://www.omdbapi.com/?t={i}&apikey=a98f1e4b'
             req = requests.get(url)
             req = req.json()
@@ -221,7 +220,7 @@ def load_movies():
                 df['movie_success'] = np.where(
                     df['earnings'].astype(int) > 55507312, 1, 0)
                 outFile.close()
-        except:
+        except: # pylint: disable=W0702
             continue
     subprocess.run("commit.sh", shell=True, check=True)
 
