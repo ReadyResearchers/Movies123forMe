@@ -177,7 +177,7 @@ def search_movies():
             df['movie_success'] = np.where(
                 df['earnings'].astype(int) > 55507312, 1, 0)
             outFile.close()
-        subprocess.run([f"{sys.executable}", "commit.py"], check=True)
+        # subprocess.run([f"{sys.executable}", "commit.py"], check=True)
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -194,6 +194,38 @@ def search_movies():
             st.progress(float(req['imdbRating']) / 10)
 
 
+def load_movies():
+    """Function to load the movies using the OMDB API."""
+    movies = pd.read_csv('pages/movie_data/testing_data/tmdb_movies_data.csv')
+    for _, row in movies.iterrows():
+        try:
+            i = str(row['title'])            
+            url = f'http://www.omdbapi.com/?t={i}&apikey=a98f1e4b'
+            req = requests.get(url)
+            req = req.json()
+            with open('response.json', 'w', encoding='utf-8') as json_file:
+                json.dump(req, json_file)
+            with open('response.json', 'r', encoding='utf-8') as file:
+                json.loads(file.read())
+            with open('response.json', encoding='utf-8') as inputfile:
+                df = pd.read_json(inputfile) # pylint: disable=C0103
+            with open('movie_search.csv', 'a', encoding='utf-8') as inFile: # pylint: disable=C0103
+                inFile.write(df.to_csv(header = False, index=False))
+            with open('movie_clean.csv', 'a', newline='', encoding='utf-8') as outFile: # pylint: disable=C0103
+                tail = df.tail(1)
+                outFile.write(tail.to_csv(header=False, index=False, mode='a' ))
+                df = pd.read_csv('movie_clean.csv') # pylint: disable=C0103
+                df['earnings'] = df["BoxOffice"].replace(np.nan,"0")
+                df['earnings'] = df['earnings'].str.replace(r'[^\w\s]+', "", regex=True)
+                df = df[df['earnings'].str.contains("TRUE") == False] # pylint: disable=C0103, C0121
+                df['movie_success'] = np.where(
+                    df['earnings'].astype(int) > 55507312, 1, 0)
+                outFile.close()
+        except:
+            continue
+    # subprocess.run([f"{sys.executable}", "commit.py"], check=True)
+
+
 def interface():
     """Main interface for the app."""
     choices = ['Main', 'Movie Search', 'Predict Success of a Movie!',
@@ -203,6 +235,9 @@ def interface():
         main_dashboard.main()
     if success == 'Movie Search':
         search_movies()
+        add_movies = st.sidebar.checkbox("Re-Initialize Movie Database")
+        if add_movies:
+            load_movies()
     elif success == 'Predict Success of a Movie!':
         submit_form()
     elif success == 'What Movie Should You Watch?':
