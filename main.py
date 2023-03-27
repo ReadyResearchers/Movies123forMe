@@ -176,7 +176,7 @@ def search_movies():
             df['movie_success'] = np.where(
                 df['earnings'].astype(int) > 55507312, 1, 0)
             outFile.close()
-        subprocess.run("commit.sh", shell=True, check=True)
+        subprocess.run("commit.sh", shell=True) # pylint: disable=W1510
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -198,7 +198,7 @@ def load_movies():
     movies = pd.read_csv('pages/movie_data/testing_data/tmdb_movies_data.csv')
     for _, row in movies.iterrows():
         try:
-            i = str(row['title'])        
+            i = str(row['title'])  
             url = f'http://www.omdbapi.com/?t={i}&apikey=a98f1e4b'
             req = requests.get(url)
             req = req.json()
@@ -222,7 +222,7 @@ def load_movies():
                 outFile.close()
         except: # pylint: disable=W0702
             continue
-    subprocess.run("commit.sh", shell=True)
+    subprocess.run("commit.sh", shell=True) # pylint: disable=W1510
 
 
 def interface():
