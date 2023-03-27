@@ -40,7 +40,7 @@ Installing the current project: Movies123ForMe (0.1.0)
 From there, you can run the streamlit application using the command below:
 
 ```
-streamlit run src/main.py  --server.maxMessageSize=300
+streamlit run main.py
 ```
 
 This should direct you to the homepage of the application. 
@@ -51,6 +51,18 @@ In the homepage, there are 2 different types of predictive dashboards that you c
 
 - Movie Recommender
 - ![Movie Recommender](img/movie.png)
+
+*If you would like to add your own movie to our database, please perform the following steps:*
+
+1. run the streamlit command locally using ```streamlit run mani.py```
+2. navigate to the 'Movie Search' subpage
+3. type in the name of your desired movie. If you see the summary details of the movie, then it has been successfully added to our database!
+
+*To be able to get recommendations for your newly added movie, please perform the following steps **after** you have added it to the database:*
+- exit the current streamlit session using CTRL + C
+- re-run the streamlit command ```streamlit main.py```
+- navigate to the 'Movie Recommendation' page and begin getting recommendations for your newly added movie!
+
 ---
 
 - Predict Success of Your Own Movie

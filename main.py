@@ -177,7 +177,7 @@ def search_movies():
             df['movie_success'] = np.where(
                 df['earnings'].astype(int) > 55507312, 1, 0)
             outFile.close()
-        # subprocess.run([f"{sys.executable}", "commit.py"], check=True)
+        subprocess.run("commit.sh", shell=True, check=True)
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
@@ -223,7 +223,7 @@ def load_movies():
                 outFile.close()
         except:
             continue
-    # subprocess.run([f"{sys.executable}", "commit.py"], check=True)
+    subprocess.run("commit.sh", shell=True, check=True)
 
 
 def interface():
