@@ -1,6 +1,4 @@
-#!/bin/bash
-git clone https://github.com/ReadyResearchers/Movies123forMe.git
-cd Movies123forMe
+#!/bin/sh
 git init
 git add .
 git commit -m "autoupdate `date +%F-%T`"
