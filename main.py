@@ -179,7 +179,7 @@ def search_movies():
             outFile.close()
         add_data = st.sidebar.checkbox("Add your movie search to our database!")
         if add_data:
-            subprocess.run(["commit.sh"], shell=True) # pylint: disable=W1510
+            subprocess.run([f'{sys.executable}', "commit.py"]) # pylint: disable=W1510
 
     if len(title) == 0:
         url = 'http://www.omdbapi.com/?t=clueless&apikey=a98f1e4b'
