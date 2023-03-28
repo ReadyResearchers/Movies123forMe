@@ -47,7 +47,6 @@ train_data = train_data[['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director
 # #st.write(movies.isnull().sum())
 train_data = train_data.drop_duplicates().reset_index()
 train_data['tags'] = train_data['Genre'] + " " +  train_data['Plot'] + " " + train_data['Actors'] + " " + train_data['Director'] + " " + train_data['Writer'] + " " + train_data['Rated']
-st.write(train_data['tags'].dropna())
 # file_format = st.sidebar.radio('Select file format:', ('csv', 'excel'), key='file_format')
 # dataset = st.sidebar.file_uploader(label = '')
 
