@@ -47,12 +47,12 @@ train_data = train_data[['imdbID', 'Title', 'Plot', 'Genre', 'Actors', 'Director
 # #st.write(movies.isnull().sum())
 train_data = train_data.drop_duplicates().reset_index()
 train_data['tags'] = train_data['Genre'] + " " +  train_data['Plot'] + " " + train_data['Actors'] + " " + train_data['Director'] + " " + train_data['Writer'] + " " + train_data['Rated']
-
+st.write(train_data['tags'].dropna())
 # file_format = st.sidebar.radio('Select file format:', ('csv', 'excel'), key='file_format')
 # dataset = st.sidebar.file_uploader(label = '')
 
 def predict_text_example():
-    t_data = train_data[['tags', 'movie_success']].dropna().reset_index()
+    t_data = train_data[['tags', 'movie_success']].dropna().reset_index(drop=True)
     #stopword removal and lemmatization
     stopw = sw.words('english')
     lemmatizer = WordNetLemmatizer()
@@ -112,7 +112,7 @@ def predict_text_example():
     test_input = tf_idf.transform(test_processed)
     res=naive_bayes_classifier.predict(test_input)[0]
     if len(test_data) == 0:
-        st.write("MOVIE_FEATURE is NOT predicted to be a title of a successful movie!")
+        st.write("MOVIE_FEATURE is NOT predicted to be a feature of a successful movie!")
     else:
         if res==1:
             st.write(f"{test_data} is predicted to be a feature of a successful movie!")
@@ -122,9 +122,10 @@ def predict_text_example():
             stop_words='english',  
             strip_accents='unicode', 
             max_features=1000)
-    st.write("Generating the Confusion Matrix for the 'Title' column in the dataset")
-    X = train_data.Title.values
-    y = train_data.movie_success.values
+    
+    st.write("Generating the Confusion Matrix for the features in the dataset")
+    X = train_X_non.values
+    y = test_y.values
     # Split data into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, 
                                             test_size = 0.3, 
@@ -141,7 +142,7 @@ def predict_text_example():
             
     scores = mnb.score(X_test, y_test)
 
-    st.write('Accuracy of Predicting Movie Success Given all Titles in the Sample: ', scores)
+    st.write('Accuracy of Predicting Movie Success Given all features: ', scores)
     # Make predictions
     y_pred = mnb.predict(X_test)
 
