@@ -79,7 +79,8 @@ def regression():
             8: opus.columns[11],
             9: opus.columns[12], 10: opus.columns[13], 11: opus.columns[14],
             12: opus.columns[15], 13: opus.columns[16], 14: opus.columns[17],
-            15: opus.columns[18]}
+            15: opus.columns[18], 16: opus.columns[19], 17: opus.columns[20], 18: opus.columns[21], 
+            19: opus.columns[22], 20: opus.columns[23], 21: opus.columns[24]}
         category = st.sidebar.selectbox("Select a category to analyze", list(columns1.keys()), format_func=lambda x: columns1[x])
         x_val = st.sidebar.selectbox("X-value: ", list(columns_num.keys()), format_func=lambda x: columns_num[x])
         y_val = st.sidebar.selectbox("Y-val: ", list(columns_num.keys()), format_func=lambda x: columns_num[x])
